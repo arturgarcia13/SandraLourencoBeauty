@@ -1,61 +1,74 @@
-import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { prefersReducedMotion } from '../engine/env';
 import { levels, type Level } from '../lib/tones';
 
-gsap.registerPlugin(ScrollTrigger);
+/**
+ * Atualiza a cor de fundo e a tinta da página de forma centralizada.
+ */
+export function setPageTone(toneKey: Level | number, label?: string) {
+  const tone = levels[toneKey as Level];
+  if (!tone) return;
 
+  const isLight = tone.ink === '#171310';
+
+  document.documentElement.style.setProperty('--bg', tone.bg);
+  document.documentElement.style.setProperty('--ink', tone.ink);
+  document.documentElement.style.setProperty(
+    '--line',
+    isLight ? 'rgba(23, 19, 16, 0.14)' : 'rgba(246, 239, 230, 0.16)'
+  );
+  document.documentElement.style.setProperty(
+    '--muted',
+    isLight ? 'rgba(23, 19, 16, 0.72)' : 'rgba(246, 239, 230, 0.75)'
+  );
+
+  const chip = document.querySelector<HTMLElement>('.chip-level');
+  if (chip) {
+    chip.textContent = label || `Nível ${toneKey} · ${tone.name}`;
+  }
+}
+
+/**
+ * Inicializa os gatilhos de scroll que conduzem o tom da página seção por seção.
+ */
 export function initToneDriver() {
   if (prefersReducedMotion()) return;
 
   const sections = Array.from(document.querySelectorAll<HTMLElement>('section[data-tone]'));
   if (sections.length < 2) return;
 
-  const chip = document.querySelector<HTMLElement>('.chip-level');
-
-  sections.forEach((sec, i) => {
+  sections.forEach((sec) => {
     const toneKey = Number(sec.dataset.tone) as Level;
-    const tone = levels[toneKey];
-    if (!tone) return;
+    const toneLabel = sec.dataset.toneLabel;
+    if (!levels[toneKey]) return;
 
-    // Header chip updates when section reaches middle of viewport
     ScrollTrigger.create({
       trigger: sec,
-      start: 'top 50%',
-      end: 'bottom 50%',
+      start: 'top 55%',
+      end: 'bottom 45%',
       onEnter: () => {
-        if (chip) chip.textContent = `Nível ${toneKey} · ${tone.name}`;
+        if (sec.classList.contains('hero')) {
+          const checkedToneInput = document.querySelector<HTMLInputElement>(
+            'input[name$="-tone"]:checked'
+          );
+          if (checkedToneInput) {
+            checkedToneInput.dispatchEvent(new Event('change'));
+            return;
+          }
+        }
+        setPageTone(toneKey, toneLabel);
       },
       onEnterBack: () => {
-        if (chip) chip.textContent = `Nível ${toneKey} · ${tone.name}`;
-      },
-    });
-
-    if (i === 0) {
-      // First section sets initial colors
-      document.documentElement.style.setProperty('--bg', tone.bg);
-      document.documentElement.style.setProperty('--ink', tone.ink);
-      if (chip) chip.textContent = `Nível ${toneKey} · ${tone.name}`;
-      return;
-    }
-
-    const prevSec = sections[i - 1];
-    const prevToneKey = Number(prevSec.dataset.tone) as Level;
-    const prevTone = levels[prevToneKey];
-    if (!prevTone) return;
-
-    const interpolateBg = gsap.utils.interpolate(prevTone.bg, tone.bg);
-
-    ScrollTrigger.create({
-      trigger: sec,
-      start: 'top 75%',
-      end: 'top 25%',
-      scrub: true,
-      onUpdate: (self) => {
-        const bg = interpolateBg(self.progress);
-        const ink = self.progress < 0.5 ? prevTone.ink : tone.ink;
-        document.documentElement.style.setProperty('--bg', bg);
-        document.documentElement.style.setProperty('--ink', ink);
+        if (sec.classList.contains('hero')) {
+          const checkedToneInput = document.querySelector<HTMLInputElement>(
+            'input[name$="-tone"]:checked'
+          );
+          if (checkedToneInput) {
+            checkedToneInput.dispatchEvent(new Event('change'));
+            return;
+          }
+        }
+        setPageTone(toneKey, toneLabel);
       },
     });
   });

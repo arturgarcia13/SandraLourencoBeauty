@@ -1,49 +1,86 @@
 import { tonePicks, selectionLink, levels, type Level } from '../lib/tones';
+import { setPageTone } from './tone';
 
 export function initSelectors() {
   const forms = document.querySelectorAll<HTMLElement>('.sel');
 
   forms.forEach((form) => {
-    const toneInputs = form.querySelectorAll<HTMLInputElement>('input[name^="tone"]');
-    const periodInputs = form.querySelectorAll<HTMLInputElement>('input[name^="period"]');
+    const toneInputs = form.querySelectorAll<HTMLInputElement>('input[name$="-tone"]');
+    const periodInputs = form.querySelectorAll<HTMLInputElement>('input[name$="-period"]');
     const ctaBtn = form.querySelector<HTMLAnchorElement>('.btn--wa');
     const poster = document.querySelector<HTMLElement>('.poster');
     const posterNum = poster?.querySelector<HTMLElement>('.poster__num');
     const posterName = poster?.querySelector<HTMLElement>('.poster__name');
 
     function update() {
-      const checkedTone = form.querySelector<HTMLInputElement>('input[name^="tone"]:checked')?.value || 'mel';
-      const checkedPeriod = form.querySelector<HTMLInputElement>('input[name^="period"]:checked')?.value || 'qualquer';
+      const checkedTone =
+        form.querySelector<HTMLInputElement>('input[name$="-tone"]:checked')?.value || 'mel';
+      const checkedPeriod =
+        form.querySelector<HTMLInputElement>('input[name$="-period"]:checked')?.value || 'qualquer';
 
       const url = selectionLink(checkedTone, checkedPeriod);
       if (ctaBtn) {
         ctaBtn.href = url;
       }
 
-      // Update poster if this selector is attached to or controls the hero
-      if (poster && form.closest('.hero')) {
-        const toneData = tonePicks.find((t) => t.id === checkedTone);
-        if (toneData) {
+      const toneData = tonePicks.find((t) => t.id === checkedTone);
+      if (!toneData) return;
+
+      const numLevel = Number(toneData.numeral);
+      const isNum = !isNaN(numLevel) && levels[numLevel as Level];
+      const toneInfo = isNum ? levels[numLevel as Level] : levels[9]; // Alisamento usa tom Areia clara (nível 9)
+
+      // Se este seletor está no Hero ou é o seletor principal:
+      if (form.closest('.hero')) {
+        // Altera a cor de fundo e a tinta da página para o tom escolhido!
+        setPageTone(
+          isNum ? (numLevel as Level) : 9,
+          isNum ? `Nível ${toneData.numeral} · ${toneData.label}` : 'Alisamento · Orgânico'
+        );
+
+        // Atualiza visualmente o pôster
+        if (poster) {
           if (posterNum) posterNum.textContent = toneData.numeral;
           if (posterName) posterName.textContent = toneData.label;
-
-          const numLevel = Number(toneData.numeral);
-          if (!isNaN(numLevel) && levels[numLevel as Level]) {
-            const l = levels[numLevel as Level];
-            poster.style.setProperty('--p-bg', l.bg);
-            poster.style.setProperty('--p-ink', l.ink);
-          } else {
-            poster.style.setProperty('--p-bg', '#3a2a1f');
-            poster.style.setProperty('--p-ink', '#f6efe6');
-          }
+          poster.style.setProperty('--p-bg', toneInfo.bg);
+          poster.style.setProperty('--p-ink', toneInfo.ink);
+        }
+      } else if (form.closest('.fin')) {
+        // Se estiver no fechamento, sincroniza a seção de fechamento
+        const finSec = form.closest<HTMLElement>('.fin');
+        if (finSec) {
+          finSec.style.setProperty('--sbg', toneInfo.bg);
+          finSec.style.setProperty('--sink', toneInfo.ink);
         }
       }
     }
 
-    toneInputs.forEach((input) => input.addEventListener('change', update));
-    periodInputs.forEach((input) => input.addEventListener('change', update));
+    toneInputs.forEach((input) => {
+      input.addEventListener('change', update);
+      // Suporte direto para clique e toque no container do label
+      const label = input.closest('label');
+      if (label) {
+        label.addEventListener('click', () => {
+          if (input.checked) return;
+          input.checked = true;
+          update();
+        });
+      }
+    });
 
-    // Initialize with current values
+    periodInputs.forEach((input) => {
+      input.addEventListener('change', update);
+      const label = input.closest('label');
+      if (label) {
+        label.addEventListener('click', () => {
+          if (input.checked) return;
+          input.checked = true;
+          update();
+        });
+      }
+    });
+
+    // Inicia com os valores selecionados no carregamento
     update();
   });
 }
