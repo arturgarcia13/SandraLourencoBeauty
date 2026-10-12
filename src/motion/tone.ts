@@ -36,34 +36,16 @@ export function setPageTone(toneKey: Level | number, label?: string) {
 
 /**
  * Inicializa os gatilhos de scroll que conduzem o tom da página.
- * - Início (Hero até Resultados): Preto (#121010, Nível 1 · Carvão), o mesmo do fechamento.
- * - Menu de procedimentos (#servicos): Moreno (#3A2A1F, Nível 4).
- * - Protocolo da casa (#metodo) e O Espaço (#espaco): Areia clara (#EDDFC7, Nível 9).
- * - Avaliações (#avaliacoes) e FAQ (#faq): Platinado (#F5F0E7, Nível 10).
- * - Fechamento (#agendar): Preto (#121010, Nível 1 · Carvão).
+ * Escala cromática contínua:
+ * 1 (Carvão) -> 2 (Espresso) -> 3 (Castanho escuro) -> 4 (Moreno) -> 9 (Areia clara) -> 10 (Platinado) -> 1 (Carvão).
  */
 export function initToneDriver() {
   if (prefersReducedMotion()) return;
 
-  const servicosSec = document.querySelector<HTMLElement>('#servicos');
-  if (!servicosSec) return;
+  const sections = Array.from(document.querySelectorAll<HTMLElement>('section[data-tone]'));
+  if (sections.length < 2) return;
 
-  // 1. Bloco inicial (Hero até Resultados): preto #121010
-  ScrollTrigger.create({
-    trigger: '#inicio',
-    endTrigger: '#resultados',
-    start: 'top top',
-    end: 'bottom 50%',
-    onEnter: () => setPageTone(1, 'Nível 1 · Carvão'),
-    onEnterBack: () => setPageTone(1, 'Nível 1 · Carvão'),
-  });
-
-  // 2. Seções narrativas a partir do "Menu de procedimentos" (#servicos):
-  const narrativeSections = Array.from(
-    document.querySelectorAll<HTMLElement>('#servicos, #metodo, #espaco, #avaliacoes, #faq, #agendar')
-  );
-
-  narrativeSections.forEach((sec) => {
+  sections.forEach((sec) => {
     const toneKey = Number(sec.dataset.tone) as Level;
     const toneLabel = sec.dataset.toneLabel;
     if (!levels[toneKey]) return;
@@ -74,12 +56,6 @@ export function initToneDriver() {
       end: 'bottom 45%',
       onEnter: () => setPageTone(toneKey, toneLabel),
       onEnterBack: () => setPageTone(toneKey, toneLabel),
-      onLeaveBack: () => {
-        // Ao rolar de volta para cima saindo de "Menu de procedimentos", volta para o preto inicial
-        if (sec.id === 'servicos') {
-          setPageTone(1, 'Nível 1 · Carvão');
-        }
-      },
     });
   });
 }

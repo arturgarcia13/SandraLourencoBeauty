@@ -191,8 +191,22 @@ html.motion [data-split] { visibility: hidden; }
 /* ───────── Header ───────── */
 .hdr { position: fixed; inset: 0 0 auto 0; z-index: 50; height: var(--header); background: var(--bg); border-bottom: 1px solid var(--line); transition: background-color 0.5s var(--ease-out), color 0.4s var(--ease-out), border-color 0.4s var(--ease-out); }
 .hdr .wrap { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: var(--s3); }
-.brand { font-family: var(--serif); font-weight: 600; font-size: 1.25rem; letter-spacing: -0.01em; line-height: 1; white-space: nowrap; }
+.brand { font-family: var(--serif); font-weight: 600; font-size: 1.25rem; letter-spacing: -0.01em; line-height: 1; white-space: nowrap; display: inline-flex; align-items: center; gap: var(--s2); }
 .brand small { font-family: var(--sans); font-weight: 600; font-size: 0.625rem; letter-spacing: 0.2em; text-transform: uppercase; margin-left: var(--s2); color: var(--muted); }
+.brand__logo {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  background-color: currentColor;
+  -webkit-mask: url('/logo-transparent.png') no-repeat center / contain;
+  mask: url('/logo-transparent.png') no-repeat center / contain;
+  flex: none;
+  transition: transform 0.4s var(--ease-out);
+}
+.brand:hover .brand__logo { transform: scale(1.08); }
+.brand__logo--sm { width: 16px; height: 16px; }
+.brand__logo--lg { width: 34px; height: 34px; }
+.poster__brand { display: inline-flex; align-items: center; gap: var(--s2); }
 .chip-level { display: none; font-size: var(--t-xs); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-variant-numeric: tabular-nums; transition: color 0.3s; }
 .nav { display: none; gap: var(--s6); font-size: var(--t-s); font-weight: 500; }
 .nav a { color: var(--muted); padding: var(--s3) 0; transition: color 0.3s; }
@@ -467,8 +481,7 @@ html.motion [data-split] { visibility: hidden; }
 @media (min-width: 900px) { .ftr__grid { grid-template-columns: 5fr 3fr 3fr; } }
 .ftr b { color: var(--ink); font-weight: 600; display: block; margin-bottom: var(--s1); }
 .ftr a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--line); display: inline-block; padding-block: var(--s1); }
-.ftr a:hover { text-decoration-color: currentColor; }
-.ftr__brand { font-family: var(--serif); font-size: var(--t-l); color: var(--ink); line-height: 1; font-weight: 500; letter-spacing: -0.02em; margin-bottom: var(--s2); }
+.ftr__brand { font-family: var(--serif); font-size: var(--t-l); color: var(--ink); line-height: 1.2; font-weight: 500; letter-spacing: -0.02em; margin-bottom: var(--s2); display: flex; align-items: center; gap: var(--s3); }
 
 /* ───────── FAB ───────── */
 .fab {

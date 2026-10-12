@@ -4,7 +4,8 @@ import { waLink } from './whatsapp';
 export const levels = {
   1: { name: 'Carvão', bg: '#121010', ink: '#F6EFE6' },
   2: { name: 'Espresso', bg: '#17120F', ink: '#F6EFE6' },
-  4: { name: 'Castanho', bg: '#3A2A1F', ink: '#F6EFE6' },
+  3: { name: 'Castanho escuro', bg: '#261C14', ink: '#F6EFE6' },
+  4: { name: 'Moreno', bg: '#3A2A1F', ink: '#F6EFE6' },
   6: { name: 'Caramelo', bg: '#7A5636', ink: '#F6EFE6' },
   7: { name: 'Mel', bg: '#C79A62', ink: '#171310' },
   8: { name: 'Champanhe', bg: '#E3CBA6', ink: '#171310' },
