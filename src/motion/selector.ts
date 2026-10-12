@@ -1,5 +1,4 @@
 import { tonePicks, selectionLink, levels, type Level } from '../lib/tones';
-import { setPageTone, setHeroTone } from './tone';
 
 export function initSelectors() {
   const forms = document.querySelectorAll<HTMLElement>('.sel');
@@ -30,18 +29,8 @@ export function initSelectors() {
       const isNum = !isNaN(numLevel) && levels[numLevel as Level];
       const toneInfo = isNum ? levels[numLevel as Level] : levels[9]; // Alisamento usa tom Areia clara (nível 9)
 
-      // Se este seletor está no Hero ou é o seletor principal:
+      // Se este seletor está no Hero: altera apenas as cores do card "Escala de cor"
       if (form.closest('.hero')) {
-        const key = isNum ? (numLevel as Level) : 9;
-        const label = isNum
-          ? `Nível ${toneData.numeral} · ${toneData.label}`
-          : 'Alisamento · Orgânico';
-
-        // Registra e altera a cor de fundo e a tinta da página para o tom escolhido!
-        setHeroTone(key, label);
-        setPageTone(key, label);
-
-        // Atualiza visualmente o pôster
         if (poster) {
           if (posterNum) posterNum.textContent = toneData.numeral;
           if (posterName) posterName.textContent = toneData.label;

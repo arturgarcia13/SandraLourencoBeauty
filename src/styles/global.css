@@ -4,19 +4,19 @@
 @property --bg {
   syntax: '<color>';
   inherits: true;
-  initial-value: #c79a62;
+  initial-value: #121010;
 }
 
 @property --ink {
   syntax: '<color>';
   inherits: true;
-  initial-value: #171310;
+  initial-value: #f6efe6;
 }
 
 /* ───────── Tokens ───────── */
 :root {
-  --bg: #c79a62;
-  --ink: #171310;
+  --bg: #121010;
+  --ink: #f6efe6;
   --wa: #25d366;
   --wa-ink: #0e1a12;
   --champagne: #c6a87d;
@@ -46,8 +46,8 @@
 
   --gut: clamp(16px, 0.4rem + 3.8vw, 40px);
   --radius: 10px;
-  --line: rgba(23, 19, 16, 0.14);
-  --muted: rgba(23, 19, 16, 0.72);
+  --line: rgba(246, 239, 230, 0.16);
+  --muted: rgba(246, 239, 230, 0.75);
   --header: 64px;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
