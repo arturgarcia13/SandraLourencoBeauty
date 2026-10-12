@@ -7,5 +7,11 @@ export default defineConfig({
   output: 'static',
   integrations: [sitemap()],
   vite: {
+    server: {
+      allowedHosts: [
+        'universities-sides-opt-club.trycloudflare.com',
+        '.trycloudflare.com',
+      ],
+    },
   },
 });
