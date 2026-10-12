@@ -5,7 +5,7 @@ import { levels, type Level } from '../lib/tones';
 /**
  * Atualiza a cor de fundo e a tinta da página de forma centralizada e suave.
  */
-export function setPageTone(toneKey: Level | number, label?: string) {
+export function setPageTone(toneKey: Level | number, _label?: string) {
   const tone = levels[toneKey as Level];
   if (!tone) return;
 
@@ -26,11 +26,6 @@ export function setPageTone(toneKey: Level | number, label?: string) {
   const metaTheme = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
   if (metaTheme) {
     metaTheme.content = tone.bg;
-  }
-
-  const chip = document.querySelector<HTMLElement>('.chip-level');
-  if (chip) {
-    chip.textContent = label || `Nível ${toneKey} · ${tone.name}`;
   }
 }
 

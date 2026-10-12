@@ -89,7 +89,6 @@ p, span, a, label,
 .lead,
 .brand,
 .brand small,
-.chip-level,
 .nav a,
 .feat__n,
 .feat__t,
@@ -207,18 +206,13 @@ html.motion [data-split] { visibility: hidden; }
 .brand__logo--sm { width: 16px; height: 16px; }
 .brand__logo--lg { width: 34px; height: 34px; }
 .poster__brand { display: inline-flex; align-items: center; gap: var(--s2); }
-.chip-level { display: none; font-size: var(--t-xs); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-variant-numeric: tabular-nums; transition: color 0.3s; }
 .nav { display: none; gap: var(--s6); font-size: var(--t-s); font-weight: 500; }
 .nav a { color: var(--muted); padding: var(--s3) 0; transition: color 0.3s; }
 .nav a:hover { color: var(--ink); }
 .hdr .btn { min-height: 40px; padding: 0 var(--s4); font-size: 0.8125rem; }
-@media (min-width: 640px) {
-  .chip-level { display: block; margin-left: auto; }
-}
 @media (min-width: 900px) {
   .brand { font-size: 1.375rem; }
   .nav { display: flex; margin-left: auto; }
-  .chip-level { margin-left: 0; min-width: 150px; text-align: right; }
   .hdr .btn { min-height: 44px; font-size: var(--t-s); }
 }
 @media (max-width: 360px) { .brand small { display: none; } }
