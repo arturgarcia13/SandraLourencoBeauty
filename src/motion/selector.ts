@@ -1,5 +1,5 @@
 import { tonePicks, selectionLink, levels, type Level } from '../lib/tones';
-import { setPageTone } from './tone';
+import { setPageTone, setHeroTone } from './tone';
 
 export function initSelectors() {
   const forms = document.querySelectorAll<HTMLElement>('.sel');
@@ -32,11 +32,14 @@ export function initSelectors() {
 
       // Se este seletor está no Hero ou é o seletor principal:
       if (form.closest('.hero')) {
-        // Altera a cor de fundo e a tinta da página para o tom escolhido!
-        setPageTone(
-          isNum ? (numLevel as Level) : 9,
-          isNum ? `Nível ${toneData.numeral} · ${toneData.label}` : 'Alisamento · Orgânico'
-        );
+        const key = isNum ? (numLevel as Level) : 9;
+        const label = isNum
+          ? `Nível ${toneData.numeral} · ${toneData.label}`
+          : 'Alisamento · Orgânico';
+
+        // Registra e altera a cor de fundo e a tinta da página para o tom escolhido!
+        setHeroTone(key, label);
+        setPageTone(key, label);
 
         // Atualiza visualmente o pôster
         if (poster) {

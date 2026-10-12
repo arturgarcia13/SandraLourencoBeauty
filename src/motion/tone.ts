@@ -2,8 +2,27 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { prefersReducedMotion } from '../engine/env';
 import { levels, type Level } from '../lib/tones';
 
+// Armazena o tom atualmente escolhido no Hero (iniciando em Mel · Nível 7)
+let currentHeroToneKey: Level | number = 7;
+let currentHeroToneLabel = 'Nível 7 · Mel';
+
 /**
- * Atualiza a cor de fundo e a tinta da página de forma centralizada.
+ * Atualiza o tom escolhido no Hero para persistência durante a navegação.
+ */
+export function setHeroTone(toneKey: Level | number, label?: string) {
+  currentHeroToneKey = toneKey;
+  if (label) currentHeroToneLabel = label;
+}
+
+/**
+ * Aplica o tom atualmente escolhido no Hero à página inteira.
+ */
+export function applyHeroTone() {
+  setPageTone(currentHeroToneKey, currentHeroToneLabel);
+}
+
+/**
+ * Atualiza a cor de fundo e a tinta da página de forma centralizada e suave.
  */
 export function setPageTone(toneKey: Level | number, label?: string) {
   const tone = levels[toneKey as Level];
@@ -22,6 +41,12 @@ export function setPageTone(toneKey: Level | number, label?: string) {
     isLight ? 'rgba(23, 19, 16, 0.72)' : 'rgba(246, 239, 230, 0.75)'
   );
 
+  // Sincroniza a barra do navegador em dispositivos móveis
+  const metaTheme = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
+  if (metaTheme) {
+    metaTheme.content = tone.bg;
+  }
+
   const chip = document.querySelector<HTMLElement>('.chip-level');
   if (chip) {
     chip.textContent = label || `Nível ${toneKey} · ${tone.name}`;
@@ -29,15 +54,32 @@ export function setPageTone(toneKey: Level | number, label?: string) {
 }
 
 /**
- * Inicializa os gatilhos de scroll que conduzem o tom da página seção por seção.
+ * Inicializa os gatilhos de scroll que conduzem o tom da página.
+ * O tom escolhido no Hero é mantido continuamente até a seção "Protocolo da casa" (#metodo).
  */
 export function initToneDriver() {
   if (prefersReducedMotion()) return;
 
-  const sections = Array.from(document.querySelectorAll<HTMLElement>('section[data-tone]'));
-  if (sections.length < 2) return;
+  const metodoSec = document.querySelector<HTMLElement>('#metodo');
+  if (!metodoSec) return;
 
-  sections.forEach((sec) => {
+  // 1. Zona inicial (Hero até Serviços):
+  // Mantém e restaura o tom escolhido no Hero sempre que estiver nesta área.
+  ScrollTrigger.create({
+    trigger: '#inicio',
+    endTrigger: '#servicos',
+    start: 'top top',
+    end: 'bottom 50%',
+    onEnter: () => applyHeroTone(),
+    onEnterBack: () => applyHeroTone(),
+  });
+
+  // 2. Seções narrativas a partir do "Protocolo da casa" (#metodo) até o fechamento:
+  const narrativeSections = Array.from(
+    document.querySelectorAll<HTMLElement>('#metodo, #espaco, #avaliacoes, #faq, #agendar')
+  );
+
+  narrativeSections.forEach((sec) => {
     const toneKey = Number(sec.dataset.tone) as Level;
     const toneLabel = sec.dataset.toneLabel;
     if (!levels[toneKey]) return;
@@ -46,29 +88,13 @@ export function initToneDriver() {
       trigger: sec,
       start: 'top 55%',
       end: 'bottom 45%',
-      onEnter: () => {
-        if (sec.classList.contains('hero')) {
-          const checkedToneInput = document.querySelector<HTMLInputElement>(
-            'input[name$="-tone"]:checked'
-          );
-          if (checkedToneInput) {
-            checkedToneInput.dispatchEvent(new Event('change'));
-            return;
-          }
+      onEnter: () => setPageTone(toneKey, toneLabel),
+      onEnterBack: () => setPageTone(toneKey, toneLabel),
+      onLeaveBack: () => {
+        // Ao rolar de volta para cima saindo de "Protocolo da casa", volta ao tom escolhido no Hero
+        if (sec.id === 'metodo') {
+          applyHeroTone();
         }
-        setPageTone(toneKey, toneLabel);
-      },
-      onEnterBack: () => {
-        if (sec.classList.contains('hero')) {
-          const checkedToneInput = document.querySelector<HTMLInputElement>(
-            'input[name$="-tone"]:checked'
-          );
-          if (checkedToneInput) {
-            checkedToneInput.dispatchEvent(new Event('change'));
-            return;
-          }
-        }
-        setPageTone(toneKey, toneLabel);
       },
     });
   });
