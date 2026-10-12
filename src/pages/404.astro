@@ -1,28 +1,24 @@
 ---
 import Base from '../layouts/Base.astro';
-import Button from '../components/ui/Button.astro';
+import { site } from '../config/site';
 ---
 
-<Base title="Página não encontrada — Sandra Lourenço Beauty">
-  <main class="min-h-screen bg-ink text-ivory flex flex-col items-center justify-center p-6 text-center">
-    <div class="max-w-md mx-auto">
-      <span class="w-12 h-12 rounded-full border border-champagne/40 bg-champagne/10 flex items-center justify-center text-champagne mx-auto mb-4 font-serif text-lg">
-        ✦
+<Base title={`Página não encontrada · ${site.name}`}>
+  <main class="nf" id="conteudo-principal" style="background: #17120F; color: #F6EFE6;">
+    <div class="wrap">
+      <span class="muted" style="font-size: var(--t-xs); letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; display: block; margin-bottom: var(--s4);">
+        Erro 404
       </span>
-      <h1 class="font-serif text-5xl sm:text-6xl font-medium tracking-tight mb-4">
-        404
-      </h1>
-      <h2 class="font-serif text-2xl font-medium text-champagne mb-3">
+      <h1 class="h-xl">
         Página não encontrada
-      </h2>
-      <p class="font-sans text-sm text-ivory/70 leading-relaxed mb-8">
-        O endereço que você tentou acessar não existe ou foi alterado. Retorne para a página inicial ou fale conosco pelo WhatsApp.
+      </h1>
+      <p class="muted">
+        O endereço que você tentou acessar não existe ou foi alterado. Retorne para a página inicial para conhecer nossos procedimentos e agendar seu atendimento.
       </p>
-
-      <div class="flex flex-col sm:flex-row gap-3 justify-center">
-        <Button href="/" variant="outline-dark" size="md">
+      <div>
+        <a href="/" class="btn btn--line">
           Voltar para a página inicial
-        </Button>
+        </a>
       </div>
     </div>
   </main>

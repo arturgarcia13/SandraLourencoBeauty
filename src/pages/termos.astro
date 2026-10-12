@@ -1,50 +1,42 @@
 ---
 import Base from '../layouts/Base.astro';
-import Button from '../components/ui/Button.astro';
 import { site } from '../config/site';
 ---
 
-<Base title={`Termos de atendimento — ${site.name}`}>
-  <main class="min-h-screen bg-ivory text-ink py-20 px-4 sm:px-6">
-    <div class="max-w-3xl mx-auto bg-white rounded-xl p-8 sm:p-12 border hairline shadow-sm">
-      <span class="text-xs font-sans font-semibold uppercase tracking-wider text-champagne block mb-2">
+<Base title={`Termos de atendimento · ${site.name}`}>
+  <main class="doc" id="conteudo-principal" style="background: #FAF8F5; color: #171310;">
+    <div class="wrap">
+      <span class="muted" style="font-size: var(--t-xs); letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; display: block;">
         Regras da casa e biossegurança
       </span>
-      <h1 class="font-serif text-3xl sm:text-4xl font-medium tracking-tight mb-6">
+
+      <h1 class="h-xl">
         Termos de atendimento
       </h1>
 
-      <div class="space-y-6 text-sm font-sans text-olive leading-relaxed">
-        <p>
-          Seja muito bem vinda ao espaço <strong>{site.name}</strong>. Nosso objetivo é proporcionar um atendimento seguro, acolhedor e com padrão de excelência. Para garantir o conforto de todas as clientes, solicitamos a observância das seguintes diretrizes:
-        </p>
+      <p>
+        Seja muito bem vinda ao espaço <strong>{site.name}</strong>. Nosso objetivo é proporcionar um atendimento seguro, acolhedor e com padrão de excelência. Para garantir o conforto de todas as clientes, solicitamos a observância das seguintes diretrizes:
+      </p>
 
-        <h2 class="font-serif text-xl font-medium text-ink pt-2">
-          1. Política de espaço privativo
-        </h2>
-        <p>
-          Para preservar a tranquilidade, o silêncio e o foco exclusivo da equipe técnica, nosso estúdio atende sem acompanhantes. Essa norma garante um ambiente seguro e relaxante durante todo o seu procedimento.
-        </p>
+      <h2>1. Política de espaço privativo</h2>
+      <p>
+        Para preservar a tranquilidade, o silêncio e o foco exclusivo da equipe técnica, nosso estúdio atende sem acompanhantes. Essa norma garante um ambiente seguro e relaxante durante todo o seu procedimento.
+      </p>
 
-        <h2 class="font-serif text-xl font-medium text-ink pt-2">
-          2. Teste de mechas obrigatório
-        </h2>
-        <p>
-          Para qualquer procedimento que envolva clareamento, mechas ou transformações químicas estruturais, o teste prévio de mechas é indispensável. Não realizamos procedimentos químicos caso o teste aponte fragilidade ou incompatibilidade na fibra capilar.
-        </p>
+      <h2>2. Teste de mechas obrigatório</h2>
+      <p>
+        Para qualquer procedimento que envolva clareamento, mechas ou transformações químicas estruturais, o teste prévio de mechas é indispensável. Não realizamos procedimentos químicos caso o teste aponte fragilidade ou incompatibilidade na fibra capilar.
+      </p>
 
-        <h2 class="font-serif text-xl font-medium text-ink pt-2">
-          3. Pontualidade e horários
-        </h2>
-        <p>
-          Atendemos de segunda a sexta, das 09h às 16h30, com sessões organizadas a cada 30 minutos. Pedimos que chegue no horário acordado para que seu cronograma capilar transcorra com perfeição.
-        </p>
+      <h2>3. Pontualidade e horários</h2>
+      <p>
+        Atendemos de segunda a sexta, das 09h às 16h30, com sessões organizadas a cada 30 minutos. Pedimos que chegue no horário acordado para que seu cronograma capilar transcorra com precisão.
+      </p>
 
-        <div class="pt-6 border-t hairline flex justify-between items-center">
-          <Button href="/" variant="outline" size="sm">
-            ← Voltar para a página inicial
-          </Button>
-        </div>
+      <div>
+        <a href="/" class="btn btn--line">
+          Voltar para a página inicial
+        </a>
       </div>
     </div>
   </main>

@@ -1,0 +1,63 @@
+---
+import { reviewStats, reviewQuotes } from '../lib/reviews';
+
+const stats = reviewStats();
+const quotes = reviewQuotes();
+---
+
+<section
+  class="sec"
+  data-tone="10"
+  data-tone-label="Nível 10 · Platinado"
+  style="--sbg: #F5F0E7; --sink: #171310;"
+  id="avaliacoes"
+>
+  <div class="wrap">
+    <div class="rev__head">
+      <div>
+        <div class="eyebrow" data-reveal="up">
+          Confiança comprovada
+        </div>
+        <div class="rev__stat" data-split="chars">
+          5.0
+        </div>
+      </div>
+
+      <div>
+        <p class="rev__txt" data-reveal="up">
+          Todas as {stats.ratings} avaliações registradas no sistema Avec VIP concederam nota máxima. Mais do que notas, a maior prova é o retorno constante.
+        </p>
+      </div>
+
+      <div class="rev__nums" data-reveal="up">
+        <div>
+          <b>{stats.clients}</b>
+          <span>Clientes avaliadoras</span>
+        </div>
+        <div>
+          <b>{stats.returning}</b>
+          <span>Retornaram e avaliaram de novo</span>
+        </div>
+        <div>
+          <b>100%</b>
+          <span>Notas cinco estrelas</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="quotes" role="list">
+      {quotes.map((q) => (
+        <blockquote class="quote" data-reveal="up" role="listitem">
+          <p>"{q.text}"</p>
+          <cite>
+            {q.who} <span class="muted">· {q.date}</span>
+          </cite>
+        </blockquote>
+      ))}
+    </div>
+
+    <p class="rev__src" data-reveal="up">
+      Depoimentos reais extraídos do perfil oficial do salão no sistema Avec VIP.
+    </p>
+  </div>
+</section>

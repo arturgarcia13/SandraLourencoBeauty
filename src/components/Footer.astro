@@ -1,92 +1,54 @@
 ---
-import Icon from './ui/Icon.astro';
 import { site } from '../config/site';
-const currentYear = new Date().getFullYear();
 ---
 
-<footer class="bg-ink text-ivory/70 py-16 border-t hairline-dark">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6">
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pb-12 border-b hairline-dark">
-      
-      <!-- Coluna 1: Marca & CNPJ -->
-      <div class="md:col-span-5 flex flex-col items-start">
-        <div class="flex items-center gap-3 mb-4">
-          <div class="w-10 h-10 rounded-full overflow-hidden border border-white/20 bg-charcoal shrink-0">
-            <img src="/logo.jpg" alt={site.name} class="w-full h-full object-cover" width="40" height="40" />
-          </div>
-          <div class="flex flex-col">
-            <span class="font-serif text-xl font-medium tracking-tight text-ivory leading-none">
-              Sandra Lourenço
-            </span>
-            <span class="font-sans text-xs tracking-widest uppercase text-champagne font-semibold mt-1">
-              Beauty
-            </span>
-          </div>
+<footer class="ftr" role="contentinfo" style="background: #121010; color: #F6EFE6;">
+  <div class="wrap">
+    <div class="ftr__grid">
+      <div>
+        <div class="ftr__brand">
+          {site.name}
         </div>
-
-        <p class="text-xs font-sans text-ivory/70 leading-relaxed max-w-sm mb-4 text-pretty">
-          {site.shortBio}
+        <p style="max-width: 38ch; margin-bottom: var(--s4);" class="muted">
+          Cosmetologia e estética capilar de alto padrão. Especialista em loiros saudáveis, morena iluminada e alisamento orgânico.
         </p>
-
-        <p class="text-xs font-sans text-ivory/60">
-          CNPJ {site.cnpj}. Todos os direitos reservados.
+        <p class="muted">
+          CNPJ {site.cnpj}
         </p>
       </div>
 
-      <!-- Coluna 2: Navegação & Serviços -->
-      <div class="md:col-span-3 flex flex-col space-y-2 text-xs font-sans">
-        <span class="text-xs font-semibold uppercase tracking-wider text-champagne mb-1">
-          Navegação
-        </span>
-        <a href="/#procedimentos" class="py-1 hover:text-champagne transition-colors">Especialidades</a>
-        <a href="/#menu-servicos" class="py-1 hover:text-champagne transition-colors">Tabela de procedimentos</a>
-        <a href="/#sobre" class="py-1 hover:text-champagne transition-colors">A fundadora</a>
-        <a href="/#transformacoes" class="py-1 hover:text-champagne transition-colors">Antes e depois</a>
-        <a href="/#politicas" class="py-1 hover:text-champagne transition-colors">Experiência privativa</a>
-        <a href="/#faq" class="py-1 hover:text-champagne transition-colors">Perguntas frequentes</a>
-        <a href="/#localizacao" class="py-1 hover:text-champagne transition-colors">Localização</a>
-      </div>
-
-      <!-- Coluna 3: Contato & Redes -->
-      <div class="md:col-span-4 flex flex-col space-y-2 text-xs font-sans">
-        <span class="text-xs font-semibold uppercase tracking-wider text-champagne mb-1">
-          Atendimento e espaço
-        </span>
-        <p class="text-ivory/90 font-medium">
-          {site.address.street}, {site.address.district}
-        </p>
-        <p class="text-ivory/80">
-          {site.address.city} no {site.address.state}, CEP {site.address.zip}
-        </p>
-        <p class="text-ivory/80 pt-1">
-          {site.hours.display}
-        </p>
-        <div class="pt-3 flex items-center gap-4">
-          <a
-            href={site.instagram}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-1.5 text-champagne hover:text-champagne-light transition-colors py-1"
-          >
-            <Icon name="instagram-logo-light" size={16} />
-            <span>Instagram: {site.instagramHandle}</span>
+      <div>
+        <b>Atendimento</b>
+        <p>{site.hours.display}</p>
+        <p class="muted" style="margin-top: 4px;">{site.hours.frequency}</p>
+        <p style="margin-top: var(--s4);">
+          <a href={site.instagram} target="_blank" rel="noopener noreferrer" aria-label="Abrir Instagram oficial de Sandra Lourenço">
+            {site.instagramHandle}
           </a>
-        </div>
+        </p>
+        <p style="margin-top: 4px;">
+          WhatsApp: {site.whatsapp.formatted}
+        </p>
       </div>
 
+      <div>
+        <b>Espaço</b>
+        <address style="font-style: normal;">
+          <p>{site.address.street}</p>
+          <p>{site.address.district} · {site.address.city}, {site.address.state}</p>
+          <p class="muted">CEP {site.address.zip}</p>
+        </address>
+
+        <div style="margin-top: var(--s5); display: flex; flex-direction: column; gap: 4px;">
+          <a href="/privacidade">Política de privacidade</a>
+          <a href="/termos">Termos de atendimento</a>
+        </div>
+      </div>
     </div>
 
-    <!-- Linha Inferior com Links de Termos e Privacidade (Exigência B10) -->
-    <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs font-sans text-ivory/75 gap-4">
-      <p>
-        © {currentYear} {site.name}. Padrões de excelência e biossegurança.
-      </p>
-      
-      <div class="flex items-center gap-4">
-        <a href="/privacidade" class="py-1 hover:text-champagne transition-colors">Política de privacidade</a>
-        <span>•</span>
-        <a href="/termos" class="py-1 hover:text-champagne transition-colors">Termos de atendimento</a>
-      </div>
+    <div style="margin-top: var(--s8); padding-top: var(--s5); border-top: 1px solid rgba(246, 239, 230, 0.1); display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s4); font-size: var(--t-xs);">
+      <span>© {new Date().getFullYear()} {site.name}. Todos os direitos reservados.</span>
+      <span>Fortaleza, Ceará</span>
     </div>
   </div>
 </footer>

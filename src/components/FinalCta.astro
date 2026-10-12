@@ -1,21 +1,33 @@
 ---
-import ProcedureSelector from './ProcedureSelector.astro';
-import SectionHeading from './ui/SectionHeading.astro';
+import ToneSelector from './ToneSelector.astro';
 ---
 
-<section id="agendamento" class="py-16 sm:py-24 bg-ink text-ivory border-b hairline-dark relative overflow-hidden">
-  <div class="max-w-3xl mx-auto px-4 sm:px-6 relative text-center">
-    <SectionHeading
-      eyebrow="Atendimento exclusivo"
-      title="Seu cabelo em boas mãos começa com uma conversa"
-      description="Reserve seu horário diretamente no WhatsApp oficial, sem burocracia ou aplicativos externos. Foco total em você, do início ao fim."
-      dark={true}
-      align="center"
-      class="mb-10"
-    />
+<section
+  class="sec fin"
+  data-tone="1"
+  data-tone-label="Nível 1 · Carvão"
+  style="--sbg: #121010; --sink: #F6EFE6;"
+  id="agendar"
+>
+  <div class="wrap">
+    <div class="eyebrow" data-reveal="up">
+      Primeiro passo
+    </div>
 
-    <div class="w-full text-left">
-      <ProcedureSelector id="final-scheduler" dark={true} />
+    <h2 class="h-xl" data-split="lines">
+      Qual é o tom da sua próxima transformação?
+    </h2>
+
+    <p class="lead muted" data-reveal="up" style="max-width: 48ch;">
+      Escolha a sua referência e o período de preferência. Nossa equipe recebe a sua mensagem diretamente no WhatsApp para verificar as datas disponíveis.
+    </p>
+
+    <div style="margin-top: var(--s6);" data-reveal="up">
+      <ToneSelector
+        idPrefix="final"
+        ctaText="Agendar atendimento no WhatsApp"
+        hintText="Canal direto com a equipe. Escolha o tom e confirme seu horário sem senhas ou burocracia."
+      />
     </div>
   </div>
 </section>

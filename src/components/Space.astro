@@ -1,0 +1,79 @@
+---
+import Media from './Media.astro';
+import { getImage } from '../lib/media';
+import teamData from '../data/avec-team.json';
+
+const hasSandraPhoto = Boolean(getImage('sandra'));
+const teamList = teamData.team || [];
+---
+
+<section
+  class="sec"
+  data-tone="9"
+  data-tone-label="Nível 9 · Areia clara"
+  style="--sbg: #EDDFC7; --sink: #171310;"
+  id="espaco"
+>
+  <div class="wrap">
+    <div class="grid esp__grid">
+      <div class="esp__fig" data-reveal="scale">
+        <div class="portrait">
+          {hasSandraPhoto ? (
+            <Media name="sandra" alt="Sandra Lourenço, fundadora e especialista capilar" />
+          ) : (
+            <div class="portrait__mono" aria-hidden="true">
+              SL
+            </div>
+          )}
+          <div class="portrait__cap">
+            <span>Sandra Lourenço · Gestão técnica</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="esp__copy">
+        <div class="eyebrow" data-reveal="up">
+          O espaço e a fundadora
+        </div>
+
+        <h2 class="h-xl" data-split="lines">
+          Atendimento reservado para quem valoriza tempo e dedicação
+        </h2>
+
+        <p class="lead" data-reveal="up">
+          Um ambiente projetado para afastar o ritmo acelerado de salões convencionais e colocar toda a atenção na transformação dos seus fios.
+        </p>
+
+        <p class="muted" data-reveal="up">
+          Sob a coordenação técnica de Sandra Lourenço, nossa equipe atua com procedimentos padronizados e olhar minucioso para a harmonia de cada visual.
+        </p>
+
+        <ul class="benefits" role="list" data-reveal="up">
+          <li>
+            <strong>Ambiente privativo e sem acompanhantes</strong>
+            <span>Preserva o silêncio, a concentração da profissional e a tranquilidade durante cada etapa do serviço.</span>
+          </li>
+          <li>
+            <strong>Sessões com hora marcada</strong>
+            <span>Atendimento organizado com intervalos programados para que seu procedimento transcorra sem pressa.</span>
+          </li>
+          <li>
+            <strong>Ambiente higienizado e acolhedor</strong>
+            <span>Critérios rigorosos de biossegurança e esterilização de materiais para cuidar de você com total respeito.</span>
+          </li>
+        </ul>
+
+        {teamList.length > 0 && (
+          <div class="team" data-reveal="up">
+            <span class="muted" style="display: block; margin-bottom: 4px; font-size: var(--t-xs); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600;">
+              Equipe técnica do estúdio
+            </span>
+            <p>
+              {teamList.map((m) => m.name.split(' ')[0]).join(', ')} sob a coordenação de Sandra Lourenço.
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</section>

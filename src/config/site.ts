@@ -45,68 +45,38 @@ export const site = {
     ],
   },
 
-  pillars: [
-    {
-      title: 'Teste de mechas rigoroso',
-      description: 'Critério técnico intransigente. Avaliamos a saúde da fibra antes de qualquer descoloração ou química.',
-      icon: 'microscope',
-    },
-    {
-      title: 'Opção de alisamento sem formol',
-      description: 'Escova Orgânica à base de ácidos biocompatíveis. Zero fumaça, zero ardência, compatível com lactantes e gestantes.',
-      icon: 'sparkles',
-    },
-    {
-      title: 'Atendimento com hora marcada',
-      description: 'Sessões organizadas a cada 30 minutos, ambiente privativo sem acompanhantes e foco exclusivo em você.',
-      icon: 'clock',
-    },
-  ],
-
   featured: [
     {
       slug: 'loiro-saudavel',
       title: 'Loiro saudável e mechas',
-      headline: 'Clareamento de alta precisão com preservação da fibra',
-      description: 'Tons platinados, mel, avelã ou champagne construídos sob rigoroso teste de mechas. Clareamento seguro, sem corte químico e com balanço natural.',
+      description: 'Clareamento com preservação da fibra capilar. Tons platinados, mel e champanhe sob teste de mechas prévio.',
       priceDisplay: 'Sob avaliação técnica',
       durationDisplay: 'Conforme diagnóstico',
-      badges: ['Teste de mechas obrigatório', 'Tons personalizados'],
-      waMessage: 'Gostaria de agendar uma avaliação para *Loiro saudável e mechas*.',
-      accent: 'champagne',
+      waMessage: 'Gostaria de agendar uma avaliação para Loiro saudável e mechas.',
     },
     {
       slug: 'morena-iluminada',
       title: 'Morena iluminada',
-      headline: 'Contraste suave e brilho espelhado',
-      description: 'Pontos de luz desenhados para valorizar os traços e iluminar a pele com elegância. Tons caramelo, canela e avelã com alta durabilidade e saúde capilar.',
+      description: 'Contraste suave e brilho espelhado. Tons caramelo, canela e avelã com alta durabilidade e saúde capilar.',
       priceDisplay: 'Sob avaliação técnica',
       durationDisplay: 'Conforme diagnóstico',
-      badges: ['Contraste sofisticado', 'Baixa manutenção'],
-      waMessage: 'Gostaria de consultar disponibilidade para *Morena iluminada*.',
-      accent: 'bronze',
+      waMessage: 'Gostaria de consultar disponibilidade para Morena iluminada.',
     },
     {
       slug: 'escova-organica',
       title: 'Escova Orgânica (sem formol)',
-      headline: 'Alinhamento seguro à base de ácidos biocompatíveis',
-      description: 'Alisamento indicado para gestantes, lactantes e pessoas alérgicas. Brilho espelhado, zero odor, zero fumaça. (Nota: não compatível com descoloração).',
+      description: 'Alisamento à base de ácidos biocompatíveis, indicado para lactantes, gestantes e alérgicas. Não compatível com descoloração.',
       priceDisplay: 'A partir de R$ 240',
       durationDisplay: '3h a 4h',
-      badges: ['100% Livre de formol', 'Lactantes e gestantes 🤍'],
-      waMessage: 'Gostaria de agendar um horário para *Escova Orgânica sem formol*.',
-      accent: 'champagne',
+      waMessage: 'Gostaria de agendar um horário para Escova Orgânica sem formol.',
     },
     {
       slug: 'alisamento-light',
       title: 'Alisamento Light',
-      headline: 'Redução de volume e controle disciplinador',
-      description: 'Alinhamento da fibra capilar com caimento natural e redução expressiva de frizz, mantendo o movimento dos fios.',
+      description: 'Alinhamento da fibra capilar com caimento natural e redução de volume. Procedimento com teste de mechas prévio.',
       priceDisplay: 'A partir de R$ 400',
       durationDisplay: '≈ 5h00',
-      badges: ['Teste de mechas', 'Alta durabilidade'],
-      waMessage: 'Gostaria de consultar horário para *Alisamento Light*.',
-      accent: 'olive',
+      waMessage: 'Gostaria de consultar horário para Alisamento Light.',
     },
   ],
 
@@ -167,53 +137,34 @@ export const site = {
 
   formolServices: ['Botox', 'Escova Inteligente'],
 
-  policies: [
-    {
-      title: 'Espaço 100% privativo',
-      description: 'Não permitimos acompanhantes no espaço. Esta política foi desenhada para preservar o silêncio, o conforto e a dedicação total da equipe à sua transformação.',
-      icon: 'shield-check',
-    },
-    {
-      title: 'Atendimento com hora marcada',
-      description: 'Organizamos a agenda com intervalos de 30 minutos para garantir que seu início seja pontual e seu procedimento flua sem interrupções.',
-      icon: 'calendar-check',
-    },
-    {
-      title: 'Teste de mechas obrigatório',
-      description: 'Para procedimentos de clareamento ou químicas transformadoras, a realização prévia do teste de mechas é indispensável para resguardar a integridade dos seus fios.',
-      icon: 'sparkles',
-    },
-    {
-      title: 'Biossegurança e higienização',
-      description: 'Materiais esterilizados, bancadas desinfetadas a cada cliente e uso de toalhas descartáveis/esterilizadas em ambiente limpo e acolhedor.',
-      icon: 'heart-handshake',
-    },
-  ],
-
   faq: [
     {
-      question: 'O teste de mechas é realmente obrigatório?',
-      answer: 'Sim! Para Loiros, Mechas e procedimentos químicos como o Alisamento Light, o teste de mechas prévio é nosso protocolo inegociável de segurança. Ele nos dá a certeza de que a estrutura do seu cabelo resistirá ao clareamento com brilho e sem corte químico.',
+      question: 'O teste de mechas é obrigatório?',
+      answer: 'Para clareamento, mechas e alisamento químico, sim. O teste vem antes da química e mostra como a sua fibra responde ao processo, para que o tom, o tempo e o orçamento sejam definidos com critério.',
     },
     {
-      question: 'Gestantes e lactantes podem fazer alisamento?',
-      answer: 'Sim, através da nossa Escova Orgânica, desenvolvida à base de ácidos e 100% livre de formol. Já os procedimentos que contêm formol (como Botox e Escova Inteligente) não são indicados para gestantes ou lactantes.',
+      question: 'Gestantes e lactantes podem alisar o cabelo?',
+      answer: 'A Escova Orgânica é a opção indicada para lactantes, gestantes e alérgicas, pois é feita à base de ácido e livre de formol. Botox e Escova Inteligente contêm formol e não fazem parte dessa indicação.',
     },
     {
-      question: 'Por que o salão não permite acompanhantes?',
-      answer: 'Para garantir uma experiência de boutique verdadeiramente privativa e relaxante. Nosso ambiente foi pensado para oferecer tranquilidade, conforto e atenção 100% focada na cliente atendida.',
+      question: 'A Escova Orgânica serve para cabelo descolorido?',
+      answer: 'Não. Segundo a descrição do procedimento, a Escova Orgânica não é compatível com a descoloração. Na dúvida, descreva o histórico do seu cabelo no WhatsApp e a equipe orienta o melhor caminho.',
     },
     {
-      question: 'Qual é o horário de funcionamento e como funciona o intervalo de agendamento?',
-      answer: 'Atendemos em dias úteis de segunda a sexta, das 09h às 16h30. As sessões iniciam a cada 30 minutos (sendo 16h30 o último horário de início disponível). Não atendemos aos sábados e domingos.',
+      question: 'Por que o atendimento é sem acompanhantes?',
+      answer: 'Para manter o espaço silencioso, privativo e com atenção total à cliente que está sendo atendida. É uma escolha de exclusividade e conforto para todas.',
     },
     {
-      question: 'Os valores do site são fixos?',
-      answer: 'Os valores indicados são referências "a partir de". O valor final de qualquer procedimento químico ou de cor depende do comprimento, volume, histórico do fio e quantidade de produto necessária, tudo alinhado com transparência no seu diagnóstico.',
+      question: 'Como funcionam os horários?',
+      answer: 'Atendemos de segunda a sexta, das 09h às 16h30, com sessões iniciando a cada 30 minutos. O horário reservado é um bloco de agenda, e o início presencial acompanha o ritmo do atendimento da equipe.',
+    },
+    {
+      question: 'Os valores são fixos?',
+      answer: 'Os valores indicados são referências a partir de. O valor final de química e cor depende do comprimento, do volume, do histórico do fio e da quantidade de produto necessária.',
     },
     {
       question: 'Como faço para agendar?',
-      answer: 'É simples e sem burocracia: basta clicar em qualquer botão do site para abrir diretamente uma conversa com nossa equipe no WhatsApp, com a sua solicitação já contextualizada.',
+      answer: 'Escolha o tom e o período aqui no site e abra a conversa no WhatsApp com a mensagem já preparada. Sem cadastro, sem senha.',
     },
   ],
 

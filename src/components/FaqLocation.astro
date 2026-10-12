@@ -1,0 +1,92 @@
+---
+import { site } from '../config/site';
+
+const mapEmbedUrl = `https://www.google.com/maps?q=${site.address.lat},${site.address.lng}&hl=pt-BR&z=16&output=embed`;
+---
+
+<section
+  class="sec"
+  data-tone="10"
+  data-tone-label="Nível 10 · Platinado"
+  style="--sbg: #F5F0E7; --sink: #171310;"
+  id="faq"
+>
+  <div class="wrap">
+    <div class="grid fl__grid">
+      <!-- FAQ -->
+      <div class="faq">
+        <div class="eyebrow" data-reveal="up">
+          Perguntas frequentes
+        </div>
+        <h2 class="h-l" data-split="lines">
+          Respostas claras para as suas principais dúvidas
+        </h2>
+
+        <div class="faq__list" style="margin-top: var(--s6);">
+          {site.faq.map((item) => (
+            <details data-reveal="up">
+              <summary>
+                <span>{item.question}</span>
+              </summary>
+              <p>{item.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <!-- Localização -->
+      <div class="loc" id="localizacao" data-reveal="up">
+        <div class="eyebrow">
+          Onde estamos
+        </div>
+        <h2 class="h-l">
+          Localização e funcionamento
+        </h2>
+
+        <address>
+          <strong>{site.name}</strong>
+          <span>{site.address.street}</span>
+          <span>{site.address.district} · {site.address.city}, {site.address.state}</span>
+          <span class="muted">CEP {site.address.zip}</span>
+        </address>
+
+        <div class="loc__hours">
+          <p><strong>Horário:</strong> {site.hours.display}</p>
+          <p class="muted">{site.hours.note}</p>
+        </div>
+
+        <div class="loc__btns">
+          <a
+            href={site.address.mapsUrl}
+            class="btn btn--line"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Abrir localização no Google Maps"
+          >
+            <span>Google Maps</span>
+          </a>
+          <a
+            href={site.address.wazeUrl}
+            class="btn btn--line"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Navegar até o salão com Waze"
+          >
+            <span>Waze</span>
+          </a>
+        </div>
+
+        <div class="map" aria-label="Mapa da localização do salão Sandra Lourenço Beauty">
+          <iframe
+            src={mapEmbedUrl}
+            title="Mapa de localização de Sandra Lourenço Beauty"
+            width="100%"
+            height="100%"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

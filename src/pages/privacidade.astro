@@ -1,50 +1,42 @@
 ---
 import Base from '../layouts/Base.astro';
-import Button from '../components/ui/Button.astro';
 import { site } from '../config/site';
 ---
 
-<Base title={`Política de privacidade — ${site.name}`}>
-  <main class="min-h-screen bg-ivory text-ink py-20 px-4 sm:px-6">
-    <div class="max-w-3xl mx-auto bg-white rounded-xl p-8 sm:p-12 border hairline shadow-sm">
-      <span class="text-xs font-sans font-semibold uppercase tracking-wider text-champagne block mb-2">
+<Base title={`Política de privacidade · ${site.name}`}>
+  <main class="doc" id="conteudo-principal" style="background: #FAF8F5; color: #171310;">
+    <div class="wrap">
+      <span class="muted" style="font-size: var(--t-xs); letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; display: block;">
         Transparência e privacidade
       </span>
-      <h1 class="font-serif text-3xl sm:text-4xl font-medium tracking-tight mb-6">
+
+      <h1 class="h-xl">
         Política de privacidade
       </h1>
 
-      <div class="space-y-6 text-sm font-sans text-olive leading-relaxed">
-        <p>
-          Esta Política de Privacidade descreve como <strong>{site.name}</strong> (CNPJ {site.cnpj}), com sede na {site.address.street}, {site.address.district}, {site.address.city}/{site.address.state}, trata as informações coletadas por meio deste site institucional.
-        </p>
+      <p>
+        Esta Política de Privacidade descreve como <strong>{site.name}</strong> (CNPJ {site.cnpj}), com sede na {site.address.street}, {site.address.district}, {site.address.city}/{site.address.state}, trata as informações coletadas por meio deste site institucional.
+      </p>
 
-        <h2 class="font-serif text-xl font-medium text-ink pt-2">
-          1. Coleta de informações
-        </h2>
-        <p>
-          Nosso site é de caráter informativo e de redirecionamento para agendamento. Não exigimos cadastro prévio, criação de senhas ou preenchimento de formulários extensos. Ao clicar para falar no WhatsApp oficial, você compartilha apenas as informações voluntariamente enviadas na mensagem.
-        </p>
+      <h2>1. Coleta de informações</h2>
+      <p>
+        Nosso site é de caráter estritamente informativo e de redirecionamento para agendamento. Não exigimos cadastro prévio, criação de senhas ou preenchimento de formulários extensos. Ao clicar para falar no WhatsApp oficial, você compartilha apenas as informações voluntariamente enviadas na mensagem.
+      </p>
 
-        <h2 class="font-serif text-xl font-medium text-ink pt-2">
-          2. Finalidade dos dados
-        </h2>
-        <p>
-          Os dados informados no atendimento via WhatsApp são utilizados estritamente para consulta de agenda, esclarecimento de dúvidas técnicas, envio de orientações de cuidados e confirmação de horários marcados.
-        </p>
+      <h2>2. Finalidade dos dados</h2>
+      <p>
+        Os dados informados no atendimento via WhatsApp são utilizados para consulta de agenda, esclarecimento de dúvidas técnicas, envio de orientações de cuidados e confirmação de horários marcados.
+      </p>
 
-        <h2 class="font-serif text-xl font-medium text-ink pt-2">
-          3. Segurança e sigilo
-        </h2>
-        <p>
-          Respeitamos a Lei Geral de Proteção de Dados (LGPD). Não comercializamos, compartilhamos ou repassamos seus dados de contato a terceiros.
-        </p>
+      <h2>3. Segurança e sigilo</h2>
+      <p>
+        Respeitamos a Lei Geral de Proteção de Dados (LGPD). Não comercializamos, compartilhamos ou repassamos seus dados de contato a terceiros.
+      </p>
 
-        <div class="pt-6 border-t hairline flex justify-between items-center">
-          <Button href="/" variant="outline" size="sm">
-            ← Voltar para a página inicial
-          </Button>
-        </div>
+      <div>
+        <a href="/" class="btn btn--line">
+          Voltar para a página inicial
+        </a>
       </div>
     </div>
   </main>

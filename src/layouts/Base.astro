@@ -10,7 +10,7 @@ interface Props {
 }
 
 const {
-  title = `${site.name} — Loiros saudáveis e alisamento orgânico em Fortaleza`,
+  title = `${site.name} · Loiros e alisamento orgânico`,
   description = `Salão boutique em Bonsucesso, Fortaleza no Ceará. Especialista em loiro saudável, morena iluminada e Escova Orgânica sem formol. Atendimento privativo com hora marcada.`,
   image = '/logo.jpg',
   canonical = site.url,
@@ -103,12 +103,20 @@ const schemaOrg = {
     <meta name="twitter:image" content={fullImageUrl} />
 
     <!-- Theme Color & Icons -->
-    <meta name="theme-color" content="#181818" />
+    <meta name="theme-color" content="#17120F" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/logo.jpg" />
 
     <!-- Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />
+
+    <!-- Inline script flags before first paint -->
+    <script is:inline>
+      document.documentElement.classList.add('js');
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('motion');
+      }
+    </script>
 
     {site.analytics.ga4 && (
       <script async src={`https://www.googletagmanager.com/gtag/js?id=${site.analytics.ga4}`}></script>
@@ -120,15 +128,18 @@ const schemaOrg = {
       </script>
     )}
   </head>
-  <body class="min-h-screen bg-ivory text-ink flex flex-col selection:bg-champagne/30 selection:text-ink">
-    <!-- Skip to content link para acessibilidade (Exigência B10) -->
-    <a
-      href="#conteudo-principal"
-      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-champagne focus:text-ink focus:rounded-md focus:shadow-lg focus:font-sans focus:font-semibold focus:text-sm"
-    >
+  <body>
+    <!-- Skip to content link -->
+    <a href="#conteudo-principal" class="skip">
       Pular para o conteúdo principal
     </a>
 
     <slot />
+
+    <script>
+      import { boot } from '../engine';
+      import { setupMotion } from '../motion/setup';
+      boot(setupMotion);
+    </script>
   </body>
 </html>

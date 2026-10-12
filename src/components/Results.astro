@@ -1,0 +1,77 @@
+---
+import Media from './Media.astro';
+import { pairs, gallery } from '../lib/media';
+
+const pairList = pairs();
+const photoList = gallery();
+const hasContent = pairList.length > 0 || photoList.length > 0;
+---
+
+{hasContent && (
+  <section
+    class="sec"
+    data-tone="6"
+    data-tone-label="Nível 6 · Caramelo"
+    style="--sbg: #7A5636; --sink: #F6EFE6;"
+    id="resultados"
+  >
+    <div class="wrap">
+      <div class="res__head">
+        <div class="eyebrow" data-reveal="up">
+          Transformações reais
+        </div>
+        <h2 class="h-xl" data-split="lines">
+          Resultados construídos com critério e saúde capilar
+        </h2>
+        <p class="muted" data-reveal="up">
+          Arraste o cursor ou toque na tela para comparar o estado anterior e a finalização de cada procedimento.
+        </p>
+      </div>
+
+      {pairList.length > 0 && (
+        <div class="cmp-grid">
+          {pairList.map((pair) => (
+            <div class="cmp" data-reveal="clip">
+              <div class="cmp__before">
+                <Media name={pair.before} alt={`Antes da transformação ${pair.n}`} />
+              </div>
+              <div class="cmp__after">
+                <Media name={pair.after} alt={`Depois da transformação ${pair.n}`} />
+              </div>
+
+              <span class="cmp__tag cmp__tag--l">Antes</span>
+              <span class="cmp__tag cmp__tag--r">Depois</span>
+
+              <div class="cmp__bar" aria-hidden="true"></div>
+              <div class="cmp__knob" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m9 18-6-6 6-6" />
+                  <path d="m15 6 6 6-6 6" />
+                </svg>
+              </div>
+
+              <input
+                type="range"
+                class="cmp__range"
+                min="0"
+                max="100"
+                value="50"
+                aria-label={`Comparação de transformação número ${pair.n}`}
+              />
+            </div>
+          ))}
+        </div>
+      )}
+
+      {photoList.length > 0 && (
+        <div class="photos">
+          {photoList.map((photoName) => (
+            <div data-reveal="scale">
+              <Media name={photoName} alt="Resultado de procedimento realizado no espaço Sandra Lourenço" />
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+)}

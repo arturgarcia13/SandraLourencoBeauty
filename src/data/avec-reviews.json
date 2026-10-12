@@ -1,0 +1,258 @@
+{
+  "fetchedAt": "2026-10-12T15:53:21.689Z",
+  "total": 42,
+  "reviews": [
+    {
+      "stars": 5,
+      "text": "As melhores!",
+      "name": "Alice Rocha Viana Garcia",
+      "date": "2026-09-17"
+    },
+    {
+      "stars": 5,
+      "text": "Excelente!!",
+      "name": "Beatriz Araujo",
+      "date": "2026-07-11"
+    },
+    {
+      "stars": 5,
+      "text": "Tudo maravilhoso sempre",
+      "name": "Lucimar Ferreira",
+      "date": "2026-05-01"
+    },
+    {
+      "stars": 5,
+      "text": "",
+      "name": "Vanessa Almeida Tavares",
+      "date": "2026-04-09"
+    },
+    {
+      "stars": 5,
+      "text": "Ótimo atendimento.",
+      "name": "Maria Eduarda de Oliveira Martins",
+      "date": "2026-02-04"
+    },
+    {
+      "stars": 5,
+      "text": "✨",
+      "name": "Vanessa Almeida Tavares",
+      "date": "2026-02-03"
+    },
+    {
+      "stars": 5,
+      "text": "Tudo maravilhoso como sempre! E amo a lu, uma profissional e mulher maravilhosa ❤️✨",
+      "name": "Jade Ferreira de Morais",
+      "date": "2025-09-16"
+    },
+    {
+      "stars": 5,
+      "text": "Atendimento excelente",
+      "name": "Rayla duavi",
+      "date": "2025-09-06"
+    },
+    {
+      "stars": 5,
+      "text": "",
+      "name": "rayla Duavi",
+      "date": "2025-08-22"
+    },
+    {
+      "stars": 5,
+      "text": "Sempre sou muito bem atendida ♥️",
+      "name": "Lucimar Ferreira",
+      "date": "2025-08-11"
+    },
+    {
+      "stars": 5,
+      "text": "Tudo organizado",
+      "name": "mara evely",
+      "date": "2025-08-09"
+    },
+    {
+      "stars": 5,
+      "text": "",
+      "name": "Jade Ferreira de Morais",
+      "date": "2025-08-06"
+    },
+    {
+      "stars": 5,
+      "text": "",
+      "name": "Regina Araújo",
+      "date": "2025-04-09"
+    },
+    {
+      "stars": 5,
+      "text": "Estava tudo muito organizado e o atendimento foi maravilhoso",
+      "name": "mara evely",
+      "date": "2025-03-17"
+    },
+    {
+      "stars": 5,
+      "text": "Amo!!",
+      "name": "Alice Rocha Viana Garcia",
+      "date": "2025-02-25"
+    },
+    {
+      "stars": 5,
+      "text": "Maravilhoso",
+      "name": "Lucimar Ferreira",
+      "date": "2025-02-21"
+    },
+    {
+      "stars": 5,
+      "text": "Muito bom",
+      "name": "Thainara Elen Hipólito dos Santos",
+      "date": "2025-02-11"
+    },
+    {
+      "stars": 5,
+      "text": "",
+      "name": "Pollyana Rodrigues de Carvalho",
+      "date": "2024-12-23"
+    },
+    {
+      "stars": 5,
+      "text": "",
+      "name": "Ivinah almeida dos santos",
+      "date": "2024-11-26"
+    },
+    {
+      "stars": 5,
+      "text": "",
+      "name": "Tatiana kely lopes viana",
+      "date": "2024-11-21"
+    },
+    {
+      "stars": 5,
+      "text": "",
+      "name": "Isadora de Oliveira",
+      "date": "2024-11-12"
+    },
+    {
+      "stars": 5,
+      "text": "",
+      "name": "Tatiana kely lopes viana",
+      "date": "2024-11-06"
+    },
+    {
+      "stars": 5,
+      "text": "",
+      "name": "Tatiana kely lopes viana",
+      "date": "2024-11-03"
+    },
+    {
+      "stars": 5,
+      "text": "Atendimento perfeito",
+      "name": "Tatiana kely lopes viana",
+      "date": "2024-10-14"
+    },
+    {
+      "stars": 5,
+      "text": "",
+      "name": "Ana Gabriela dos santos melo",
+      "date": "2024-09-21"
+    },
+    {
+      "stars": 5,
+      "text": "Tudo maravilhoso como sempre ????",
+      "name": "Jade Ferreira de Morais",
+      "date": "2024-09-17"
+    },
+    {
+      "stars": 5,
+      "text": "",
+      "name": "Isadora de Oliveira",
+      "date": "2024-06-11"
+    },
+    {
+      "stars": 5,
+      "text": "Antigamente o corte era incluso na inteligente, mas ainda gosto muito do salão",
+      "name": "Lucimar Ferreira",
+      "date": "2024-04-30"
+    },
+    {
+      "stars": 5,
+      "text": "Perfeita, trabalho impecável, amei meu cabelinho.",
+      "name": "Isadora de Oliveira",
+      "date": "2024-03-06"
+    },
+    {
+      "stars": 5,
+      "text": "",
+      "name": "Jade Ferreira de Morais",
+      "date": "2024-03-02"
+    },
+    {
+      "stars": 5,
+      "text": "Ambiente organizado e com atendimento de qualidade",
+      "name": "mara evely",
+      "date": "2023-12-10"
+    },
+    {
+      "stars": 5,
+      "text": "",
+      "name": "Lucimar Ferreira",
+      "date": "2023-12-08"
+    },
+    {
+      "stars": 5,
+      "text": "",
+      "name": "Maria Tamires Gomes dos Reis",
+      "date": "2023-10-18"
+    },
+    {
+      "stars": 5,
+      "text": "Excelente Profissionais, Amei o atendimento e o serviço. ❤️",
+      "name": "Isadora de Oliveira",
+      "date": "2023-08-27"
+    },
+    {
+      "stars": 5,
+      "text": "",
+      "name": "Beatriz Araujo",
+      "date": "2023-07-28"
+    },
+    {
+      "stars": 5,
+      "text": "",
+      "name": "Maria Clara",
+      "date": "2023-02-08"
+    },
+    {
+      "stars": 5,
+      "text": "",
+      "name": "Hayanna thaynara Rodrigues de Oliveira",
+      "date": "2022-11-16"
+    },
+    {
+      "stars": 5,
+      "text": "",
+      "name": "Carla Vitória Cosme da Silva",
+      "date": "2022-09-22"
+    },
+    {
+      "stars": 5,
+      "text": "Atendimento maravilhoso, 3 uma ótima profissional",
+      "name": "Giovanna Manteska de araujo rodrigues",
+      "date": "2022-08-29"
+    },
+    {
+      "stars": 5,
+      "text": "É sempre maravilhoso !!",
+      "name": "Vitoria Silva Braga",
+      "date": "2022-07-21"
+    },
+    {
+      "stars": 5,
+      "text": "Perfeito",
+      "name": "Hayanna thaynara Rodrigues de Oliveira",
+      "date": "2022-07-16"
+    },
+    {
+      "stars": 5,
+      "text": "",
+      "name": "Thaylane Castro",
+      "date": "2022-05-16"
+    }
+  ]
+}

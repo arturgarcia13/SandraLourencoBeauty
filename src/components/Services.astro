@@ -1,0 +1,128 @@
+---
+import { site } from '../config/site';
+import { getMenuGroups, getFetchedDate } from '../lib/services';
+import { waLink, waServiceLink } from '../lib/whatsapp';
+
+const menuGroups = getMenuGroups();
+const fetchedDate = getFetchedDate();
+---
+
+<section
+  class="sec"
+  data-tone="8"
+  data-tone-label="Nível 8 · Champanhe"
+  style="--sbg: #E3CBA6; --sink: #171310;"
+  id="servicos"
+>
+  <div class="wrap">
+    <div class="svc__head">
+      <div class="eyebrow" data-reveal="up">
+        Menu de procedimentos
+      </div>
+      <h2 class="h-xl" data-split="lines">
+        Critério técnico para clareamento, cor e textura
+      </h2>
+      <p class="muted" data-reveal="up">
+        Valores de referência e tempos médios de cada serviço. O orçamento final é definido com transparência na avaliação presencial dos seus fios.
+      </p>
+    </div>
+
+    <!-- 4 Destaques Editoriais -->
+    <div class="feat" role="list">
+      {site.featured.map((feat, idx) => {
+        const link = waLink(feat.waMessage);
+        const numStr = String(idx + 1).padStart(2, '0');
+
+        return (
+          <article class="feat__item" data-reveal="up" role="listitem">
+            <span class="feat__n" aria-hidden="true">{numStr}</span>
+
+            <div>
+              <h3 class="feat__t">{feat.title}</h3>
+              <p class="feat__d" style="margin-top: 8px;">{feat.description}</p>
+            </div>
+
+            <div>
+              <div class="feat__meta">
+                <span>{feat.priceDisplay}</span>
+                <span class="muted">·</span>
+                <span class="muted">{feat.durationDisplay}</span>
+              </div>
+            </div>
+
+            <a
+              href={link}
+              class="feat__go"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Consultar disponibilidade para ${feat.title}`}
+            >
+              <span>Consultar no WhatsApp</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
+              </svg>
+            </a>
+          </article>
+        );
+      })}
+    </div>
+
+    <!-- Tabela Completa dos Serviços -->
+    <div class="menu">
+      {menuGroups.map((group) => (
+        <div class={`menu__group ${group.isCompact ? 'menu__group--soft' : ''}`} data-reveal="up">
+          <div>
+            <h3 class="menu__title">{group.title}</h3>
+            <p class="menu__sub">{group.description}</p>
+          </div>
+
+          <div role="list">
+            {group.services.map((item) => {
+              const rowLink = waServiceLink(item.name);
+
+              return (
+                <div class="row" role="listitem">
+                  <div class="row__name">
+                    <span>{item.name}</span>
+                    {item.hasFormol && (
+                      <span class="badge" title="Procedimento com química tradicional">
+                        Fórmula com formol
+                      </span>
+                    )}
+                    {item.isOrganica && (
+                      <span class="badge" title="Livre de formol, compatível com gestantes e lactantes">
+                        Sem formol
+                      </span>
+                    )}
+                  </div>
+
+                  <div class="row__meta">
+                    <span>{item.durationFormatted}</span>
+                    <span>{item.priceFormatted}</span>
+                  </div>
+
+                  <a
+                    href={rowLink}
+                    class="row__go"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Agendar ${item.name} pelo WhatsApp`}
+                  >
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="m9 18 6-6-6-6" />
+                    </svg>
+                  </a>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <p class="muted" style="font-size: var(--t-xs); margin-top: var(--s6);" data-reveal="up">
+      Tabela atualizada em {fetchedDate}. Os valores exibidos servem como referência a partir de e podem variar de acordo com o comprimento e o volume do cabelo.
+    </p>
+  </div>
+</section>

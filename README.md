@@ -1,21 +1,19 @@
-# Sandra Lourenço Beauty — Landing Page Oficial
+# Sandra Lourenço Beauty · Landing Page Oficial
 
-Landing Page mobile-first de alto padrão para **Sandra Lourenço Beauty** (Cosmetologia & Estética Capilar em Fortaleza/CE).
+Landing Page mobile-first de alto padrão para **Sandra Lourenço Beauty** (Cosmetologia e Estética Capilar em Fortaleza, CE).
 
-Desenvolvida com **Astro 7 + Tailwind CSS 4**, arquitetura estática ultrarrápida, design system boutique (Charcoal, Off-White, Champagne e Areia) e conversão direta via WhatsApp contextualizado.
+Desenvolvida com **Astro estático + GSAP (ScrollTrigger, SplitText) + Lenis** e CSS puro estruturado em tokens de design. Conceito **Escala de tons**: o progresso do scroll conduz a experiência através dos níveis de cor do cabelo (do espresso ao platinado), com troca de contraste milimétrica e qualificação direta para o WhatsApp oficial.
 
 ---
 
-## 🚀 Tecnologias
+## 🎨 Conceito e Identidade Visual
 
-- **Framework:** [Astro](https://astro.build/) (Output 100% estático `dist/`)
-- **Estilização:** [Tailwind CSS v4](https://tailwindcss.com/) com design tokens personalizados em `@theme`
-- **Tipografia Self-Hosted:**
-  - *Headings (H1, H2, H3):* Cormorant Garamond Variable (`@fontsource-variable/cormorant-garamond`)
-  - *Corpo, Menus e Botões:* Montserrat Variable (`@fontsource-variable/montserrat`)
-- **Ícones:** Lucide (`@lucide/astro`) com espessura fina (stroke 1.25)
-- **Integração:** Script de sincronização automática com a API pública do sistema **Avec** (`scripts/sync-avec.mjs`)
-- **SEO & Structured Data:** Schema.org `HairSalon` JSON-LD, Open Graph, Sitemap e robots.txt automáticos
+- **Metáfora:** A tabela de níveis de cor capilar (níveis 1 a 10) utilizada por coloristas técnicos.
+- **Assinatura:** O scroll move o tom da página, a tipografia serifada de títulos troca de tinta no ponto exato de contraste, e o seletor de agendamento é a própria escala de tons.
+- **Tipografia:**
+  - *Headings:* Cormorant Garamond Variable (`@fontsource-variable/cormorant-garamond`), sem itálico, proporções balanceadas.
+  - *Corpo, UI e botões:* Montserrat Variable (`@fontsource-variable/montserrat`), legibilidade alta no mobile.
+- **Ação única de conversão:** Seletor em 2 toques (tom desejado + período) que gera a mensagem contextualizada para o WhatsApp oficial (+55 85 98997-8555).
 
 ---
 
@@ -23,54 +21,73 @@ Desenvolvida com **Astro 7 + Tailwind CSS 4**, arquitetura estática ultrarrápi
 
 ```
 lp_sandralourenco/
-├── astro.config.mjs               # Configuração do Astro (Tailwind v4 + Sitemap)
-├── package.json                   # Dependências e scripts npm
-├── tsconfig.json                  # Configuração de TypeScript
+├── astro.config.mjs            # Configuração Astro (Sitemap estático)
+├── package.json                # Dependências e scripts npm
 ├── scripts/
-│   ├── sync-avec.mjs              # Busca e sincroniza serviços da API Avec
-│   └── verify-links.mjs           # Validação automatizada de integridade da build
+│   ├── sync-avec.mjs           # Sincroniza serviços, avaliações reais e equipe da API Avec
+│   ├── media.mjs               # Otimiza imagens (AVIF/WebP responsivo) de public/media
+│   └── verify-links.mjs        # Validação automatizada de integridade da build
 ├── public/
-│   ├── favicon.svg                # Monograma 'SL' em dourado champagne
-│   ├── logo.jpg                   # Logo oficial da marca
-│   └── robots.txt                 # Diretrizes para indexação
+│   ├── media/                  # Pasta para fotos originais do cliente
+│   ├── m/                      # Versões responsivas geradas automaticamente
+│   ├── favicon.svg             # Monograma SL em dourado champagne
+│   ├── logo.jpg                # Logo oficial da marca
+│   └── robots.txt              # Diretrizes para indexação
 └── src/
     ├── config/
-    │   └── site.ts                # ⭐️ FONTE ÚNICA DE DADOS (contatos, horários, textos, TODOs)
+    │   └── site.ts             # Fonte única de dados de contato, horários e endereço
     ├── data/
-    │   └── avec-services.json     # Snapshot sincronizado com os 20 serviços do Avec
-    ├── lib/
-    │   ├── format.ts              # Formatadores de preço e tempo
-    │   ├── services.ts            # Agregador de serviços e catálogo
-    │   └── whatsapp.ts            # Construtor inteligente de links wa.me
+    │   ├── avec-services.json  # Catálogo oficial sincronizado do Avec
+    │   ├── avec-reviews.json   # 42 avaliações reais 5 estrelas do Avec
+    │   ├── avec-team.json      # Equipe técnica oficial
+    │   └── media.json          # Manifesto de mídia processada
+    ├── engine/                 # Motor de lifecycle e scroll Lenis/GSAP
+    ├── motion/                 # Drivers de movimento (escala de tons, seletor, tagline)
     ├── styles/
-    │   └── global.css             # Design tokens e variáveis de tema Tailwind v4
+    │   └── global.css          # Tokens de cor, tipografia fluida e estilos estruturais
     ├── layouts/
-    │   └── Base.astro             # Layout base com meta tags, OG e JSON-LD
+    │   └── Base.astro          # Layout com SEO, Schema.org HairSalon e flags de acessibilidade
     ├── components/
-    │   ├── ui/                    # Botões, badges, cabeçalhos de seção e placeholders
-    │   ├── Header.astro           # Cabeçalho fixo com logo e chamada rápida
-    │   ├── Hero.astro             # Dobra principal dark com autoridade e seletor
-    │   ├── ProcedureSelector.astro# Pré-qualificação em 2 toques (serviço + período)
-    │   ├── Pillars.astro          # Os 3 pilares de garantia técnica
-    │   ├── FeaturedProcedures.astro # 4 carros-chefes em destaque (cards 4:5)
-    │   ├── ServiceMenu.astro      # Tabela completa dos 20 procedimentos com preços e tempos
-    │   ├── Founder.astro          # Seção sobre a fundadora Sandra Lourenço
-    │   ├── Transformations.astro  # Casos antes/depois com divisor interativo
-    │   ├── Protocol.astro         # O método de biossegurança em 4 etapas
-    │   ├── Policies.astro         # Ambiente privativo sem acompanhantes como benefício
-    │   ├── Testimonials.astro     # Prova social e nota 5.0 estrelas
-    │   ├── Faq.astro              # Perguntas frequentes em accordion nativo
-    │   ├── Location.astro         # Endereço em Fortaleza, Google Maps e botões Waze
-    │   ├── FinalCta.astro         # Chamada final de agendamento dark
-    │   ├── Footer.astro           # Rodapé com CNPJ e navegação
-    │   └── WhatsAppFab.astro      # Botão de ação flutuante WhatsApp
+    │   ├── Header.astro        # Cabeçalho com indicador em tempo real do nível de tom
+    │   ├── Hero.astro          # Pôster de tom + seletor interativo
+    │   ├── Tagline.astro       # Manifesto técnico revelado palavra por palavra no scroll
+    │   ├── Results.astro       # Comparador antes e depois (renderizado com fotos reais)
+    │   ├── Services.astro      # 4 destaques editoriais + tabela completa de serviços
+    │   ├── Method.astro        # Protocolo técnico em 4 etapas
+    │   ├── Space.astro         # Espaço, regras como benefício e equipe técnica
+    │   ├── Reviews.astro       # Estatística de fidelidade (22 clientes, 10 voltaram) e citações
+    │   ├── FaqLocation.astro   # FAQ em details/summary nativo + mapa interativo e Waze
+    │   ├── FinalCta.astro      # Fechamento com seletor no tom carvão
+    │   ├── Footer.astro        # Rodapé institucional com CNPJ e links legais
+    │   └── WhatsAppFab.astro   # Botão flutuante acionado após o hero
     └── pages/
-        └── index.astro            # Montagem estrutural da landing page
+        ├── index.astro         # Página inicial
+        ├── 404.astro           # Página de erro 404
+        ├── privacidade.astro   # Política de privacidade
+        └── termos.astro        # Termos de atendimento
 ```
 
 ---
 
-## 🛠️ Comandos Disponíveis
+## 📸 Como Adicionar as Fotos do Cliente
+
+Para que o site utilize fotos reais do estúdio em vez dos pôsteres tipográficos:
+
+1. Coloque as fotos na pasta `public/media/` com os seguintes nomes (extensão `.jpg`, `.jpeg` ou `.png`):
+   - `hero.jpg`: Foto vertical de alta definição do topo.
+   - `sandra.jpg`: Retrato da fundadora.
+   - `antes-1.jpg` e `depois-1.jpg` (até `antes-4.jpg` e `depois-4.jpg`): Pares reais de transformação para o comparador interativo.
+   - `espaco-01.jpg` a `espaco-06.jpg`: Fotos do ambiente e atendimento.
+   - `foto-01.jpg` a `foto-20.jpg`: Galeria geral de resultados.
+2. Execute o comando de otimização:
+   ```bash
+   npm run media
+   ```
+3. O script gera versões modernas em `.avif` e `.webp` em `public/m/` e atualiza `src/data/media.json`. Caso não haja pares de antes e depois, a seção de resultados não polui a página.
+
+---
+
+## 🛠️ Comandos Principais
 
 ```bash
 # Instalar dependências
@@ -79,36 +96,24 @@ npm install
 # Iniciar servidor de desenvolvimento local
 npm run dev
 
-# Sincronizar catálogo atualizado da API Avec
+# Processar novas imagens adicionadas em public/media
+npm run media
+
+# Sincronizar dados e avaliações da API Avec
 npm run sync:avec
 
-# Validar tipos e sintaxe Astro
+# Verificar tipos e sintaxe Astro
 npx astro check
 
-# Gerar build estático para produção
+# Gerar build estático de produção
 npm run build
 
-# Validar integridade dos links gerados no HTML
+# Validar integridade dos links de WhatsApp e Schema.org
 npm run verify:links
-
-# Visualizar a build estática localmente
-npm run preview
 ```
 
 ---
 
-## ⚙️ Como Personalizar os Dados
+## 🌐 Publicação e Hospedagem
 
-Todas as informações centrais do espaço estão centralizadas no arquivo [`src/config/site.ts`](src/config/site.ts):
-- **Telefone WhatsApp oficial:** altere a propriedade `whatsapp.number`.
-- **Endereço e horários:** configurados em `address` e `hours`.
-- **Procedimentos em destaque e catálogo:** ajustáveis nas seções `featured` e `menuGroups`.
-- **Google Analytics / Meta Pixel:** preencha os IDs em `analytics.ga4` ou `analytics.metaPixel`.
-
----
-
-## 🌐 Publicação / Hospedagem
-
-A pasta gerada pelo comando `npm run build` é a pasta `dist/`. Ela contém arquivos 100% estáticos (HTML, CSS, JS e imagens), o que permite hospedar em:
-- **Vercel, Netlify ou Cloudflare Pages** (apontando o repositório git com comando `npm run build` e pasta de saída `dist`).
-- **Hospedagem compartilhada / cPanel (Hostinger, Locaweb, etc.):** basta fazer upload dos arquivos da pasta `dist/` para a raiz do seu domínio (`public_html/`).
+A pasta `dist/` gerada pelo comando `npm run build` contém arquivos 100% estáticos prontos para publicação na Vercel, Netlify, Cloudflare Pages ou qualquer servidor Apache/Nginx.
