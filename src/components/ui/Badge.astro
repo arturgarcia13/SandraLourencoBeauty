@@ -1,0 +1,23 @@
+---
+interface Props {
+  variant?: 'gold' | 'dark' | 'neutral' | 'formol' | 'leaf';
+  class?: string;
+}
+
+const {
+  variant = 'neutral',
+  class: className = '',
+} = Astro.props;
+
+const variants = {
+  gold: 'bg-champagne/15 text-[#735832] border-champagne/40',
+  dark: 'bg-charcoal text-ivory/80 border-white/10',
+  neutral: 'bg-sand/40 text-bronze border-sand-2/60',
+  formol: 'bg-sand text-bronze border-sand-2',
+  leaf: 'bg-wa/10 text-[#166534] border-wa/30',
+};
+---
+
+<span class={`inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-sans font-medium border tracking-wide select-none ${variants[variant]} ${className}`}>
+  <slot />
+</span>

@@ -1,0 +1,21 @@
+---
+import ProcedureSelector from './ProcedureSelector.astro';
+import SectionHeading from './ui/SectionHeading.astro';
+---
+
+<section id="agendamento" class="py-16 sm:py-24 bg-ink text-ivory border-b hairline-dark relative overflow-hidden">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 relative text-center">
+    <SectionHeading
+      eyebrow="Atendimento exclusivo"
+      title="Seu cabelo em boas mãos começa com uma conversa"
+      description="Reserve seu horário diretamente no WhatsApp oficial, sem burocracia ou aplicativos externos. Foco total em você, do início ao fim."
+      dark={true}
+      align="center"
+      class="mb-10"
+    />
+
+    <div class="w-full text-left">
+      <ProcedureSelector id="final-scheduler" dark={true} />
+    </div>
+  </div>
+</section>

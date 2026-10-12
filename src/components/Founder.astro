@@ -1,0 +1,87 @@
+---
+import MediaPlaceholder from './ui/MediaPlaceholder.astro';
+import Button from './ui/Button.astro';
+import Icon from './ui/Icon.astro';
+import { waLink } from '../lib/whatsapp';
+---
+
+<section id="sobre" class="py-16 sm:py-24 bg-ivory border-b hairline">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+      
+      <!-- Imagem vertical da Fundadora -->
+      <div class="lg:col-span-5 order-2 lg:order-1 flex justify-center">
+        <div class="w-full max-w-sm relative">
+          <div class="rounded-2xl border hairline p-2 bg-white">
+            <MediaPlaceholder
+              aspectRatio="4/5"
+              label="Sandra Lourenço"
+              sublabel="Fundadora e especialista técnica"
+              dark={true}
+              class="rounded-lg shadow-lg"
+            />
+          </div>
+
+          <!-- Detalhe de autoridade -->
+          <div class="absolute -bottom-3 -right-2 sm:-right-4 bg-white border hairline rounded-lg p-3 shadow-md">
+            <span class="text-xs font-sans font-semibold uppercase tracking-wider text-bronze block">
+              Fortaleza e Ceará
+            </span>
+            <span class="text-xs font-serif text-ink font-medium">
+              Assinatura técnica exclusiva
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Texto Institucional da Fundadora -->
+      <div class="lg:col-span-7 order-1 lg:order-2 flex flex-col items-start">
+        <span class="text-xs font-sans font-semibold tracking-widest uppercase text-olive mb-2">
+          A fundadora
+        </span>
+
+        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl leading-tight font-medium tracking-tight text-ink mb-6 text-balance">
+          "Cabelo de alto padrão nasce da disciplina técnica e do respeito à saúde dos fios."
+        </h2>
+
+        <div class="space-y-4 text-sm sm:text-base font-sans text-olive leading-relaxed font-normal text-pretty">
+          <p>
+            No universo dos salões, é comum ver promessas milagrosas e químicas agressivas que sacrificam a fibra capilar a curto prazo. No espaço <strong class="text-ink font-medium">Sandra Lourenço Beauty</strong>, seguimos na contramão: nosso compromisso primordial é com a saúde inegociável do cabelo.
+          </p>
+          <p>
+            Cada procedimento, do loiro platinado mais sofisticado ao alisamento orgânico livre de formol, é precedido por um diagnóstico minucioso. O teste de mechas não é uma formalidade, mas a nossa garantia de que você sairá do estúdio com um cabelo brilhante, integro e com balanço natural.
+          </p>
+          <p>
+            Aqui, você encontra um refúgio privativo, sem aglomerações e sem acompanhantes, para viver uma transformação segura, relaxante e totalmente personalizada para você.
+          </p>
+        </div>
+
+        <!-- Assinatura Gráfica Sem Itálico -->
+        <div class="mt-8 pt-6 border-t hairline w-full flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <p class="font-serif text-2xl text-ink font-medium tracking-wide">
+              Sandra Lourenço
+            </p>
+            <p class="text-xs font-sans text-champagne uppercase tracking-widest font-semibold mt-1">
+              Cosmetologia e estética capilar
+            </p>
+          </div>
+
+          <Button
+            href={waLink('Olá, Sandra! Gostaria de conversar sobre uma avaliação capilar.')}
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="outline"
+            size="md"
+            class="text-sm"
+          >
+            <Icon name="whatsapp-logo" size={16} class="mr-1" />
+            Falar com a Sandra
+          </Button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>

@@ -1,0 +1,23 @@
+---
+import Icon from './ui/Icon.astro';
+import { site } from '../config/site';
+import { waLink } from '../lib/whatsapp';
+
+const directWaUrl = waLink('Olá! Gostaria de consultar horários disponíveis na agenda.');
+---
+
+<aside class="fixed bottom-[max(1.5rem,env(safe-area-inset-bottom,1.5rem))] right-[max(1.5rem,env(safe-area-inset-right,1.5rem))] z-40 select-none">
+  <a
+    href={directWaUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label={`Falar no WhatsApp com ${site.name}`}
+    data-track="wa:fab"
+    class="group inline-flex items-center justify-center min-w-[48px] min-h-[48px] gap-2 bg-wa hover:bg-wa-hover text-white py-3 px-4 rounded-full shadow-2xl transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-wa"
+  >
+    <Icon name="whatsapp-logo" size={24} />
+    <span class="font-sans text-xs font-semibold tracking-wide hidden sm:inline">
+      Agendar no WhatsApp
+    </span>
+  </a>
+</aside>

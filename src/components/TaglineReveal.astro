@@ -1,0 +1,107 @@
+---
+interface Props {
+  tagline?: string;
+  subtext?: string;
+}
+
+const defaultTagline = "Cabelo de alto padrão nasce da disciplina técnica e do respeito absoluto à saúde dos fios.";
+const defaultSubtext = "Sem atalhos químicos agressivos. Cada procedimento é guiado por diagnóstico individual e segurança comprovada.";
+
+const {
+  tagline = defaultTagline,
+  subtext = defaultSubtext,
+} = Astro.props;
+
+// Divide em palavras individuais para o efeito de revelação progressiva
+const words = tagline.split(' ');
+---
+
+<section class="py-20 sm:py-24 bg-ink text-ivory border-y hairline-dark overflow-hidden select-none">
+  <div class="max-w-[680px] mx-auto px-4 sm:px-6 text-center">
+    
+    <span class="inline-block text-xs font-sans font-medium tracking-widest uppercase text-champagne mb-4">
+      Manifesto de cuidado
+    </span>
+
+    <h2
+      id="tagline-reveal-block"
+      class="font-serif text-4xl sm:text-5xl lg:text-6xl leading-tight font-medium tracking-tight mb-6 max-w-[680px] mx-auto text-balance"
+    >
+      {words.map((word, index) => (
+        <span
+          class="reveal-word inline-block mr-2 text-white/30 transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]"
+          data-index={index}
+        >
+          {word}
+        </span>
+      ))}
+    </h2>
+
+    <p class="font-sans text-sm sm:text-base text-ivory/80 max-w-lg mx-auto font-normal leading-relaxed text-pretty">
+      {subtext}
+    </p>
+
+  </div>
+</section>
+
+<script>
+  (function () {
+    const block = document.getElementById('tagline-reveal-block');
+    if (!block) return;
+    const targetBlock = block;
+
+    const words = Array.from(targetBlock.querySelectorAll<HTMLElement>('.reveal-word'));
+    if (!words.length) return;
+
+    // Respeito à preferência de redução de movimento
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      words.forEach((w) => {
+        w.classList.remove('text-white/30');
+        w.classList.add('text-white');
+      });
+      return;
+    }
+
+    let ticking = false;
+    let revealedCount = 0;
+
+    function checkWords() {
+      const blockRect = targetBlock.getBoundingClientRect();
+      const triggerY = window.innerHeight * 0.8;
+      
+      // Mede o avanço do bloco na zona de disparo para revelar palavra por palavra em ordem de leitura
+      const distance = triggerY - blockRect.top;
+      const totalScrollSpan = Math.max(200, blockRect.height + 180);
+      const progress = Math.max(0, Math.min(1, distance / totalScrollSpan));
+      const targetCount = Math.floor(progress * words.length);
+
+      if (targetCount > revealedCount) {
+        for (let i = revealedCount; i < targetCount; i++) {
+          words[i].classList.remove('text-white/30');
+          words[i].classList.add('text-white');
+        }
+        revealedCount = targetCount;
+      }
+
+      if (revealedCount >= words.length) {
+        window.removeEventListener('scroll', onScroll);
+        window.removeEventListener('resize', onScroll);
+      }
+
+      ticking = false;
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        window.requestAnimationFrame(checkWords);
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    
+    // Executa na carga inicial
+    checkWords();
+  })();
+</script>

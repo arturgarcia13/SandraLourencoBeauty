@@ -1,0 +1,187 @@
+{
+  "fetchedAt": "2026-10-12T01:28:08.181Z",
+  "salonId": 74902,
+  "count": 20,
+  "services": [
+    {
+      "id": 5202188,
+      "servico": "Abertura de Fundo",
+      "categoria": "QUIMICA",
+      "descricao": "Técnica de tonalização para mudar o fundo de clareamento",
+      "valor": 450,
+      "tipo_valor": "apartirde",
+      "tempo": 80
+    },
+    {
+      "id": 1942497,
+      "servico": "Alisamento Light",
+      "categoria": "QUIMICA",
+      "descricao": "Alisamento dos fios.Necessario Teste de MechasProcedimento demora em torno de 5h00",
+      "valor": 400,
+      "tipo_valor": "apartirde",
+      "tempo": 190
+    },
+    {
+      "id": 3416552,
+      "servico": "Axilas",
+      "categoria": "DEPILAÇÃO",
+      "descricao": "Depilação com cera na região das axilas.",
+      "valor": 30,
+      "tipo_valor": "fixo",
+      "tempo": 30
+    },
+    {
+      "id": 1942498,
+      "servico": "Botox",
+      "categoria": "QUIMICA",
+      "descricao": "Redução de volumes dos fios a base de formol.\r\nOBS: Procedimento demora em torno de 3 horas.",
+      "valor": 170,
+      "tipo_valor": "apartirde",
+      "tempo": 100
+    },
+    {
+      "id": 3416559,
+      "servico": "Braços",
+      "categoria": "DEPILAÇÃO",
+      "descricao": "Depilação com cera na região dos braços.",
+      "valor": 40,
+      "tipo_valor": "fixo",
+      "tempo": 20
+    },
+    {
+      "id": 1942499,
+      "servico": "Coloração",
+      "categoria": "QUIMICA",
+      "descricao": "Tintura Capilar (não é mechas!)",
+      "valor": 200,
+      "tipo_valor": "apartirde",
+      "tempo": 80
+    },
+    {
+      "id": 1942500,
+      "servico": "Corte e Finalização",
+      "categoria": "CABELO",
+      "descricao": "Corte de cabelo, Higienização Capilar e Finalização (escova ou difusor).",
+      "valor": 150,
+      "tipo_valor": "apartirde",
+      "tempo": 60
+    },
+    {
+      "id": 1942501,
+      "servico": "Escova",
+      "categoria": "CABELO",
+      "descricao": "Lavagem + Escova",
+      "valor": 60,
+      "tipo_valor": "apartirde",
+      "tempo": 50
+    },
+    {
+      "id": 1942502,
+      "servico": "Escova Inteligente",
+      "categoria": "QUIMICA",
+      "descricao": "Realinhamento dos fios a base de formol. \r\nOBS: O procedimento demora em torno de 3h00 a 4h00",
+      "valor": 200,
+      "tipo_valor": "apartirde",
+      "tempo": 105
+    },
+    {
+      "id": 1942503,
+      "servico": "Escova Orgânica",
+      "categoria": "QUIMICA",
+      "descricao": "Alisamento indicado para Lactantes, Gravidas e Alérgicas. A base de ácido. \r\nOBS: Não compatível com a Descoloração. Demora em torno de 3h00 a 4h00",
+      "valor": 240,
+      "tipo_valor": "apartirde",
+      "tempo": 95
+    },
+    {
+      "id": 1949923,
+      "servico": "Lavagem Especial",
+      "categoria": "LAVAGEM ESPECIAL",
+      "descricao": "Acrescentar ao seu serviço",
+      "valor": 30,
+      "tipo_valor": "fixo",
+      "tempo": 25
+    },
+    {
+      "id": 1942504,
+      "servico": "Limpeza de Cor",
+      "categoria": "QUIMICA",
+      "descricao": "Retirar pigmentos amarelados",
+      "valor": 100,
+      "tipo_valor": "apartirde",
+      "tempo": 55
+    },
+    {
+      "id": 1949943,
+      "servico": "Matização",
+      "categoria": "QUIMICA",
+      "descricao": "O procedimento serve para neutralizar reflexos indesejados que surgem sempre que os cabelos passam por um processo de descoloração. É muito importante a realização da matização para garantir que os fios não fiquem amarelados com o passar do tempo.",
+      "valor": null,
+      "tipo_valor": "sobconsulta",
+      "tempo": 30
+    },
+    {
+      "id": 3416553,
+      "servico": "Meia Perna",
+      "categoria": "DEPILAÇÃO",
+      "descricao": "Depilação com cera na região de meia-perna",
+      "valor": 40,
+      "tipo_valor": "fixo",
+      "tempo": 20
+    },
+    {
+      "id": 3416555,
+      "servico": "Perna Completa",
+      "categoria": "DEPILAÇÃO",
+      "descricao": "Depilação com cera na região da perna inteira.",
+      "valor": 75,
+      "tipo_valor": "fixo",
+      "tempo": 25
+    },
+    {
+      "id": 5202190,
+      "servico": "Retoque Abertura de Fundo",
+      "categoria": "QUIMICA",
+      "descricao": "Retoque da técnica de tonalização para mudar o fundo de clareamento",
+      "valor": 280,
+      "tipo_valor": "apartirde",
+      "tempo": 50
+    },
+    {
+      "id": 5202195,
+      "servico": "Retoque Coloração",
+      "categoria": "QUIMICA",
+      "descricao": "",
+      "valor": 160,
+      "tipo_valor": "apartirde",
+      "tempo": 30
+    },
+    {
+      "id": 5202192,
+      "servico": "Retoque de Tonalização",
+      "categoria": "QUIMICA",
+      "descricao": "",
+      "valor": 180,
+      "tipo_valor": "apartirde",
+      "tempo": 30
+    },
+    {
+      "id": 1942507,
+      "servico": "Tonalização",
+      "categoria": "QUIMICA",
+      "descricao": "Revitaliza a cor do cabelo.",
+      "valor": 240,
+      "tipo_valor": "apartirde",
+      "tempo": 60
+    },
+    {
+      "id": 1942508,
+      "servico": "Tratamento Capilar",
+      "categoria": "TRATAMENTO",
+      "descricao": "Detox, Reconstrução, Nutrição ou Hidratação. Com as melhores marcas do mercado!",
+      "valor": 140,
+      "tipo_valor": "apartirde",
+      "tempo": 55
+    }
+  ]
+}

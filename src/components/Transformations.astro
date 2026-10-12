@@ -1,0 +1,75 @@
+---
+import SectionHeading from './ui/SectionHeading.astro';
+import BeforeAfter from './BeforeAfter.astro';
+import Button from './ui/Button.astro';
+import Icon from './ui/Icon.astro';
+import { waLink } from '../lib/whatsapp';
+
+const cases = [
+  {
+    id: 'case-loiro',
+    title: 'Loiro champagne e preservação',
+    category: 'Clareamento e mechas',
+    description: 'Transformação após teste de mechas positivo. Clareamento homogêneo da raiz às pontas com brilho radiante e pontas seladas.',
+  },
+  {
+    id: 'case-morena',
+    title: 'Morena iluminada caramelo',
+    category: 'Iluminação e contraste',
+    description: 'Nuances quentes que valorizam o tom de pele com baixa necessidade de retoque e textura sedosa.',
+  },
+  {
+    id: 'case-organica',
+    title: 'Escova Orgânica sem formol',
+    category: 'Alinhamento seguro',
+    description: 'Alisamento impecável com balanço e movimento natural. Realizado com segurança em cliente lactante.',
+  },
+  {
+    id: 'case-reconstrucao',
+    title: 'Correção de fundo e tonalização',
+    category: 'Colorimetria avançada',
+    description: 'Neutralização de reflexos amarelados e reposição lipídica completa da fibra capilar.',
+  },
+];
+---
+
+<section id="transformacoes" class="py-16 sm:py-24 bg-ink text-ivory border-b hairline-dark relative overflow-hidden">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 relative">
+    <SectionHeading
+      eyebrow="Galeria de casos reais"
+      title="Resultados que refletem nosso padrão"
+      description="Veja a diferença entre um cabelo quimicamente agredido e um fio tratado com protocolo técnico de excelência. Todos os casos são autorais."
+      dark={true}
+      align="center"
+      class="mb-12 sm:mb-16"
+    />
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+      {cases.map((c) => (
+        <BeforeAfter
+          id={c.id}
+          title={c.title}
+          category={c.category}
+          description={c.description}
+        />
+      ))}
+    </div>
+
+    <!-- Chamada Central da Seção de Transformações -->
+    <div class="mt-12 text-center flex flex-col items-center">
+      <p class="text-sm font-sans text-ivory/70 max-w-md mb-4 text-pretty">
+        Pronta para viver a sua transformação capilar com segurança comprovada?
+      </p>
+      <Button
+        href={waLink('Olá! Gostaria de agendar um horário para uma transformação.')}
+        target="_blank"
+        rel="noopener noreferrer"
+        variant="wa"
+        size="lg"
+      >
+        <Icon name="whatsapp-logo" size={18} class="mr-1" />
+        Consultar dias disponíveis
+      </Button>
+    </div>
+  </div>
+</section>

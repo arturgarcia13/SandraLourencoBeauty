@@ -1,0 +1,42 @@
+---
+import SectionHeading from './ui/SectionHeading.astro';
+import Icon from './ui/Icon.astro';
+import { site } from '../config/site';
+
+const policyIcons = [
+  'shield-check-light',
+  'calendar-check-light',
+  'sparkle-light',
+  'hand-heart-light',
+];
+---
+
+<section id="politicas" class="py-16 sm:py-24 bg-sand/20 border-b hairline">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <SectionHeading
+      eyebrow="Experiência reservada"
+      title="O seu momento de cuidado exclusivo"
+      description="Nossas diretrizes foram pensadas com um único objetivo: garantir um ambiente tranquilo, seguro e de máxima dedicação ao seu bem estar."
+      align="center"
+      class="mb-12 sm:mb-16"
+    />
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+      {site.policies.map((policy, index) => (
+        <div class="bg-white rounded-xl p-6 sm:p-8 border hairline shadow-sm flex items-start gap-4 sm:gap-6 transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1">
+          <div class="w-12 h-12 rounded-lg bg-ink text-champagne shrink-0 flex items-center justify-center">
+            <Icon name={policyIcons[index] || 'shield-check-light'} size={24} />
+          </div>
+          <div>
+            <h3 class="font-serif text-xl sm:text-2xl font-medium tracking-tight text-ink mb-2">
+              {policy.title}
+            </h3>
+            <p class="font-sans text-xs sm:text-sm leading-relaxed text-olive font-normal text-pretty">
+              {policy.description}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

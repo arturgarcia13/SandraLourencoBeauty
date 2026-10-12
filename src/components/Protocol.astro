@@ -1,0 +1,60 @@
+---
+import SectionHeading from './ui/SectionHeading.astro';
+
+const steps = [
+  {
+    number: '01',
+    title: 'Diagnóstico e análise da fibra',
+    description: 'Avaliamos a elasticidade, porosidade e o histórico químico do seu cabelo antes de sugerir qualquer técnica de clareamento ou alisamento.',
+  },
+  {
+    number: '02',
+    title: 'Teste de mechas obrigatório',
+    description: 'Protocolo inegociável de segurança: aplicamos o produto em uma mecha discreta para checar a resistência do fio e a abertura exata do tom desejado.',
+  },
+  {
+    number: '03',
+    title: 'Execução técnica e produtos nobres',
+    description: 'Utilizamos formulações biocompatíveis de alto padrão e respeitamos minuciosamente a pausa de ação, sem sobrecarregar a estrutura capilar.',
+  },
+  {
+    number: '04',
+    title: 'Tratamento e rotina orientada',
+    description: 'Finalizamos com selagem cuticular e orientamos uma rotina simplificada para que seu loiro ou alisamento mantenha o brilho espelhado em casa.',
+  },
+];
+---
+
+<section id="protocolo" class="py-16 sm:py-24 bg-ivory border-b hairline">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <SectionHeading
+      eyebrow="Biossegurança e método"
+      title="As quatro etapas do nosso protocolo de cuidado"
+      description="Por trás de cada cabelo deslumbrante existe uma metodologia técnica pensada para a longevidade da sua saúde capilar."
+      align="center"
+      class="mb-12 sm:mb-16"
+    />
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {steps.map((step) => (
+        <div class="bg-white rounded-xl p-6 border hairline shadow-sm flex flex-col justify-between relative group hover:border-sand-2 transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]">
+          <div>
+            <span class="font-serif text-4xl sm:text-5xl font-semibold text-champagne/70 block mb-4 group-hover:text-champagne transition-colors">
+              {step.number}
+            </span>
+            <h3 class="font-serif text-xl font-medium tracking-tight text-ink mb-2">
+              {step.title}
+            </h3>
+            <p class="font-sans text-xs sm:text-sm leading-relaxed text-olive font-normal text-pretty">
+              {step.description}
+            </p>
+          </div>
+          <div class="mt-6 pt-3 border-t hairline flex items-center justify-between text-xs font-sans text-olive/60">
+            <span>Passo certificado</span>
+            <span class="text-champagne font-serif text-sm">✦</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

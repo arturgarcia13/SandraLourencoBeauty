@@ -1,0 +1,73 @@
+---
+import SectionHeading from './ui/SectionHeading.astro';
+import ServiceRow from './ServiceRow.astro';
+import Button from './ui/Button.astro';
+import { getMenuGroups, getFetchedDate } from '../lib/services';
+import { waLink } from '../lib/whatsapp';
+
+const menuGroups = getMenuGroups();
+const syncedMonth = getFetchedDate();
+---
+
+<section id="menu-servicos" class="py-16 sm:py-24 bg-ivory-2 border-b hairline">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6">
+    <SectionHeading
+      eyebrow="Tabela de procedimentos"
+      title="Catálogo e investimento de referência"
+      description="Consulte valores e durações médias de cada serviço. Para agendar, basta tocar no ícone ao lado de qualquer procedimento."
+      align="center"
+      class="mb-12"
+    />
+
+    <div class="space-y-10">
+      {menuGroups.map((group) => (
+        <div class="bg-white rounded-xl p-5 sm:p-7 border hairline shadow-soft">
+          <!-- Cabeçalho do Grupo -->
+          <div class="border-b hairline pb-4 mb-3 flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
+            <div>
+              <h3 class="font-serif text-2xl font-medium tracking-tight text-ink">
+                {group.title}
+              </h3>
+              <p class="text-xs font-sans text-olive mt-0.5">
+                {group.description}
+              </p>
+            </div>
+            <span class="text-xs font-sans font-semibold text-bronze uppercase tracking-wider shrink-0 bg-sand/30 px-2.5 py-1 rounded-md border border-sand-2/60">
+              {group.services.length} procedimentos
+            </span>
+          </div>
+
+          <!-- Lista de Serviços -->
+          <div>
+            {group.services.map((service) => (
+              <ServiceRow service={service} isCompact={group.isCompact} />
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Banner Informativo de Rodapé do Menu -->
+    <div class="mt-10 p-5 rounded-lg bg-sand/30 border hairline flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+      <div class="text-xs font-sans text-olive">
+        <p class="font-semibold text-ink mb-0.5">
+          Não encontrou o que procura ou tem dúvidas sobre compatibilidade química?
+        </p>
+        <p>
+          Fale diretamente com nossa consultoria técnica. Atualizado com o sistema Avec em {syncedMonth}.
+        </p>
+      </div>
+
+      <Button
+        href={waLink('Olá! Gostaria de tirar uma dúvida sobre procedimentos.')}
+        target="_blank"
+        rel="noopener noreferrer"
+        variant="outline"
+        size="sm"
+        class="shrink-0 text-xs font-semibold"
+      >
+        Tirar dúvidas no WhatsApp
+      </Button>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,107 @@
+@import "tailwindcss";
+@import "@fontsource-variable/cormorant-garamond";
+@import "@fontsource-variable/montserrat";
+
+@theme {
+  --color-ink: #181818;
+  --color-charcoal: #1F1F1F;
+  --color-charcoal-light: #272727;
+  --color-ivory: #FAF8F5;
+  --color-ivory-2: #F8F6F2;
+  --color-sand: #E6E0D8;
+  --color-sand-2: #D4CCC0;
+  --color-champagne: #C6A87D;
+  --color-champagne-light: #DFC8A8;
+  --color-olive: #6E6552;
+  --color-bronze: #4A453A;
+  --color-wa: #25D366;
+  --color-wa-hover: #1EBE5D;
+
+  --font-serif: "Cormorant Garamond Variable", Georgia, serif;
+  --font-sans: "Montserrat Variable", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  --ease-fluid: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--color-ivory);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-wrap: pretty;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    text-wrap: balance;
+    font-style: normal !important;
+  }
+
+  /* Regra estrita da skill: nunca usar fontes itálicas em lugar algum */
+  em, i, cite, dfn, var, address {
+    font-style: normal !important;
+  }
+}
+
+/* Transição de fluid dynamics estrita da skill */
+.transition-fluid {
+  transition-property: all;
+  transition-duration: 700ms;
+  transition-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* Linhas finas sem gradiente */
+.hairline {
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.hairline-dark {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.hairline-gold {
+  border-color: rgba(198, 168, 125, 0.35);
+}
+
+/* Feedback físico de toque */
+.btn-press {
+  transition: transform 700ms cubic-bezier(0.32, 0.72, 0, 1), background-color 700ms cubic-bezier(0.32, 0.72, 0, 1), box-shadow 700ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.btn-press:active {
+  transform: scale(0.98);
+}
+
+/* Efeito de entrada suave dos elementos ao rolar */
+.reveal-init {
+  opacity: 0;
+  transform: translateY(4rem);
+  filter: blur(8px);
+  transition: all 800ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* Suporte a redução de movimento */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

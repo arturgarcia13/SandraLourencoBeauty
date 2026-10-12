@@ -1,0 +1,197 @@
+---
+import Button from './ui/Button.astro';
+import Icon from './ui/Icon.astro';
+import { waLink } from '../lib/whatsapp';
+
+interface Props {
+  id: string;
+  title: string;
+  category: string;
+  description: string;
+  beforeLabel?: string;
+  afterLabel?: string;
+  beforeImage?: string;
+  afterImage?: string;
+}
+
+const {
+  id,
+  title,
+  category,
+  description,
+  beforeLabel = 'Antes',
+  afterLabel = 'Depois (Resultado)',
+  beforeImage,
+  afterImage,
+} = Astro.props;
+
+const whatsappMessage = waLink(`Olá! Vi a transformação de *${title}* no site e gostaria de agendar uma avaliação para um resultado similar.`);
+---
+
+<div class="bg-charcoal rounded-2xl p-4 sm:p-6 border border-white/10 shadow-2xl flex flex-col justify-between">
+  <div>
+    <!-- Cabeçalho do Case -->
+    <div class="flex items-center justify-between mb-4">
+      <span class="text-xs font-sans font-semibold uppercase tracking-wider text-champagne">
+        {category}
+      </span>
+      <span class="text-xs font-sans text-ivory/80">
+        Arraste para comparar
+      </span>
+    </div>
+
+    <!-- Comparador Interativo -->
+    <div
+      id={`comparator-${id}`}
+      class="relative w-full aspect-[4/5] rounded-xl overflow-hidden select-none border border-white/10 group mb-4 bg-ink focus-within:ring-2 focus-within:ring-champagne focus-within:ring-offset-2 focus-within:ring-offset-charcoal transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] cursor-ew-resize"
+      style="touch-action: pan-y; --pos: 50%;"
+    >
+      <!-- Camada: DEPOIS (Base total flat) -->
+      <div class="absolute inset-0 w-full h-full flex items-center justify-center bg-[#131209]">
+        {afterImage ? (
+          <img src={afterImage} alt={`Depois: ${title}`} class="w-full h-full object-cover" />
+        ) : (
+          <div class="text-center p-6 flex flex-col items-center">
+            <span class="w-10 h-10 rounded-full border border-champagne/40 bg-champagne/10 flex items-center justify-center text-champagne mb-3 text-sm font-serif">
+              ✦
+            </span>
+            <p class="font-serif text-xl text-ivory font-medium">Depois: {title}</p>
+            <p class="text-xs font-sans text-champagne-light uppercase tracking-wider mt-1">Brilho espelhado e balanço</p>
+          </div>
+        )}
+        <span class="absolute top-3 right-3 px-2 py-1 rounded bg-black/70 text-xs font-sans uppercase text-ivory border border-white/10">
+          {afterLabel}
+        </span>
+      </div>
+
+      <!-- Camada: ANTES (Recortada perfeitamente com clip-path, sem distorção geométrica) -->
+      <div
+        id={`before-layer-${id}`}
+        class="absolute inset-0 w-full h-full overflow-hidden bg-[#181818]"
+        style="clip-path: inset(0 calc(100% - var(--pos, 50%)) 0 0);"
+      >
+        <div class="w-full h-full flex items-center justify-center">
+          {beforeImage ? (
+            <img src={beforeImage} alt={`Antes: ${title}`} class="w-full h-full object-cover" />
+          ) : (
+            <div class="text-center p-6 flex flex-col items-center">
+              <span class="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center text-ivory/70 mb-3 text-sm font-serif">
+                ✦
+              </span>
+              <p class="font-serif text-xl text-ivory/70 font-medium">Antes do procedimento</p>
+              <p class="text-xs font-sans text-ivory/60 uppercase tracking-wider mt-1">Diagnóstico inicial</p>
+            </div>
+          )}
+        </div>
+        <span class="absolute top-3 left-3 px-2 py-1 rounded bg-black/70 text-xs font-sans uppercase text-ivory border border-white/10">
+          {beforeLabel}
+        </span>
+      </div>
+
+      <!-- Linha Divisória de Ouro -->
+      <div
+        class="absolute inset-y-0 w-0.5 bg-champagne pointer-events-none -translate-x-1/2 shadow-lg"
+        style="left: var(--pos, 50%);"
+      ></div>
+
+      <!-- Alça do Divisor (Touch target >= 48px) -->
+      <div
+        id={`handle-${id}`}
+        class="absolute top-1/2 pointer-events-none flex items-center justify-center -translate-x-1/2 -translate-y-1/2 transition-transform duration-200"
+        style="left: var(--pos, 50%);"
+      >
+        <div class="w-12 h-12 rounded-full bg-champagne text-ink flex items-center justify-center shadow-2xl border-2 border-white transform transition-transform duration-300 group-hover:scale-105">
+          <Icon name="arrows-left-right" size={20} />
+        </div>
+      </div>
+
+      <!-- Input de Alcance Acessível e Teclado -->
+      <input
+        type="range"
+        id={`range-${id}`}
+        min="0"
+        max="100"
+        value="50"
+        aria-label={`Comparação antes e depois de ${title}`}
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow="50"
+        class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20"
+        style="touch-action: pan-y;"
+      />
+    </div>
+
+    <!-- Informações da Transformação -->
+    <h3 class="font-serif text-2xl font-medium text-ivory tracking-tight mb-2">
+      {title}
+    </h3>
+    <p class="text-xs font-sans text-ivory/80 leading-relaxed mb-6 text-pretty">
+      {description}
+    </p>
+  </div>
+
+  <Button
+    href={whatsappMessage}
+    target="_blank"
+    rel="noopener noreferrer"
+    variant="outline-dark"
+    size="sm"
+    fullWidth={true}
+    class="text-xs font-semibold"
+  >
+    Quero um resultado semelhante
+  </Button>
+</div>
+
+<script define:vars={{ id }}>
+  (function () {
+    const comparator = document.getElementById(`comparator-${id}`);
+    const range = document.getElementById(`range-${id}`);
+
+    if (!comparator || !range) return;
+
+    let isDragging = false;
+
+    function setPosition(percent) {
+      const clamped = Math.max(0, Math.min(100, Math.round(percent)));
+      comparator.style.setProperty('--pos', `${clamped}%`);
+      range.value = String(clamped);
+      range.setAttribute('aria-valuenow', String(clamped));
+    }
+
+    function updateFromEvent(clientX) {
+      const rect = comparator.getBoundingClientRect();
+      if (rect.width === 0) return;
+      const x = Math.max(0, Math.min(rect.width, clientX - rect.left));
+      setPosition((x / rect.width) * 100);
+    }
+
+    comparator.addEventListener('pointerdown', (e) => {
+      isDragging = true;
+      comparator.setPointerCapture(e.pointerId);
+      updateFromEvent(e.clientX);
+    });
+
+    comparator.addEventListener('pointermove', (e) => {
+      if (isDragging) {
+        updateFromEvent(e.clientX);
+      }
+    });
+
+    function endDrag(e) {
+      if (isDragging) {
+        isDragging = false;
+        try {
+          comparator.releasePointerCapture(e.pointerId);
+        } catch (_) {}
+      }
+    }
+
+    comparator.addEventListener('pointerup', endDrag);
+    comparator.addEventListener('pointercancel', endDrag);
+
+    range.addEventListener('input', (e) => {
+      setPosition(Number(e.target.value));
+    });
+  })();
+</script>

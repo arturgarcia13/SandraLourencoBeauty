@@ -1,0 +1,114 @@
+---
+import SectionHeading from './ui/SectionHeading.astro';
+import Button from './ui/Button.astro';
+import Icon from './ui/Icon.astro';
+import { site } from '../config/site';
+
+const mapIframeSrc = `https://maps.google.com/maps?q=${site.address.lat},${site.address.lng}&z=17&output=embed`;
+---
+
+<section id="localizacao" class="py-16 sm:py-24 bg-ivory border-b hairline">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <SectionHeading
+      eyebrow="Fácil acesso"
+      title="Como chegar ao nosso espaço"
+      description="Localizado no bairro Bonsucesso, em Fortaleza. Um refúgio reservado e de fácil localização."
+      align="center"
+      class="mb-12 sm:mb-16"
+    />
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      
+      <!-- Detalhes de Endereço e Horários -->
+      <div class="lg:col-span-5 flex flex-col justify-between space-y-6">
+        
+        <!-- Bloco de Endereço -->
+        <div class="bg-white rounded-xl p-6 sm:p-8 border hairline shadow-sm">
+          <div class="w-12 h-12 rounded-lg bg-ink text-champagne flex items-center justify-center mb-4">
+            <Icon name="map-pin-light" size={24} />
+          </div>
+
+          <h3 class="font-serif text-2xl font-medium tracking-tight text-ink mb-2">
+            Endereço
+          </h3>
+
+          <p class="font-sans text-sm text-olive leading-relaxed mb-1">
+            <strong class="text-ink font-medium">{site.address.street}</strong>
+          </p>
+          <p class="font-sans text-sm text-olive leading-relaxed mb-4">
+            {site.address.district}, {site.address.city} no {site.address.state}
+            <br />
+            CEP {site.address.zip}
+          </p>
+
+          <!-- Botões de GPS -->
+          <div class="pt-4 border-t hairline flex flex-col sm:flex-row gap-3">
+            <Button
+              href={site.address.mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="outline"
+              size="sm"
+              class="text-xs flex-1"
+            >
+              <Icon name="google-logo" size={16} class="mr-1" />
+              Google Maps
+            </Button>
+
+            <Button
+              href={site.address.wazeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="outline"
+              size="sm"
+              class="text-xs flex-1"
+            >
+              <Icon name="navigation-arrow-light" size={16} class="mr-1" />
+              Waze
+            </Button>
+          </div>
+        </div>
+
+        <!-- Bloco de Horários -->
+        <div class="bg-white rounded-xl p-6 sm:p-8 border hairline shadow-sm">
+          <div class="w-12 h-12 rounded-lg bg-sand/40 text-ink flex items-center justify-center mb-4">
+            <Icon name="clock-light" size={24} />
+          </div>
+
+          <h3 class="font-serif text-2xl font-medium tracking-tight text-ink mb-2">
+            Horário de funcionamento
+          </h3>
+
+          <p class="font-sans text-sm font-semibold text-ink mb-1">
+            {site.hours.display}
+          </p>
+          <p class="font-sans text-xs text-olive leading-relaxed mb-3">
+            {site.hours.frequency}
+          </p>
+          <p class="font-sans text-xs text-olive bg-sand/20 p-3 rounded-lg border hairline text-pretty">
+            {site.hours.note}
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Mapa Google Lazy -->
+      <div class="lg:col-span-7">
+        <div class="w-full h-80 sm:h-[440px] rounded-xl overflow-hidden border hairline shadow-sm relative bg-sand/30">
+          <iframe
+            src={mapIframeSrc}
+            width="100%"
+            height="100%"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Localização de Sandra Lourenço Beauty no Google Maps"
+            class="w-full h-full grayscale-[25%] contrast-[1.05]"
+          ></iframe>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

@@ -1,0 +1,33 @@
+---
+import SectionHeading from './ui/SectionHeading.astro';
+import Icon from './ui/Icon.astro';
+import { site } from '../config/site';
+---
+
+<section id="faq" class="py-16 sm:py-24 bg-ivory-2 border-b hairline">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6">
+    <SectionHeading
+      eyebrow="Tire suas dúvidas"
+      title="Perguntas frequentes"
+      description="Transparência total sobre nossos protocolos, produtos e dinâmica de atendimento."
+      align="center"
+      class="mb-12"
+    />
+
+    <div class="space-y-4">
+      {site.faq.map((item) => (
+        <details class="group bg-white rounded-xl border hairline overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] open:shadow-md">
+          <summary class="flex items-center justify-between p-6 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden font-serif text-lg sm:text-xl font-medium tracking-tight text-ink hover:text-bronze focus:outline-none focus-visible:ring-2 focus-visible:ring-champagne">
+            <span class="pr-4">{item.question}</span>
+            <span class="shrink-0 w-8 h-8 rounded-full bg-sand/30 text-ink flex items-center justify-center transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-open:rotate-180">
+              <Icon name="caret-down-light" size={18} />
+            </span>
+          </summary>
+          <div class="px-6 pb-6 pt-2 text-sm font-sans text-olive leading-relaxed border-t hairline text-pretty">
+            {item.answer}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
