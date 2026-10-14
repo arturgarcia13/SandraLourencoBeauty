@@ -56,32 +56,34 @@ Concepts descartados: "A luz" (reflexo especular, depende de GL) e "A hora marca
 
 ## Composition plan
 ```
-HERO (nível 2)                 TAGLINE (nível 4)             RESULTADOS (nível 6)
-┌────────────────────────┐     ┌────────────────────────┐    ┌──────────────┬─────────────┐
-│ header: logo  N2 · CTA │     │ 04 ─                   │    │ Resultados   │             │
-│ H1 (cols 1-8)  │ 5     │     │ FRASE GIGANTE, 10 col  │    │ [antes|depois│ [antes|dep. │
-│ sub            │ nível │     │ palavra por palavra    │    │  arraste]    │  arraste]   │
-│ amostras 5…10  │ gigan.│     │ (30% → 100%)           │    └──────────────┴─────────────┘
-│ manhã | tarde  │ te    │     └────────────────────────┘
-│ [WhatsApp]     │       │
-└────────────────────────┘
-SERVIÇOS (nível 8)             MÉTODO (nível 9)              ESPAÇO + SANDRA (nível 9)
+HERO (nível 1)                 CHANCELA DE MARCAS (nível 1)  TAGLINE & RESULTADOS (nível 1)
+┌────────────────────────┐     ┌────────────────────────┐    ┌────────────────────────┐
+│ header: logo  N1 · CTA │     │ 6 marcas de elite      │    │ Manifesto: respeito à  │
+│ H1 (cols 1-7)  │ poster│     │ Wella · Kérastase ·    │    │ fibra capilar.         │
+│ sub            │ escala│     │ Braé · Truss · L'Oréal │    │ Resultados reais sob   │
+│ seletor 1..10  │ 7 Mel │     │ Avec VIP 5.0           │    │ teste de mechas.       │
+└────────────────────────┘     └────────────────────────┘    └────────────────────────┘
+SERVIÇOS (nível 4 Moreno)      MÉTODO (nível 9 Areia)        ESPAÇO + SANDRA (nível 9)
 ┌────────────────────────┐     ┌────────┬────────┬───────┐   ┌───────────┬────────────────┐
-│ lista editorial dos 4  │     │ 1 Diag │ 2 Teste│ 3 ... │   │ retrato   │ texto, regras  │
-│ destaques (títulos     │     │ nóstico│ de mech│ 4 ... │   │ sticky    │ como benefício │
-│ grandes, tempo, preço) │     └────────┴────────┴───────┘   │           │ equipe         │
-│ tabela dos 20 serviços │                                   └───────────┴────────────────┘
-└────────────────────────┘
-AVALIAÇÕES (nível 10)          FAQ + LOCALIZAÇÃO (nível 10)  FECHAMENTO (nível 1)
+│ Rituais de assinatura  │     │ 1 Diag │ 2 Teste│ 3 ... │   │ retrato   │ texto, regras  │
+│ com etapas e categoria │     │ nóstico│ de mech│ 4 ... │   │ sticky    │ como benefício │
+│ tabela dos 20 serviços │     └────────┴────────┴───────┘   │           │ equipe         │
+└────────────────────────┘                                   └───────────┴────────────────┘
+AVALIAÇÕES (nível 10 Plat.)    FAQ + LOCALIZAÇÃO (nível 10)  FECHAMENTO (nível 1 Carvão)
 ┌────────────────────────┐     ┌─────────────┬──────────┐    ┌────────────────────────┐
 │ 22 clientes · 42 notas │     │ FAQ         │ endereço │    │ "Qual é o seu tom?"    │
-│ 10 voltaram            │     │ details     │ mapa     │    │ seletor de novo        │
+│ tags de procedimento   │     │ details     │ mapa     │    │ seletor de novo        │
 │ parede de frases reais │     │             │ Waze/Maps│    │ rodapé, CNPJ, legal    │
 └────────────────────────┘     └─────────────┴──────────┘    └────────────────────────┘
 ```
 
-## Genericness test
-Um modelo genérico, com "salão de beleza de luxo", entregaria hero escuro com foto, ouro e serifa, três cartões de benefícios e carrossel de depoimentos. Mudamos: o fundo vira instrumento de colorista (escala de níveis), o seletor é a escala, a prova social é uma estatística verdadeira (quem volta) em vez de cartões, e o hero é um pôster tipográfico que funciona mesmo sem foto.
+## Genericness test & Benchmark (Faces by Clara)
+Um modelo genérico, com "salão de beleza de luxo", entregaria hero escuro com foto, ouro e serifa, três cartões de benefícios e carrossel de depoimentos.
+Extraímos do benchmark Faces by Clara (editorial de luxo em NY):
+1. **Chancela de marcas de elite (Brand Bar):** em vez de auto-elogio, autoridade internacional imediata (Wella, Kérastase, Braé, Truss, L'Oréal, Avec VIP).
+2. **Rituais de experiência:** serviços apresentados como transformações completas com etapas explícitas (diagnóstico visagista, teste de mechas, selagem).
+3. **Prova social contextualizada:** cada avaliação exibe o procedimento e tom realizado, gerando identificação direta com o desejo da visitante.
+4. **Performance preservada:** rejeitamos templates lentos; o site mantém SSG Astro 7 (<300ms) e conversão em 2 toques no WhatsApp oficial.
 
 ## Conteúdo real e premissas
 - Serviços, preços, tempos, equipe e avaliações vêm da API pública do Avec (`npm run sync:avec`).

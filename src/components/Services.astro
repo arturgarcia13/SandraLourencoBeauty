@@ -16,9 +16,6 @@ const fetchedDate = getFetchedDate();
 >
   <div class="wrap">
     <div class="svc__head">
-      <div class="eyebrow" data-reveal="up">
-        Menu de procedimentos
-      </div>
       <h2 class="h-xl" data-split="lines">
         Critério técnico para clareamento, cor e textura
       </h2>
@@ -38,8 +35,21 @@ const fetchedDate = getFetchedDate();
             <span class="feat__n" aria-hidden="true">{numStr}</span>
 
             <div>
+              <span class="feat__cat">{feat.category}</span>
               <h3 class="feat__t">{feat.title}</h3>
               <p class="feat__d" style="margin-top: 8px;">{feat.description}</p>
+              {feat.highlights && (
+                <ul class="feat__steps" aria-label="Etapas e diferenciais do ritual">
+                  {feat.highlights.map((h) => (
+                    <li>
+                      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                        <polyline points="3.5 8.5 6.5 11.5 12.5 4.5" />
+                      </svg>
+                      <span>{h}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
 
             <div>

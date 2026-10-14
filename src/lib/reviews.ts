@@ -1,6 +1,11 @@
 import data from '../data/avec-reviews.json';
 
-interface Raw { stars: number; text: string; name: string; date: string }
+interface Raw {
+  stars: number;
+  text: string;
+  name: string;
+  date: string;
+}
 
 const raw = data.reviews as Raw[];
 

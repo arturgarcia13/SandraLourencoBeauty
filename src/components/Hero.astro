@@ -3,7 +3,8 @@ import ToneSelector from './ToneSelector.astro';
 import Media from './Media.astro';
 import { getImage } from '../lib/media';
 
-const hasHeroPhoto = Boolean(getImage('hero'));
+const heroPhotos = ['foto1', 'foto2', 'foto3', 'foto4'].filter((name) => Boolean(getImage(name)));
+const hasPhotos = heroPhotos.length > 0;
 ---
 
 <section
@@ -16,10 +17,6 @@ const hasHeroPhoto = Boolean(getImage('hero'));
   <div class="wrap">
     <div class="grid hero__grid">
       <div class="hero__copy">
-        <div class="eyebrow" data-reveal="up" data-intro>
-          Salão boutique em Fortaleza · Bonsucesso
-        </div>
-
         <h1 data-split="lines" data-intro>
           Loiros saudáveis, morena iluminada e alisamento sem formol
         </h1>
@@ -34,27 +31,78 @@ const hasHeroPhoto = Boolean(getImage('hero'));
       </div>
 
       <div class="hero__poster" data-reveal="scale" data-intro>
-        <div class={`poster ${hasHeroPhoto ? 'poster--photo' : ''}`} style="--p-bg: #C79A62; --p-ink: #171310;">
-          {hasHeroPhoto ? (
-            <Media name="hero" alt="Resultado de cabelo assinado por Sandra Lourenço" eager={true} />
-          ) : null}
+        <div class={`poster ${hasPhotos ? 'poster--photo' : ''}`} style="--p-bg: #C79A62; --p-ink: #171310;">
+          {hasPhotos ? (
+            <div class="hero-carousel" data-hero-carousel>
+              <div
+                class="hero-carousel__slides"
+                role="region"
+                aria-roledescription="carrossel de fotos"
+                aria-label="Destaques de transformações capilares"
+              >
+                {heroPhotos.map((photoName, idx) => (
+                  <div
+                    class={`hero-carousel__slide ${idx === 0 ? 'is-active' : ''}`}
+                    data-slide-index={idx}
+                    role="group"
+                    aria-roledescription="slide"
+                    aria-label={`Foto ${idx + 1} de ${heroPhotos.length}`}
+                    aria-hidden={idx !== 0 ? 'true' : 'false'}
+                  >
+                    <Media
+                      name={photoName}
+                      alt={`Transformação capilar assinada por Sandra Lourenço - foto ${idx + 1}`}
+                      eager={idx === 0}
+                    />
+                  </div>
+                ))}
+              </div>
 
-          <div class="poster__top">
-            <div class="poster__brand">
-              <span class="brand__logo brand__logo--sm" aria-hidden="true"></span>
-              <span>Escala de cor</span>
+              {heroPhotos.length > 1 && (
+                <div class="hero-carousel__ui" aria-label="Navegação de fotos">
+                  <div class="hero-carousel__bars" role="tablist" aria-label="Selecionar foto">
+                    {heroPhotos.map((_, idx) => (
+                      <button
+                        type="button"
+                        class={`hero-carousel__bar ${idx === 0 ? 'is-active' : ''}`}
+                        data-index={idx}
+                        role="tab"
+                        aria-selected={idx === 0 ? 'true' : 'false'}
+                        aria-label={`Ir para foto ${idx + 1} de ${heroPhotos.length}`}
+                      >
+                        <span class="hero-carousel__progress" aria-hidden="true" />
+                      </button>
+                    ))}
+                  </div>
+
+                  <div class="hero-carousel__meta" aria-hidden="true">
+                    <span class="hero-carousel__count">
+                      <span data-carousel-current>01</span> / 0{heroPhotos.length}
+                    </span>
+                  </div>
+                </div>
+              )}
             </div>
-            <span>Sandra Lourenço</span>
-          </div>
+          ) : (
+            <>
+              <div class="poster__top">
+                <div class="poster__brand">
+                  <span class="brand__logo brand__logo--sm" aria-hidden="true"></span>
+                  <span>Escala de cor</span>
+                </div>
+                <span>Sandra Lourenço</span>
+              </div>
 
-          <div class="poster__num" aria-hidden="true">
-            7
-          </div>
+              <div class="poster__num" aria-hidden="true">
+                7
+              </div>
 
-          <div class="poster__bottom">
-            <span class="poster__name">Mel</span>
-            <span class="muted" style="font-size: var(--t-xs);">Nível de clareamento</span>
-          </div>
+              <div class="poster__bottom">
+                <span class="poster__name">Mel</span>
+                <span class="muted" style="font-size: var(--t-xs);">Nível de clareamento</span>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>

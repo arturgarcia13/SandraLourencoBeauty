@@ -1,0 +1,61 @@
+---
+// BrandBar.astro - Selo de autoridade e chancela das marcas e tecnologias de bancada
+const brands = [
+  {
+    name: 'Wella Professionals',
+    origin: 'Alemanha',
+    specialty: 'Descoloração Blondor e tonalização',
+  },
+  {
+    name: 'Kérastase Paris',
+    origin: 'França',
+    specialty: 'Rituais de regeneração e nutrição profunda',
+  },
+  {
+    name: 'Braé Hair Care',
+    origin: 'Brasil e EUA',
+    specialty: 'Proteção estrutural e escudo anti-quebra',
+  },
+  {
+    name: 'Truss Professional',
+    origin: 'Brasil',
+    specialty: 'Terapia reconstrutora e selagem de cutículas',
+  },
+  {
+    name: 'L’Oréal Professionnel',
+    origin: 'França',
+    specialty: 'Tecnologia Metal Detox e pigmentação',
+  },
+  {
+    name: 'Avec VIP 5.0',
+    origin: 'Certificação',
+    specialty: 'Avaliação máxima em segurança e atendimento',
+  },
+];
+---
+
+<section class="sec sec--tight brands" id="marcas" aria-label="Marcas profissionais e tecnologia de bancada" style="--sbg: #121010; --sink: #F6EFE6;">
+  <div class="wrap">
+    <div class="brands__head">
+      <h2 class="h-l brands__title" data-split="lines">
+        Cosmética de padrão internacional em cada procedimento
+      </h2>
+      <p class="muted brands__desc" data-reveal="up">
+        Trabalhamos exclusivamente com linhas profissionais consagradas mundialmente para garantir integridade da fibra capilar, durabilidade da cor e brilho espelhado.
+      </p>
+    </div>
+
+    <div class="brands__grid" data-reveal="up" data-delay="0.1" role="list">
+      {brands.map((b) => (
+        <article class="brand-card" role="listitem">
+          <div class="brand-card__top">
+            <span class="brand-card__origin">{b.origin}</span>
+            <span class="brand-card__dot" aria-hidden="true"></span>
+          </div>
+          <h3 class="brand-card__name">{b.name}</h3>
+          <p class="brand-card__spec">{b.specialty}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

@@ -29,7 +29,7 @@ export function initSelectors() {
       const isNum = !isNaN(numLevel) && levels[numLevel as Level];
       const toneInfo = isNum ? levels[numLevel as Level] : levels[9]; // Alisamento usa tom Areia clara (nível 9)
 
-      // Se este seletor está no Hero: altera apenas as cores do card "Escala de cor"
+      // Se este seletor está no Hero com pôster tipográfico: altera as cores do pôster
       if (form.closest('.hero')) {
         if (poster) {
           if (posterNum) posterNum.textContent = toneData.numeral;
@@ -37,25 +37,21 @@ export function initSelectors() {
           poster.style.setProperty('--p-bg', toneInfo.bg);
           poster.style.setProperty('--p-ink', toneInfo.ink);
         }
-      } else if (form.closest('.fin')) {
-        // Se estiver no fechamento, sincroniza a seção de fechamento
-        const finSec = form.closest<HTMLElement>('.fin');
-        if (finSec) {
-          finSec.style.setProperty('--sbg', toneInfo.bg);
-          finSec.style.setProperty('--sink', toneInfo.ink);
-        }
       }
     }
 
     toneInputs.forEach((input) => {
-      input.addEventListener('change', update);
-      // Suporte direto para clique e toque no container do label
       const label = input.closest('label');
+
+      input.addEventListener('change', update);
+
+      // Suporte direto para clique e toque no container do label
       if (label) {
-        label.addEventListener('click', () => {
-          if (input.checked) return;
-          input.checked = true;
-          update();
+        label.addEventListener('click', (e) => {
+          if (e.target !== input) {
+            input.checked = true;
+            update();
+          }
         });
       }
     });

@@ -1,1 +1,75 @@
-{}
+{
+  "depois-1": {
+    "type": "image",
+    "width": 1440,
+    "height": 1920,
+    "sizes": [
+      480,
+      960
+    ]
+  },
+  "depois-2": {
+    "type": "image",
+    "width": 1440,
+    "height": 1920,
+    "sizes": [
+      480,
+      960
+    ]
+  },
+  "foto1": {
+    "type": "image",
+    "width": 1440,
+    "height": 1920,
+    "sizes": [
+      480,
+      960
+    ]
+  },
+  "foto2": {
+    "type": "image",
+    "width": 1440,
+    "height": 1439,
+    "sizes": [
+      480,
+      960
+    ]
+  },
+  "foto3": {
+    "type": "image",
+    "width": 1440,
+    "height": 1571,
+    "sizes": [
+      480,
+      960
+    ]
+  },
+  "foto4": {
+    "type": "image",
+    "width": 1440,
+    "height": 1920,
+    "sizes": [
+      480,
+      960
+    ]
+  },
+  "hero": {
+    "type": "image",
+    "width": 3178,
+    "height": 4096,
+    "sizes": [
+      480,
+      960,
+      1600
+    ]
+  },
+  "sandra": {
+    "type": "image",
+    "width": 1440,
+    "height": 1847,
+    "sizes": [
+      480,
+      960
+    ]
+  }
+}
