@@ -169,20 +169,6 @@ html.motion [data-split] { visibility: hidden; }
 .hdr { position: fixed; inset: 0 0 auto 0; z-index: 60; background: color-mix(in srgb, var(--bg-base) 86%, transparent); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
 .hdr__bar { height: var(--header); display: flex; align-items: center; justify-content: space-between; gap: var(--s3); }
 
-/* Navegação de desktop */
-.hdr__end { display: flex; align-items: center; gap: var(--s4); }
-.hdr__nav { display: none; align-items: center; gap: var(--s5); }
-.hdr__link { font-size: var(--t-s); font-weight: 500; color: var(--ink); position: relative; padding-block: var(--s2); }
-.hdr__link::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1.5px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.4s var(--ease-out); }
-.hdr__link:hover::after, .hdr__link:focus-visible::after { transform: scaleX(1); }
-.hdr__cta { display: none; min-height: 44px; font-size: var(--t-s); padding: 0 var(--s4); }
-@media (min-width: 900px) {
-  .hdr__nav { display: flex; }
-  .hdr__cta { display: inline-flex; }
-  /* Especificidade maior que a base de .menu-btn (que vem depois no arquivo). */
-  .hdr .menu-btn { display: none; }
-  .hdr .menu { display: none; }
-}
 .brand { font-family: var(--serif); font-weight: 600; font-size: 1.25rem; letter-spacing: -0.01em; line-height: 1; white-space: nowrap; display: inline-flex; align-items: center; gap: var(--s2); }
 .brand small { font-family: var(--sans); font-weight: 600; font-size: 0.625rem; letter-spacing: 0.2em; text-transform: uppercase; margin-left: var(--s2); color: var(--muted); }
 .brand__logo {

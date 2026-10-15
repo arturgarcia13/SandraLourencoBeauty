@@ -79,7 +79,7 @@ Concepts descartados: "A luz" (reflexo especular, depende de GL), "A hora marcad
 ```
 HERO (base)                    CHANCELA DE MARCAS (alt)      MANIFESTO (deep)
 ┌────────────────────────┐     ┌────────────────────────┐    ┌────────────────────────┐
-│ header: logo, nav, CTA │     │ 6 marcas de elite      │    │ Frase gigante:         │
+│ header: logo, Menu     │     │ 6 marcas de elite      │    │ Frase gigante:         │
 │ eyebrow                │     │ Wella · Kérastase ·    │    │ respeito à fibra       │
 │ H1 (cols 1-7)  │fotos  │     │ Braé · Truss · L'Oréal │    │ capilar.               │
 │ sub + CTAs     │carross│     │ Avec VIP 5.0           │    │                        │

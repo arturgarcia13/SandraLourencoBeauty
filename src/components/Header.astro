@@ -23,38 +23,20 @@ const navItems = [
       </span>
     </a>
 
-    <div class="hdr__end">
-      <nav class="hdr__nav" aria-label="Navegação principal">
-        {navItems.map((item) => (
-          <a href={item.href} class="hdr__link">{item.label}</a>
-        ))}
-      </nav>
-
-      <a
-        href={headerWaLink}
-        class="btn btn--accent hdr__cta"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Agendar atendimento pelo WhatsApp"
-      >
-        Agendar
-      </a>
-
-      <button
-        type="button"
-        class="menu-btn"
-        aria-expanded="false"
-        aria-controls="menu-principal"
-        aria-label="Abrir menu de navegação"
-        data-menu-btn
-      >
-        <span class="menu-btn__label" data-menu-label>Menu</span>
-        <span class="menu-btn__lines" aria-hidden="true">
-          <span></span>
-          <span></span>
-        </span>
-      </button>
-    </div>
+    <button
+      type="button"
+      class="menu-btn"
+      aria-expanded="false"
+      aria-controls="menu-principal"
+      aria-label="Abrir menu de navegação"
+      data-menu-btn
+    >
+      <span class="menu-btn__label" data-menu-label>Menu</span>
+      <span class="menu-btn__lines" aria-hidden="true">
+        <span></span>
+        <span></span>
+      </span>
+    </button>
   </div>
 
   <div class="menu" id="menu-principal" aria-hidden="true" data-menu>

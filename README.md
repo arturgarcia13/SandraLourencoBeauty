@@ -13,7 +13,7 @@ Desenvolvida com **Astro estático + GSAP (ScrollTrigger, SplitText) + Lenis** e
 - **Tipografia:**
   - *Headings:* Cormorant Garamond Variable (`@fontsource-variable/cormorant-garamond`), sem itálico, proporções balanceadas.
   - *Corpo, UI e botões:* Montserrat Variable (`@fontsource-variable/montserrat`), legibilidade alta no mobile.
-- **Ação única de conversão:** Botões de WhatsApp contextuais por serviço (com mensagem pronta), CTA fixo no cabeçalho (desktop) e pílula flutuante de conversa (mobile). O verde WhatsApp fica reservado à pílula.
+- **Ação única de conversão:** Botões de WhatsApp contextuais por serviço (com mensagem pronta) e a pílula flutuante de conversa, única superfície em verde WhatsApp. O cabeçalho mantém apenas o botão **Menu** (mesmo no desktop).
 
 A referência completa do sistema (paleta, contraste, ritmo de seções e linguagem de movimento) está em [`DESIGN.md`](./DESIGN.md).
 
@@ -50,7 +50,7 @@ lp_sandralourenco/
     ├── layouts/
     │   └── Base.astro          # Layout com SEO, Schema.org HairSalon e flags de acessibilidade
     ├── components/
-    │   ├── Header.astro        # Cabeçalho fixo: navegação (desktop), menu full-screen (mobile) e CTA
+    │   ├── Header.astro        # Cabeçalho fixo: logo + botão Menu que abre o overlay full-screen
     │   ├── Hero.astro          # H1 de benefício, CTAs e carrossel de fotos
     │   ├── Tagline.astro       # Manifesto técnico revelado palavra por palavra no scroll
     │   ├── Results.astro       # Comparador antes e depois (renderizado com fotos reais)
