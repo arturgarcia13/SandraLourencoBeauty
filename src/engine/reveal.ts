@@ -9,25 +9,16 @@ const durations = { lines: 1.2, words: 1.1, chars: 0.9 } as const;
 const staggers = { lines: 0.08, words: 0.035, chars: 0.018 } as const;
 
 /**
- * Devolve o elemento ao estado inicial somente quando ele sai completamente
- * por baixo da viewport. Assim a animação volta a acontecer na próxima descida
- * sem "piscar" o conteúdo que ainda está visível.
+ * Revelação bidirecional: o elemento entra ao aparecer e volta ao estado
+ * inicial ao sair (em qualquer direção), então anima de novo quando reentra.
+ * `play reverse play reverse` = [onEnter, onLeave, onEnterBack, onLeaveBack].
  */
-function resetWhenOutOfView(el: HTMLElement, tween: gsap.core.Tween) {
-  return ScrollTrigger.create({
-    trigger: el,
-    start: 'top bottom',
-    onLeaveBack: () => {
-      tween.pause(0);
-    },
-  });
-}
+const TOGGLE = 'play reverse play reverse';
 
 function splitTween(el: HTMLElement, isIntro: boolean) {
   const type = (el.dataset.split || 'lines') as keyof typeof durations;
   const delay = parseFloat(el.dataset.delay || '0');
   let tween: gsap.core.Tween | undefined;
-  let reset: ScrollTrigger | undefined;
   let requested = false;
 
   // SplitText creates lines/words
@@ -41,7 +32,6 @@ function splitTween(el: HTMLElement, isIntro: boolean) {
       // autoSplit pode re-dividir em resize/font load: recria o tween
       // contra os novos nós para o replay continuar funcionando.
       tween?.kill();
-      reset?.kill();
 
       const targets = type === 'lines' ? self.lines : type === 'words' ? self.words : self.chars;
       tween = gsap.from(targets, {
@@ -54,10 +44,9 @@ function splitTween(el: HTMLElement, isIntro: boolean) {
         paused: isIntro && !requested,
         scrollTrigger: isIntro
           ? undefined
-          : { trigger: el, start: 'top 88%', toggleActions: 'play none none none' },
+          : { trigger: el, start: 'top 88%', toggleActions: TOGGLE },
       });
 
-      if (!isIntro) reset = resetWhenOutOfView(el, tween);
       return tween;
     },
   });
@@ -83,7 +72,7 @@ function blockTween(el: HTMLElement, paused: boolean) {
     kind === 'clip' || kind === 'scale' ? { clipPath: 'inset(0% 0% 0% 0%)', scale: 1 } : {};
 
   gsap.set(el, { visibility: 'visible' });
-  const tween = gsap.fromTo(el, from, {
+  return gsap.fromTo(el, from, {
     ...to,
     y: 0,
     autoAlpha: 1,
@@ -93,11 +82,8 @@ function blockTween(el: HTMLElement, paused: boolean) {
     paused,
     scrollTrigger: paused
       ? undefined
-      : { trigger: el, start: 'top 90%', toggleActions: 'play none none none' },
+      : { trigger: el, start: 'top 90%', toggleActions: TOGGLE },
   });
-
-  if (!paused) resetWhenOutOfView(el, tween);
-  return tween;
 }
 
 /** Wire every reveal inside root. Returns the intro timeline (paused) for the page entrance. */
