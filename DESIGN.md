@@ -3,78 +3,103 @@
 ## Brief
 - **Sujeito:** salão boutique de loiros, morena iluminada e alisamento sem formol, Bonsucesso, Fortaleza (CE).
 - **Público:** mulheres 25 a 45 que já sabem o que querem (nível 3 a 4 de consciência) e buscam segurança técnica. Mais de 90% do tráfego vem do Instagram, em celular.
-- **Trabalho do site:** levar a visitante a uma conversa no WhatsApp com o tom desejado e o período já escolhidos. Uma ação principal.
+- **Trabalho do site:** levar a visitante a uma conversa no WhatsApp. Uma ação principal, sem formulário.
 - **Stack:** Astro 7 estático + GSAP (ScrollTrigger, SplitText) + Lenis, CSS puro com tokens. Projeto já era Astro; o conteúdo é estático e o movimento é o produto.
-- **Sem loader e sem WebGL** (decisão do cliente): o espetáculo é o scroll dirigido pela escala de tons, o tipo grande e as fotos reais.
+- **Sem loader e sem WebGL** (decisão do cliente): o espetáculo é o tipo grande, as fotos reais e o ritmo de superfícies claras com dois momentos de espresso.
 
 ## Concept Card
 ```
-Idea:        O site percorre a escala de tons do cabelo, do castanho escuro ao platinado, enquanto você rola.
-Metaphor:    A tabela de níveis de cor (1 a 10) que todo colorista usa para decidir o clareamento.
-Signature:   Driver único: o progresso do scroll pinta o fundo da página pelos níveis de cor,
-             e o texto troca de tinta no ponto de contraste. O seletor de agendamento é a própria escala.
+Idea:        Base creme luminosa com pausas de espresso; o site respira entre claro e escuro.
+Metaphor:    A luz do estúdio: creme durante o trabalho, espresso nos momentos de decisão.
+Signature:   Ritmo de superfícies (creme, areia, espresso) e serif editorial grande.
 Emotion:     Calma de estúdio e precisão técnica. "Aqui alguém mede antes de clarear."
-Motion verb: Absorver. Tudo assenta devagar, como pigmento no fio: clip e opacidade com saída longa (expo.out).
-Screenshot:  O hero: numeral gigante do nível escolhido ao lado do título, no castanho profundo, escala de amostras abaixo.
+Motion verb: Assentar. Reveals bidirecionais (entram e saem) com máscara e expo.out.
+Screenshot:  Hero creme: eyebrow, título serif, botão caramelo e carrossel de fotos à direita.
 ```
-Concepts descartados: "A luz" (reflexo especular, depende de GL) e "A hora marcada" (agenda como estrutura, forte para conversão mas genérico visualmente).
+Concepts descartados: "A luz" (reflexo especular, depende de GL), "A hora marcada" (genérico visualmente) e o **driver de cor por scroll** (pesava a página em marrom escuro e contradizia a promessa de luminosidade — substituído pelo ritmo estático abaixo).
 
-## Palette (por papel, fundo animado entre estas paradas)
-| Nível | Nome | bg | Tinta |
-|---|---|---|---|
-| 1 | Carvão | `#121010` | `#F6EFE6` |
-| 2 | Espresso | `#17120F` | `#F6EFE6` |
-| 4 | Castanho | `#3A2A1F` | `#F6EFE6` |
-| 6 | Caramelo | `#7A5636` | `#F6EFE6` |
-| 7 | Mel (só em transição) | `#C79A62` | troca no ponto de contraste |
-| 8 | Champanhe | `#E3CBA6` | `#171310` |
-| 9 | Areia clara | `#EDDFC7` | `#171310` |
-| 10 | Platinado | `#F5F0E7` | `#171310` |
+## Palette · "Champagne & Espresso"
+| Token | Hex | Uso |
+|---|---|---|
+| `--bg-base` | `#F7F1E8` | Fundo principal (creme) |
+| `--bg-alt` | `#EFE4D3` | Seções alternadas (areia) |
+| `--bg-deep` | `#3A2A1F` | Seções de contraste (espresso) |
+| `--bg-footer` | `#2B1F17` | Rodapé |
+| `--surface` | `#FFFCF7` | Cartões (branco quente, nunca `#FFF`) |
+| `--ink` | `#2B1F17` | Texto principal em fundo claro |
+| `--ink-soft` | `#6B5A4C` | Texto secundário em fundo claro (5,9:1 sobre creme) |
+| `--on-deep` | `#F7F1E8` | Texto em fundo escuro (12,2:1) |
+| `--accent` | `#9A5B2E` | Botão primário em fundo claro e links de ação |
+| `--accent-hover` | `#7F4822` | Hover/pressionado |
+| `--champagne` | `#E9CFA6` | Botão primário **sobre fundo escuro** |
+| `--gold` | `#D9B27C` | Detalhes e ícones sobre escuro |
+| `--line` | `#E0D2BD` | Bordas e divisores |
+| `--wa` | `#25D366` | **Só** o botão flutuante de conversa |
 
-- `--c-accent`: `#C6A87D` (champanhe da marca) só em filetes e numerais sobre fundos escuros; sobre claros vira a própria tinta.
-- Verde WhatsApp `#25D366` exclusivo dos botões de conversa, com texto escuro `#0E1A12` (AA).
-- Troca de tinta calculada pela luminância relativa do fundo animado, no ponto de maior contraste (cerca de 0,19). Seções ficam em platôs; o texto corrido nunca fica na zona de troca (padding de 12svh nas bordas).
-- Fundos são sempre uma cor chapada por frame, sem gradiente.
+- Regras: fora da paleta saíram o laranja, os cinzas frios e o branco puro. `--champagne` e `--gold` só aparecem sobre escuro; sobre claro o detalhe é `--accent`.
+- Contrastes validados (WCAG AA, texto ≥ 4,5:1): ink/base 14,3 · ink-soft/base 5,9 · on-deep/deep 12,2 · accent/base 4,8 · branco/accent 5,4 · champagne/ink 10,6 · wa-ink/wa 9,0.
+- Atenção: `--accent` como **texto** sobre `--bg-alt` é 4,27 — sobre areia usar `--accent-hover` (5,9) ou `--ink-soft`.
+- Fundos são cores chapadas por seção (sem gradiente, sem animação de cor).
+
+### Ritmo de seções
+| Seção | Fundo |
+|---|---|
+| Hero | `--bg-base` |
+| Marcas | `--bg-alt` |
+| Manifesto | `--bg-deep` |
+| Resultados | `--bg-alt` |
+| Serviços | `--bg-base` |
+| Método | `--bg-alt` |
+| O espaço | `--bg-base` |
+| Avaliações | `--bg-alt` |
+| FAQ | `--bg-base` |
+| Agendar (CTA final) | `--bg-deep` |
+| Rodapé | `--bg-footer` |
 
 ## Type
 - **Display:** Cormorant Garamond Variable 500/600, só em títulos, numerais e citações. Sem itálico. Tracking −0.02em a −0.035em nos tamanhos grandes.
 - **Texto, UI e botões:** Montserrat Variable 400/500/600, 16 a 17 px com entrelinha 1,55. UI pequena 12 a 14 px com contraste AA.
 - Escala fluida: mega 52→152, xl 40→96, l 30→56, m 22→30, corpo 16→17, s 14, xs 12.
 - `text-wrap: balance` em títulos, `pretty` em parágrafos. Sem hífen e sem travessão em texto visível, sentence case.
+- Eyebrow: 12–13 px, caixa alta, tracking 0,16em, cor `--accent` (sobre escuro, `--gold`).
 
 ## Grid e ritmo
 - 12 colunas, gutter fluido 16→40 px, margem lateral igual ao gutter. Máximo 1440 px.
 - Raio único: 10 px (imagens, cartões, botões, amostras). Nada totalmente redondo, exceto o botão flutuante.
-- Linhas de 1 px com a tinta a 14%. Sem sombras pesadas.
-- Ritmo de seções alternando famílias: pôster (hero), frase gigante, comparadores, lista editorial, passos em colunas, split sticky, parede de frases, duas colunas, fechamento.
+- Linhas de 1 px com `--line`. Sem sombras pesadas.
+- Ritmo de seções: pôster (hero), faixa de marcas, frase gigante, comparadores, lista editorial, passos em colunas, split sticky, parede de frases, duas colunas, fechamento.
 
 ## Motion language
-- Um relógio: `gsap.ticker` move o Lenis; ScrollTrigger lê o Lenis. Sem listeners de scroll próprios.
+- Um relógio: `gsap.ticker` move o Lenis; ScrollTrigger lê o Lenis. Sem listeners de scroll próprios (exceto o FAB e o carrossel, que apenas leem o estado).
 - Easing: `expo.out` (entrada), `power3.out` (UI pequena). Durações 0,9 a 1,3 s; grandes mais lentas que pequenas. Stagger 20 a 80 ms.
-- Reveals: títulos por linha com máscara (SplitText), blocos por clip-path e opacidade.
-- Reduced motion: scroll nativo, fundos por seção em cores chapadas (a escala continua visível, sem animar), tudo visível.
+- **Reveals bidirecionais:** o elemento entra ao aparecer e volta ao estado inicial ao sair, em qualquer direção (`toggleActions: 'play reverse play reverse'`), então anima de novo na próxima passagem. Títulos por linha com máscara (SplitText); blocos por clip-path e opacidade.
+- Reduced motion: sem deslocamento, tudo visível, scroll nativo; carrossel sem autoplay.
 
 ## Composition plan
 ```
-HERO (nível 4)                 CHANCELA DE MARCAS (nível 4)  TAGLINE & RESULTADOS (nível 4)
+HERO (base)                    CHANCELA DE MARCAS (alt)      MANIFESTO (deep)
 ┌────────────────────────┐     ┌────────────────────────┐    ┌────────────────────────┐
-│ header: logo  N1 · CTA │     │ 6 marcas de elite      │    │ Manifesto: respeito à  │
-│ H1 (cols 1-7)  │ poster│     │ Wella · Kérastase ·    │    │ fibra capilar.         │
-│ sub            │ escala│     │ Braé · Truss · L'Oréal │    │ Resultados reais sob   │
-│ seletor 1..10  │ 7 Mel │     │ Avec VIP 5.0           │    │ teste de mechas.       │
-└────────────────────────┘     └────────────────────────┘    └────────────────────────┘
-SERVIÇOS (nível 4 Moreno)      MÉTODO (nível 9 Areia)        ESPAÇO + SANDRA (nível 9)
-┌────────────────────────┐     ┌────────┬────────┬───────┐   ┌───────────┬────────────────┐
-│ Rituais de assinatura  │     │ 1 Diag │ 2 Teste│ 3 ... │   │ retrato   │ texto, regras  │
-│ com etapas e categoria │     │ nóstico│ de mech│ 4 ... │   │ sticky    │ como benefício │
-│ tabela dos 20 serviços │     └────────┴────────┴───────┘   │           │ equipe         │
-└────────────────────────┘                                   └───────────┴────────────────┘
-AVALIAÇÕES (nível 10 Plat.)    FAQ + LOCALIZAÇÃO (nível 10)  FECHAMENTO (nível 1 Carvão)
-┌────────────────────────┐     ┌─────────────┬──────────┐    ┌────────────────────────┐
-│ 22 clientes · 42 notas │     │ FAQ         │ endereço │    │ "Qual é o seu tom?"    │
-│ tags de procedimento   │     │ details     │ mapa     │    │ seletor de novo        │
-│ parede de frases reais │     │             │ Waze/Maps│    │ rodapé, CNPJ, legal    │
-└────────────────────────┘     └─────────────┴──────────┘    └────────────────────────┘
+│ header: logo, nav, CTA │     │ 6 marcas de elite      │    │ Frase gigante:         │
+│ eyebrow                │     │ Wella · Kérastase ·    │    │ respeito à fibra       │
+│ H1 (cols 1-7)  │fotos  │     │ Braé · Truss · L'Oréal │    │ capilar.               │
+│ sub + CTAs     │carross│     │ Avec VIP 5.0           │    │                        │
+│ linha de confiança     │     └────────────────────────┘    └────────────────────────┘
+└────────────────────────┘
+RESULTADOS (alt)               SERVIÇOS (base)               MÉTODO (alt)
+┌────────────────────────┐     ┌────────────────────────┐    ┌────────┬────────┬───────┐
+│ comparadores antes/depois│    │ Rituais de assinatura  │    │ 1 Diag │ 2 Teste│ 3 ... │
+│ galeria de resultados  │     │ tabela dos 20 serviços │    │ nóstico│ de mech│ 4 ... │
+└────────────────────────┘     └────────────────────────┘    └────────┴────────┴───────┘
+ESPAÇO + SANDRA (base)         AVALIAÇÕES (alt)              FAQ + LOCALIZAÇÃO (base)
+┌───────────┬────────────┐     ┌────────────────────────┐    ┌─────────────┬──────────┐
+│ retrato   │ texto,     │     │ 22 clientes · 42 notas │    │ FAQ         │ endereço │
+│ sticky    │ benefícios │     │ parede de frases reais │    │ details     │ mapa     │
+└───────────┴────────────┘     └────────────────────────┘    └─────────────┴──────────┘
+FECHAMENTO (deep) + RODAPÉ (footer)
+┌────────────────────────┐
+│ "Vamos descobrir o seu │
+│  tom?" + CTA WhatsApp  │
+└────────────────────────┘
 ```
 
 ## Genericness test & Benchmark (Faces by Clara)

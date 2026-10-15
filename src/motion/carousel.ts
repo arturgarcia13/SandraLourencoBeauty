@@ -1,19 +1,29 @@
 import { prefersReducedMotion } from '../engine/env';
 
 export function initHeroCarousel() {
-  const container = document.querySelector<HTMLElement>('[data-hero-carousel]');
-  if (!container) return;
+  const containerEl = document.querySelector<HTMLElement>('[data-hero-carousel]');
+  if (!containerEl) return;
+  const container: HTMLElement = containerEl;
 
   const slides = container.querySelectorAll<HTMLElement>('.hero-carousel__slide');
   const bars = container.querySelectorAll<HTMLElement>('.hero-carousel__bar');
   const currentCounter = container.querySelector<HTMLElement>('[data-carousel-current]');
+  const toggle = container.querySelector<HTMLButtonElement>('[data-carousel-toggle]');
 
   if (slides.length <= 1) return;
 
   let currentIndex = 0;
   let timer: ReturnType<typeof setInterval> | null = null;
   const intervalMs = 4500;
-  let isPaused = false;
+
+  // Motivos independentes de pausa: hover, foco de teclado e comando manual.
+  let hoverPaused = false;
+  let focusPaused = false;
+  let manualPaused = false;
+
+  function pausedNow() {
+    return hoverPaused || focusPaused || manualPaused || document.visibilityState !== 'visible';
+  }
 
   function goToSlide(index: number) {
     const nextIndex = (index + slides.length) % slides.length;
@@ -23,7 +33,6 @@ export function initHeroCarousel() {
 
     currentIndex = nextIndex;
 
-    // Update slides with crossfade
     slides.forEach((slide, i) => {
       if (i === currentIndex) {
         slide.classList.add('is-active');
@@ -34,12 +43,10 @@ export function initHeroCarousel() {
       }
     });
 
-    // Reset and update progress bars
     bars.forEach((bar, i) => {
       const progress = bar.querySelector<HTMLElement>('.hero-carousel__progress');
       if (i === currentIndex) {
         bar.classList.remove('is-active');
-        // Force reflow to restart CSS animation
         if (progress) void progress.offsetWidth;
         bar.classList.add('is-active');
         bar.setAttribute('aria-selected', 'true');
@@ -49,7 +56,6 @@ export function initHeroCarousel() {
       }
     });
 
-    // Update counter
     if (currentCounter) {
       currentCounter.textContent = String(currentIndex + 1).padStart(2, '0');
     }
@@ -67,9 +73,7 @@ export function initHeroCarousel() {
     if (prefersReducedMotion()) return;
     stopAutoplay();
     timer = setInterval(() => {
-      if (!isPaused && document.visibilityState === 'visible') {
-        nextSlide();
-      }
+      if (!pausedNow()) nextSlide();
     }, intervalMs);
   }
 
@@ -78,6 +82,14 @@ export function initHeroCarousel() {
       clearInterval(timer);
       timer = null;
     }
+  }
+
+  function updateToggle() {
+    container.classList.toggle('is-paused', manualPaused);
+    if (!toggle) return;
+    toggle.setAttribute('aria-pressed', manualPaused ? 'true' : 'false');
+    toggle.setAttribute('aria-label', manualPaused ? 'Retomar apresentação automática' : 'Pausar apresentação automática');
+    toggle.classList.toggle('is-paused', manualPaused);
   }
 
   // Interactive indicators click
@@ -92,16 +104,35 @@ export function initHeroCarousel() {
     });
   });
 
-  // Pause on hover
+  // Pausa/retoma manual
+  toggle?.addEventListener('click', () => {
+    manualPaused = !manualPaused;
+    updateToggle();
+  });
+  updateToggle();
+
+  // Pausa no foco de teclado (nao interfere no clique de mouse)
+  container.addEventListener('focusin', (e) => {
+    const target = e.target as Element | null;
+    try {
+      if (target?.matches?.(':focus-visible')) focusPaused = true;
+    } catch {
+      /* :focus-visible nao suportado: ignora */
+    }
+  });
+  container.addEventListener('focusout', () => {
+    focusPaused = false;
+  });
+
+  // Pausa no hover
   container.addEventListener('mouseenter', () => {
-    isPaused = true;
+    hoverPaused = true;
   });
-
   container.addEventListener('mouseleave', () => {
-    isPaused = false;
+    hoverPaused = false;
   });
 
-  // Touch swipe support
+  // Suporte a swipe no toque
   let touchStartX = 0;
   let touchStartY = 0;
 
@@ -111,7 +142,7 @@ export function initHeroCarousel() {
       if (e.touches.length === 1) {
         touchStartX = e.touches[0].clientX;
         touchStartY = e.touches[0].clientY;
-        isPaused = true;
+        hoverPaused = true;
       }
     },
     { passive: true }
@@ -120,14 +151,13 @@ export function initHeroCarousel() {
   container.addEventListener(
     'touchend',
     (e) => {
-      isPaused = false;
+      hoverPaused = false;
       if (e.changedTouches.length === 1) {
         const touchEndX = e.changedTouches[0].clientX;
         const touchEndY = e.changedTouches[0].clientY;
         const diffX = touchEndX - touchStartX;
         const diffY = touchEndY - touchStartY;
 
-        // Threshold 40px horizontal swipe
         if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
           if (diffX < 0) {
             nextSlide();
@@ -141,7 +171,7 @@ export function initHeroCarousel() {
     { passive: true }
   );
 
-  // Pause when browser tab is hidden
+  // Pausa quando a aba fica oculta
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'hidden') {
       stopAutoplay();

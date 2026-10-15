@@ -172,7 +172,7 @@ export const site = {
     },
     {
       question: 'Como faço para agendar?',
-      answer: 'Escolha o tom e o período aqui no site e abra a conversa no WhatsApp com a mensagem já preparada. Sem cadastro, sem senha.',
+      answer: 'Toque em qualquer botão do WhatsApp nesta página. A conversa já abre com a mensagem pronta e a equipe confirma as datas disponíveis. Sem cadastro e sem senha.',
     },
   ],
 

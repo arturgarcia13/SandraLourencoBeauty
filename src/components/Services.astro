@@ -8,10 +8,7 @@ const fetchedDate = getFetchedDate();
 ---
 
 <section
-  class="sec"
-  data-tone="4"
-  data-tone-label="Nível 4 · Moreno"
-  style="--sbg: #3A2A1F; --sink: #F6EFE6;"
+  class="sec sec--base"
   id="servicos"
 >
   <div class="wrap">
@@ -65,9 +62,9 @@ const fetchedDate = getFetchedDate();
               class="feat__go"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`Consultar disponibilidade para ${feat.title}`}
+              aria-label={`Agendar ${feat.title} pelo WhatsApp`}
             >
-              <span>Consultar no WhatsApp</span>
+              <span>Agendar avaliação</span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M5 12h14" />
                 <path d="m12 5 7 7-7 7" />
@@ -79,12 +76,12 @@ const fetchedDate = getFetchedDate();
     </div>
 
     <!-- Tabela Completa dos Serviços -->
-    <div class="menu">
+    <div class="svc-menu">
       {menuGroups.map((group) => (
-        <div class={`menu__group ${group.isCompact ? 'menu__group--soft' : ''}`} data-reveal="up">
+        <div class={`svc-menu__group ${group.isCompact ? 'svc-menu__group--soft' : ''}`} data-reveal="up">
           <div>
-            <h3 class="menu__title">{group.title}</h3>
-            <p class="menu__sub">{group.description}</p>
+            <h3 class="svc-menu__title">{group.title}</h3>
+            <p class="svc-menu__sub">{group.description}</p>
           </div>
 
           <div role="list">
