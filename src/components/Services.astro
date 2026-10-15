@@ -62,6 +62,7 @@ const fetchedDate = getFetchedDate();
               class="feat__go"
               target="_blank"
               rel="noopener noreferrer"
+              data-wa-service={feat.title}
               aria-label={`Agendar ${feat.title} pelo WhatsApp`}
             >
               <span>Agendar avaliação</span>
@@ -95,6 +96,7 @@ const fetchedDate = getFetchedDate();
                   role="listitem"
                   target="_blank"
                   rel="noopener noreferrer"
+                  data-wa-service={item.name}
                   aria-label={`Agendar ${item.name} pelo WhatsApp`}
                 >
                   <div class="row__name">

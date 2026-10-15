@@ -20,7 +20,7 @@ export function initAnalytics() {
         origem = region.id || (region.tagName.toLowerCase() === 'footer' ? 'rodape' : 'pagina');
       }
 
-      const servico = (target.getAttribute('aria-label') || target.textContent || '').trim();
+      const servico = (target.dataset.waService || target.getAttribute('aria-label') || target.textContent || '').trim();
 
       gtag('event', 'whatsapp_click', { origem, servico });
     },

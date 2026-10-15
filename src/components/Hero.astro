@@ -48,7 +48,7 @@ const heroWaLink = waLink('Gostaria de agendar um atendimento.');
       </div>
 
       <div class="hero__poster" data-reveal="scale" data-intro>
-        <div class={`poster ${hasPhotos ? 'poster--photo' : ''}`} style="--p-bg: #3A2A1F; --p-ink: #F6EFE6;">
+        <div class={`poster ${hasPhotos ? 'poster--photo' : ''}`} style="--p-bg: var(--bg-deep); --p-ink: var(--on-deep);">
           {hasPhotos ? (
             <div class="hero-carousel" data-hero-carousel>
               <div
@@ -120,18 +120,18 @@ const heroWaLink = waLink('Gostaria de agendar um atendimento.');
               <div class="poster__top">
                 <div class="poster__brand">
                   <span class="brand__logo brand__logo--sm" aria-hidden="true"></span>
-                  <span>Escala de cor</span>
+                  <span>Beauty</span>
                 </div>
-                <span>Sandra Lourenço</span>
+                <span>Fortaleza</span>
               </div>
 
               <div class="poster__num" aria-hidden="true">
-                7
+                SL
               </div>
 
               <div class="poster__bottom">
-                <span class="poster__name">Mel</span>
-                <span class="muted" style="font-size: var(--t-xs);">Nível de clareamento</span>
+                <span class="poster__name">Loiros &amp; alinhamento</span>
+                <span class="muted" style="font-size: var(--t-xs);">sob medida</span>
               </div>
             </>
           )}

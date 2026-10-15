@@ -2,18 +2,20 @@
 
 Landing Page mobile-first de alto padrão para **Sandra Lourenço Beauty** (Cosmetologia e Estética Capilar em Fortaleza, CE).
 
-Desenvolvida com **Astro estático + GSAP (ScrollTrigger, SplitText) + Lenis** e CSS puro estruturado em tokens de design. Conceito **Escala de tons**: o progresso do scroll conduz a experiência através dos níveis de cor do cabelo (do espresso ao platinado), com troca de contraste milimétrica e qualificação direta para o WhatsApp oficial.
+Desenvolvida com **Astro estático + GSAP (ScrollTrigger, SplitText) + Lenis** e CSS puro estruturado em tokens de design. Paleta **Champagne & Espresso**: base creme luminosa com pausas de espresso, ritmo de superfícies por seção e conversão direta para o WhatsApp oficial.
 
 ---
 
 ## 🎨 Conceito e Identidade Visual
 
-- **Metáfora:** A tabela de níveis de cor capilar (níveis 1 a 10) utilizada por coloristas técnicos.
-- **Assinatura:** O scroll move o tom da página, a tipografia serifada de títulos troca de tinta no ponto exato de contraste, e o seletor de agendamento é a própria escala de tons.
+- **Metáfora:** A luz do estúdio — creme durante o trabalho, espresso nos momentos de decisão.
+- **Assinatura:** Ritmo de superfícies (creme `--bg-base`, areia `--bg-alt`, espresso `--bg-deep`), tipografia serifada grande e reveals bidirecionais que entram e saem com a rolagem.
 - **Tipografia:**
   - *Headings:* Cormorant Garamond Variable (`@fontsource-variable/cormorant-garamond`), sem itálico, proporções balanceadas.
   - *Corpo, UI e botões:* Montserrat Variable (`@fontsource-variable/montserrat`), legibilidade alta no mobile.
-- **Ação única de conversão:** Seletor em 2 toques (tom desejado + período) que gera a mensagem contextualizada para o WhatsApp oficial (+55 85 98997-8555).
+- **Ação única de conversão:** Botões de WhatsApp contextuais por serviço (com mensagem pronta), CTA fixo no cabeçalho (desktop) e pílula flutuante de conversa (mobile). O verde WhatsApp fica reservado à pílula.
+
+A referência completa do sistema (paleta, contraste, ritmo de seções e linguagem de movimento) está em [`DESIGN.md`](./DESIGN.md).
 
 ---
 
@@ -41,15 +43,15 @@ lp_sandralourenco/
     │   ├── avec-reviews.json   # 42 avaliações reais 5 estrelas do Avec
     │   ├── avec-team.json      # Equipe técnica oficial
     │   └── media.json          # Manifesto de mídia processada
-    ├── engine/                 # Motor de lifecycle e scroll Lenis/GSAP
-    ├── motion/                 # Drivers de movimento (escala de tons, seletor, tagline)
+    ├── engine/                 # Motor de lifecycle, scroll (Lenis/GSAP) e reveals
+    ├── motion/                 # Drivers de movimento (reveals, carrossel, FAB, menu, analytics)
     ├── styles/
     │   └── global.css          # Tokens de cor, tipografia fluida e estilos estruturais
     ├── layouts/
     │   └── Base.astro          # Layout com SEO, Schema.org HairSalon e flags de acessibilidade
     ├── components/
-    │   ├── Header.astro        # Cabeçalho com indicador em tempo real do nível de tom
-    │   ├── Hero.astro          # Pôster de tom + seletor interativo
+    │   ├── Header.astro        # Cabeçalho fixo: navegação (desktop), menu full-screen (mobile) e CTA
+    │   ├── Hero.astro          # H1 de benefício, CTAs e carrossel de fotos
     │   ├── Tagline.astro       # Manifesto técnico revelado palavra por palavra no scroll
     │   ├── Results.astro       # Comparador antes e depois (renderizado com fotos reais)
     │   ├── Services.astro      # 4 destaques editoriais + tabela completa de serviços
@@ -57,9 +59,9 @@ lp_sandralourenco/
     │   ├── Space.astro         # Espaço, regras como benefício e equipe técnica
     │   ├── Reviews.astro       # Estatística de fidelidade (22 clientes, 10 voltaram) e citações
     │   ├── FaqLocation.astro   # FAQ em details/summary nativo + mapa interativo e Waze
-    │   ├── FinalCta.astro      # Fechamento com seletor no tom carvão
+    │   ├── FinalCta.astro      # Fechamento em espresso com CTA de agendamento
     │   ├── Footer.astro        # Rodapé institucional com CNPJ e links legais
-    │   └── WhatsAppFab.astro   # Botão flutuante acionado após o hero
+    │   └── WhatsAppFab.astro   # Pílula flutuante de conversa (mobile), oculta no CTA final
     └── pages/
         ├── index.astro         # Página inicial
         ├── 404.astro           # Página de erro 404

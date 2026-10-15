@@ -6,7 +6,7 @@ import { ease, prefersReducedMotion } from './env';
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const durations = { lines: 1.2, words: 1.1, chars: 0.9 } as const;
-const staggers = { lines: 0.08, words: 0.035, chars: 0.018 } as const;
+const staggers = { lines: 0.08, words: 0.035, chars: 0.02 } as const;
 
 /**
  * Revelação bidirecional: o elemento entra ao aparecer e volta ao estado

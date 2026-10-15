@@ -19,7 +19,6 @@
   --accent: #9a5b2e;
   --accent-hover: #7f4822;
   --champagne: #e9cfa6;
-  --gold: #d9b27c;
 
   /* Conversa (reservado ao botão flutuante) */
   --wa: #25d366;
@@ -122,7 +121,6 @@ iframe { border: 0; }
 /* Ritmo de fundos: alterna creme, areia e espresso. Sem driver de scroll. */
 .sec--base { background: var(--bg-base); }
 .sec--alt { background: var(--bg-alt); }
-.sec--surface { background: var(--surface); }
 .sec--deep {
   background: var(--bg-deep);
   color: var(--on-deep);
@@ -157,7 +155,7 @@ html.motion [data-split] { visibility: hidden; }
   touch-action: manipulation;
 }
 .btn:active { transform: scale(0.98); }
-.btn--accent { background: var(--accent); color: #fff; }
+.btn--accent { background: var(--accent); color: var(--surface); }
 .btn--accent:hover { background: var(--accent-hover); }
 .btn--brand { background: var(--champagne); color: var(--ink-dark); }
 .btn--brand:hover { background: #ddc39a; }
@@ -457,13 +455,16 @@ html:not(.js) .menu__link { opacity: 1; transform: none; }
 }
 .hero-carousel__meta {
   flex: none;
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
 }
 .hero-carousel__count {
   font-family: var(--serif);
   font-size: 0.8125rem;
   font-weight: 600;
   letter-spacing: 0.04em;
-  color: #f6efe6;
+  color: var(--on-deep);
   font-variant-numeric: tabular-nums lining-nums;
   white-space: nowrap;
 }
@@ -476,7 +477,7 @@ html:not(.js) .menu__link { opacity: 1; transform: none; }
   border: 0;
   margin: 0;
   background: transparent;
-  color: #f6efe6;
+  color: var(--on-deep);
   cursor: pointer;
   border-radius: 999px;
   touch-action: manipulation;
@@ -488,7 +489,6 @@ html:not(.js) .menu__link { opacity: 1; transform: none; }
 .hero-carousel__toggle .ic-play { display: none; }
 .hero-carousel__toggle.is-paused .ic-pause { display: none; }
 .hero-carousel__toggle.is-paused .ic-play { display: block; }
-.hero-carousel__meta { display: flex; align-items: center; gap: var(--s2); }
 
 @keyframes hero-bar-fill {
   0% {
@@ -564,14 +564,14 @@ html:not(.js) .menu__link { opacity: 1; transform: none; }
   padding: var(--s4);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: color-mix(in srgb, var(--ink) 3%, transparent);
+  background: var(--surface);
   transition: transform 0.4s var(--ease-out), border-color 0.3s, background-color 0.3s;
   min-height: 130px;
 }
 .brand-card:hover {
   transform: translateY(-2px);
   border-color: color-mix(in srgb, var(--ink) 35%, transparent);
-  background: color-mix(in srgb, var(--ink) 6%, transparent);
+  background: var(--bg-base);
 }
 .brand-card__top {
   display: flex;
@@ -813,6 +813,10 @@ html:not(.js) .menu__link { opacity: 1; transform: none; }
 .fab:active { transform: scale(0.96); }
 .fab.on { opacity: 1; pointer-events: auto; transform: none; }
 .fab svg { width: 22px; height: 22px; flex: none; }
+/* No desktop o cabeçalho fixo cumpre o papel do CTA; a pílula é mobile-only. */
+@media (min-width: 900px) {
+  .fab { display: none; }
+}
 
 /* ───────── Páginas internas ───────── */
 .doc { min-height: 100svh; padding-block: calc(var(--header) + var(--s7)) var(--s7); }
