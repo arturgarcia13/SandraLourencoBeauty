@@ -92,7 +92,14 @@ const fetchedDate = getFetchedDate();
               const rowLink = waServiceLink(item.name);
 
               return (
-                <div class="row" role="listitem">
+                <a
+                  href={rowLink}
+                  class="row"
+                  role="listitem"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Agendar ${item.name} pelo WhatsApp`}
+                >
                   <div class="row__name">
                     <span>{item.name}</span>
                     {item.hasFormol && (
@@ -112,18 +119,12 @@ const fetchedDate = getFetchedDate();
                     <span>{item.priceFormatted}</span>
                   </div>
 
-                  <a
-                    href={rowLink}
-                    class="row__go"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Agendar ${item.name} pelo WhatsApp`}
-                  >
+                  <span class="row__go" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                       <path d="m9 18 6-6-6-6" />
                     </svg>
-                  </a>
-                </div>
+                  </span>
+                </a>
               );
             })}
           </div>
