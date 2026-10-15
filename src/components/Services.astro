@@ -16,7 +16,7 @@ const fetchedDate = getFetchedDate();
 >
   <div class="wrap">
     <div class="svc__head">
-      <h2 class="h-xl" data-split="lines">
+      <h2 class="h-xl" data-split="words">
         Critério técnico para clareamento, cor e textura
       </h2>
       <p class="muted" data-reveal="up">
@@ -36,7 +36,7 @@ const fetchedDate = getFetchedDate();
 
             <div>
               <span class="feat__cat">{feat.category}</span>
-              <h3 class="feat__t">{feat.title}</h3>
+              <h3 class="feat__t" data-split="words">{feat.title}</h3>
               <p class="feat__d" style="margin-top: 8px;">{feat.description}</p>
               {feat.highlights && (
                 <ul class="feat__steps" aria-label="Etapas e diferenciais do ritual">

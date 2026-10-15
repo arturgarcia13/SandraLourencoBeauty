@@ -4,6 +4,7 @@ import { initSelectors } from './selector';
 import { initComparisons } from './compare';
 import { initFab } from './fab';
 import { initHeroCarousel } from './carousel';
+import { initMenu } from './menu';
 
 export function setupMotion() {
   initToneDriver();
@@ -12,4 +13,5 @@ export function setupMotion() {
   initComparisons();
   initFab();
   initHeroCarousel();
+  initMenu();
 }
