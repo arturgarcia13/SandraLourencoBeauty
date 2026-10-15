@@ -3,9 +3,9 @@ import { prefersReducedMotion } from '../engine/env';
 
 // Paleta canônica da escala de tons Sandra Lourenço
 const TONES = {
-  carvao: '#121010',      // Nível 1 - Ébano / Carvão
-  moreno: '#3A2A1F',      // Nível 2/3 - Castanho / Moreno Iluminado
-  caramelo: '#7A5636',    // Nível 4/5 - Caramelo Quente
+  carvao: '#121010',      // Nível 1 - Ébano / Carvão (reservado ao fechamento)
+  moreno: '#3A2A1F',      // Nível 4 - Castanho / Moreno Iluminado (abertura)
+  caramelo: '#7A5636',    // Nível 6 - Caramelo Quente
   mel: '#C79A62',         // Nível 7 - Mel Dourado
   areia: '#EDDFC7',       // Nível 9 - Areia Clara / Alisamento Orgânico
   platinado: '#F5F0E7',   // Nível 10 - Platinado / Loiro Claríssimo
@@ -47,7 +47,7 @@ function getLuminance(r: number, g: number, b: number): number {
 /**
  * Condutor de cor de fundo contínuo e progressivo guiado pelo scroll.
  * Transita organicamente através de toda a escala capilar:
- * Início (Carvão) -> Serviços (Moreno) -> Método (Caramelo / Mel) ->
+ * Início (Castanho quente) -> Serviços (Moreno) -> Método (Caramelo / Mel) ->
  * Espaço (Areia) -> Avaliações (Platinado) -> FAQ (Mel / Caramelo) ->
  * Agendamento & Rodapé (Carvão Absoluto).
  */
@@ -82,11 +82,11 @@ export function initToneDriver() {
     const topFinal = getTop(secFinal, maxScroll * 0.90);
 
     const rawWaypoints: Waypoint[] = [
-      // 1. Início / Hero & Marcas (Carvão Absoluto)
-      { y: 0, bg: TONES.carvao, ink: TONES.inkLight },
+      // 1. Início / Hero, Marcas e Manifesto (Castanho quente da marca)
+      { y: 0, bg: TONES.moreno, ink: TONES.inkLight },
 
-      // 2. Fim do Manifesto / Entrada de Serviços (Transição suave para Moreno)
-      { y: Math.max(0, topServices - winH * 0.6), bg: TONES.carvao, ink: TONES.inkLight },
+      // 2. Fim do Manifesto / Entrada de Serviços (Mantém o Castanho)
+      { y: Math.max(0, topServices - winH * 0.6), bg: TONES.moreno, ink: TONES.inkLight },
       { y: Math.max(0, topServices - winH * 0.1), bg: TONES.moreno, ink: TONES.inkLight },
 
       // 3. Fim de Serviços / Entrada de Método (Evolui para Caramelo e Mel)

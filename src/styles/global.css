@@ -4,7 +4,7 @@
 @property --bg {
   syntax: '<color>';
   inherits: true;
-  initial-value: #121010;
+  initial-value: #3a2a1f;
 }
 
 @property --ink {
@@ -15,7 +15,7 @@
 
 /* ───────── Tokens ───────── */
 :root {
-  --bg: #121010;
+  --bg: #3a2a1f;
   --ink: #f6efe6;
   --wa: #25d366;
   --wa-ink: #0e1a12;

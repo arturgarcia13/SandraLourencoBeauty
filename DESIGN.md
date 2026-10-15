@@ -56,7 +56,7 @@ Concepts descartados: "A luz" (reflexo especular, depende de GL) e "A hora marca
 
 ## Composition plan
 ```
-HERO (nível 1)                 CHANCELA DE MARCAS (nível 1)  TAGLINE & RESULTADOS (nível 1)
+HERO (nível 4)                 CHANCELA DE MARCAS (nível 4)  TAGLINE & RESULTADOS (nível 4)
 ┌────────────────────────┐     ┌────────────────────────┐    ┌────────────────────────┐
 │ header: logo  N1 · CTA │     │ 6 marcas de elite      │    │ Manifesto: respeito à  │
 │ H1 (cols 1-7)  │ poster│     │ Wella · Kérastase ·    │    │ fibra capilar.         │
