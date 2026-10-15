@@ -179,8 +179,9 @@ html.motion [data-split] { visibility: hidden; }
 @media (min-width: 900px) {
   .hdr__nav { display: flex; }
   .hdr__cta { display: inline-flex; }
-  .menu-btn { display: none; }
-  .menu { display: none; }
+  /* Especificidade maior que a base de .menu-btn (que vem depois no arquivo). */
+  .hdr .menu-btn { display: none; }
+  .hdr .menu { display: none; }
 }
 .brand { font-family: var(--serif); font-weight: 600; font-size: 1.25rem; letter-spacing: -0.01em; line-height: 1; white-space: nowrap; display: inline-flex; align-items: center; gap: var(--s2); }
 .brand small { font-family: var(--sans); font-weight: 600; font-size: 0.625rem; letter-spacing: 0.2em; text-transform: uppercase; margin-left: var(--s2); color: var(--muted); }
