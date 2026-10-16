@@ -61,7 +61,7 @@ lp_sandralourenco/
     │   ├── FaqLocation.astro   # FAQ em details/summary nativo + mapa interativo e Waze
     │   ├── FinalCta.astro      # Fechamento em espresso com CTA de agendamento
     │   ├── Footer.astro        # Rodapé institucional com CNPJ e links legais
-    │   └── WhatsAppFab.astro   # Pílula flutuante de conversa (mobile), oculta no CTA final
+    │   └── WhatsAppFab.astro   # Ícone flutuante de conversa (mobile), oculto no CTA final
     └── pages/
         ├── index.astro         # Página inicial
         ├── 404.astro           # Página de erro 404
