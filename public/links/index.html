@@ -238,23 +238,23 @@
       height: 108px;
       margin: 0 auto;
     }
-    /* Medalhão com o monograma do salão */
+    /* Medalhão com o logo do salão */
     .avatar__disc {
       position: absolute;
       inset: 0;
       display: grid;
       place-items: center;
+      overflow: hidden;
       border: 2px solid var(--champagne);
       border-radius: 50%;
-      background: var(--deep);
+      background: var(--surface);
       box-shadow: 0 0 0 5px var(--bg), 0 18px 34px -16px rgba(43, 31, 23, 0.55);
     }
+    /* O logo é um PNG transparente recortado do fundo branco do arquivo original */
     .avatar__mark {
-      width: 104px;
-      height: 104px;
-      background-color: var(--champagne);
-      -webkit-mask: url('../logo-transparent.png') no-repeat center / contain;
-      mask: url('../logo-transparent.png') no-repeat center / contain;
+      display: block;
+      width: auto;
+      height: 72%;
     }
 
     .id__name {
@@ -755,7 +755,17 @@
 
   <header class="id">
     <span class="avatar" data-in style="--i:0" aria-hidden="true">
-      <span class="avatar__disc"><span class="avatar__mark"></span></span>
+      <span class="avatar__disc">
+        <img
+          class="avatar__mark"
+          src="monograma.png"
+          width="61"
+          height="92"
+          alt=""
+          fetchpriority="high"
+          decoding="async"
+        />
+      </span>
     </span>
 
     <h1 class="id__name" data-in style="--i:1">Sandra Lourenço</h1>
