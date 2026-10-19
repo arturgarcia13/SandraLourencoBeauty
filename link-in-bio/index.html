@@ -1,10 +1,10 @@
 <!doctype html>
 <!--
   Sandra Lourenço Beauty · página de links (link-in-bio)
-  Produto independente: um único arquivo, mobile-first, sem build e sem dependências de JS.
-  Estilos em variáveis CSS (paleta "Champagne & Espresso" do DESIGN.md).
-  Publicada em /links/ pelo Astro (public/ é copiado como está para dist/).
-  Fotos reaproveitadas de ../m/ (variantes otimizadas .webp/.avif já no projeto).
+  Produto independente do site: uma pasta estática, mobile-first, sem build e sem
+  dependências de JS. Abra index.html direto ou publique esta pasta como está.
+  Estilos em variáveis CSS (paleta "Champagne & Espresso" herdada do site).
+  Imagens, logo e ícones são locais (assets/), sem nada emprestado do site.
 
   Decisões de direção
   - O mundo visual é o já comprometido no DESIGN.md: creme luminoso com pausas de
@@ -30,13 +30,16 @@
   <meta property="og:title" content="Sandra Lourenço Beauty" />
   <meta property="og:description" content="Loiros luminosos, sem abrir mão da saúde do fio. Agende pelo WhatsApp." />
   <meta property="og:url" content="https://sandralourencobeauty.com.br/links/" />
-  <meta property="og:image" content="https://sandralourencobeauty.com.br/og-image.jpg" />
+  <meta property="og:image" content="https://sandralourencobeauty.com.br/links/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Sandra Lourenço Beauty — cosmetologia capilar em Bonsucesso, Fortaleza" />
   <meta property="og:locale" content="pt_BR" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <link rel="icon" href="icon-32.png" sizes="32x32" type="image/png" />
-  <link rel="icon" href="icon.png" sizes="180x180" type="image/png" />
-  <link rel="apple-touch-icon" href="icon.png" />
+  <link rel="icon" href="assets/icon-32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="assets/icon.png" sizes="180x180" type="image/png" />
+  <link rel="apple-touch-icon" href="assets/icon.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -48,7 +51,7 @@
     "@type": "HairSalon",
     "name": "Sandra Lourenço Beauty",
     "description": "Cosmetologia e estética capilar: loiros saudáveis, morena iluminada e alisamento orgânico sem formol.",
-    "image": "https://sandralourencobeauty.com.br/og-image.jpg",
+    "image": "https://sandralourencobeauty.com.br/links/assets/og-image.jpg",
     "url": "https://sandralourencobeauty.com.br",
     "telephone": "+5585989978555",
     "currenciesAccepted": "BRL",
@@ -590,8 +593,8 @@
       width: 26px;
       height: 26px;
       background-color: var(--champagne);
-      -webkit-mask: url('../logo-transparent.png') no-repeat center / contain;
-      mask: url('../logo-transparent.png') no-repeat center / contain;
+      -webkit-mask: url('assets/logo-transparent.png') no-repeat center / contain;
+      mask: url('assets/logo-transparent.png') no-repeat center / contain;
     }
 
     .socials { display: flex; gap: 10px; }
@@ -758,7 +761,7 @@
       <span class="avatar__disc">
         <img
           class="avatar__mark"
-          src="monograma.png"
+          src="assets/monograma.png"
           width="61"
           height="92"
           alt=""
@@ -882,9 +885,9 @@
         <article class="card" data-in style="--i:12">
           <span class="card__media">
             <picture>
-              <source type="image/avif" srcset="../m/depois-1-480.avif 480w, ../m/depois-1-960.avif 960w" sizes="(min-width: 600px) 45vw, 92vw" />
-              <source type="image/webp" srcset="../m/depois-1-480.webp 480w, ../m/depois-1-960.webp 960w" sizes="(min-width: 600px) 45vw, 92vw" />
-              <img src="../m/depois-1-960.webp" width="1440" height="1920" alt="Cabelo com movimento e brilho depois do Ritual Escova Orgânica sem formol" loading="lazy" decoding="async" />
+              <source type="image/avif" srcset="assets/depois-1-480.avif 480w, assets/depois-1-960.avif 960w" sizes="(min-width: 600px) 45vw, 92vw" />
+              <source type="image/webp" srcset="assets/depois-1-480.webp 480w, assets/depois-1-960.webp 960w" sizes="(min-width: 600px) 45vw, 92vw" />
+              <img src="assets/depois-1-960.webp" width="1440" height="1920" alt="Cabelo com movimento e brilho depois do Ritual Escova Orgânica sem formol" loading="lazy" decoding="async" />
             </picture>
             <span class="card__tag">Sem formol</span>
           </span>
@@ -914,9 +917,9 @@
         <article class="card" data-in style="--i:13">
           <span class="card__media">
             <picture>
-              <source type="image/avif" srcset="../m/foto4-480.avif 480w, ../m/foto4-960.avif 960w" sizes="(min-width: 600px) 45vw, 92vw" />
-              <source type="image/webp" srcset="../m/foto4-480.webp 480w, ../m/foto4-960.webp 960w" sizes="(min-width: 600px) 45vw, 92vw" />
-              <img src="../m/foto4-960.webp" width="1440" height="1920" alt="Cabelo longo com disciplina e brilho depois do Ritual Alisamento Light e Selagem" loading="lazy" decoding="async" />
+              <source type="image/avif" srcset="assets/foto4-480.avif 480w, assets/foto4-960.avif 960w" sizes="(min-width: 600px) 45vw, 92vw" />
+              <source type="image/webp" srcset="assets/foto4-480.webp 480w, assets/foto4-960.webp 960w" sizes="(min-width: 600px) 45vw, 92vw" />
+              <img src="assets/foto4-960.webp" width="1440" height="1920" alt="Cabelo longo com disciplina e brilho depois do Ritual Alisamento Light e Selagem" loading="lazy" decoding="async" />
             </picture>
             <span class="card__tag">Selagem térmica</span>
           </span>

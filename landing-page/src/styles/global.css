@@ -68,6 +68,10 @@ html {
   scroll-padding-top: var(--header);
   -webkit-tap-highlight-color: transparent;
   background-color: var(--bg-base);
+  /* Figuras com data-reveal="scale" nascem em 1.15 antes do reveal e, em telas
+     estreitas, empurram a viewport (o layout viewport cresce junto). Clipar o
+     eixo X aqui segura a página sem criar scroll container: sticky segue igual. */
+  overflow-x: clip;
 }
 html.lenis, html.lenis body { height: auto; }
 .lenis:not(.lenis-autoToggle).lenis-stopped { overflow: clip; }
