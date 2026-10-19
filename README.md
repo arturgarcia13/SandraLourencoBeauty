@@ -32,6 +32,7 @@ lp_sandralourenco/
 ├── public/
 │   ├── media/                  # Pasta para fotos originais do cliente
 │   ├── m/                      # Versões responsivas geradas automaticamente
+│   ├── links/                  # Produto separado: página de links (link-in-bio) em HTML único
 │   ├── favicon.svg             # Monograma SL em dourado champagne
 │   ├── logo.jpg                # Logo oficial da marca
 │   └── robots.txt              # Diretrizes para indexação
