@@ -47,17 +47,19 @@ no botão flutuante e no JSON-LD.
 
 ## Movimento
 
-Três camadas, todas em CSS e sem biblioteca:
+Duas camadas, todas em CSS e sem biblioteca:
 
-- **Entrada** — os blocos da primeira tela sobem em cascata (`data-in` + `--i`).
-- **Rolagem** — o que nasce abaixo da primeira tela entra quando chega à tela
-  (`data-reveal` + `IntersectionObserver`), e o fio do título "Destaques da casa"
-  cresce da esquerda. Sem JS nada fica escondido: a classe `js`, que liga o
-  estado inicial, só é adicionada por script.
+- **Rolagem (nos dois sentidos)** — cada bloco entra quando chega à tela e
+  desfaz a entrada quando sai, tanto descendo quanto subindo. A classe `is-out`
+  é marcada pelo `IntersectionObserver`; o fio do título "Destaques da casa"
+  cresce da esquerda junto com o bloco.
 - **Ponteiro** — elevação no hover apenas em `(hover: hover)`, para o estado não
   ficar grudado depois do toque; `:active` dá o retorno de pressão.
 
-Tudo respeita `prefers-reduced-motion`.
+**Nada anima na recarga:** no carregamento só o que está fora da tela recebe
+`is-out`, e as transições só são ligadas depois do primeiro quadro — o que já
+está visível aparece seco. Sem JS nada fica escondido, e
+`prefers-reduced-motion` mantém tudo visível e sem movimento.
 
 ## Assets
 

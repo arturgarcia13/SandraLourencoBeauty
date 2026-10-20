@@ -685,10 +685,7 @@
       background: var(--wa);
       color: var(--wa-ink);
       box-shadow: 0 12px 30px -10px rgba(14, 26, 18, 0.55);
-      opacity: 0;
-      pointer-events: none;
-      transform: translateY(14px) scale(0.94);
-      transition: opacity 0.5s var(--ease), transform 0.5s var(--ease), box-shadow 0.4s ease;
+      transition: transform 0.45s var(--ease), box-shadow 0.4s ease;
     }
     .fab .i { width: 27px; height: 27px; stroke-width: 1.9; }
     .fab::after {
@@ -700,7 +697,6 @@
       transform: translateX(-125%);
       transition: transform 0.75s var(--ease);
     }
-    .fab.is-on { opacity: 1; pointer-events: auto; transform: none; }
     @media (hover: hover) {
       .fab:hover { transform: translateY(-2px) scale(1.05); box-shadow: 0 18px 36px -12px rgba(14, 26, 18, 0.6); }
       .fab:hover::after { transform: translateX(125%); }
@@ -709,35 +705,23 @@
     .fab:focus-visible::after { transform: translateX(125%); }
     .fab:active { transform: scale(0.95); }
 
-    /* ───────── Um momento autoral: a coluna assenta de uma vez ───────── */
-    @keyframes rise {
-      from { opacity: 0; transform: translateY(14px); }
-      to { opacity: 1; transform: none; }
-    }
-    [data-in] {
-      /* backwards, não both: o estado final do keyframe não pode continuar
-         aplicado, senão o transform do hover nunca entra */
-      animation: rise 0.75s var(--ease) backwards;
-      animation-delay: calc(var(--i, 0) * 55ms + 60ms);
-    }
+    /* Movimento por rolagem (acima). Nada de coreografia na recarga. */
 
-    /* Entrada por rolagem: o que nasce fora da primeira tela entra quando chega.
-       Usa `translate` (não `transform`) para não disputar o transform do hover.
-       Sem JS, a classe .js nunca existe e nada se esconde. */
-    .js [data-reveal] {
-      opacity: 0;
-      translate: 0 22px;
-      transition: opacity 0.65s var(--ease), translate 0.85s var(--ease);
-      transition-delay: calc(var(--i, 0) * 70ms);
+    /* Movimento por rolagem: o bloco entra quando chega e desfaz quando sai —
+       tanto descendo quanto subindo. O JS marca .is-out só no que está fora da
+       tela, então nada anima na recarga e nada fica escondido sem JS. */
+    .js.is-motion [data-reveal] {
+      transition: opacity 0.6s var(--ease), translate 0.75s var(--ease);
+      transition-delay: calc(var(--i, 0) * 60ms);
     }
-    .js [data-reveal].is-in { opacity: 1; translate: 0 0; }
+    .js [data-reveal].is-out { opacity: 0; translate: 0 22px; }
+
     /* O fio do título cresce a partir da esquerda junto com o bloco */
-    .js .picks__head span {
-      transform: scaleX(0);
+    .js.is-motion .picks__head span {
       transform-origin: left center;
-      transition: transform 1s var(--ease) 0.18s;
+      transition: transform 1s var(--ease) 0.15s;
     }
-    .js .picks__head.is-in span { transform: none; }
+    .js .picks__head.is-out span { transform: scaleX(0); }
 
     /* ───────── Telas maiores ───────── */
     @media (min-width: 600px) {
@@ -759,9 +743,8 @@
         animation-delay: 0ms !important;
         transition-duration: 0.001ms !important;
       }
-      [data-in] { animation: none; opacity: 1; }
-      .js [data-reveal],
-      .js .picks__head span { opacity: 1; translate: none; transform: none; transition: none; }
+      .js [data-reveal].is-out { opacity: 1; translate: none; }
+      .js .picks__head.is-out span { transform: none; }
     }
   </style>
 </head>
@@ -815,7 +798,7 @@
   <div class="band" aria-hidden="true"></div>
 
   <header class="id">
-    <span class="avatar" data-in style="--i:0" aria-hidden="true">
+    <span class="avatar" data-reveal style="--i:0" aria-hidden="true">
       <span class="avatar__disc">
         <img
           class="avatar__mark"
@@ -829,14 +812,14 @@
       </span>
     </span>
 
-    <h1 class="id__name" data-in style="--i:1">Sandra Lourenço</h1>
-    <p class="id__role" data-in style="--i:2">Beauty · Cosmetologia capilar</p>
-    <p class="id__bio" data-in style="--i:3">
+    <h1 class="id__name" data-reveal style="--i:1">Sandra Lourenço</h1>
+    <p class="id__role" data-reveal style="--i:2">Beauty · Cosmetologia capilar</p>
+    <p class="id__bio" data-reveal style="--i:3">
       Especialista em loiros saudáveis, morena iluminada e alisamento orgânico.
       Atendimento privativo, com hora marcada, em Bonsucesso, Fortaleza.
     </p>
 
-    <ul class="chips" data-in style="--i:4">
+    <ul class="chips" data-reveal style="--i:4">
       <li class="chip">
         <svg class="i" aria-hidden="true"><use href="#i-star" /></svg>
         <b>5,0</b> · 42 no Avec VIP
@@ -855,8 +838,7 @@
         href="https://wa.me/5585989978555?text=Ol%C3%A1%2C%20equipe%20Sandra%20Louren%C3%A7o!%20%E2%9C%A8%20Gostaria%20de%20agendar%20um%20atendimento."
         target="_blank"
         rel="noopener noreferrer"
-        data-in
-        style="--i:5"
+        data-reveal
       >
         <span class="link__icon"><svg class="i" aria-hidden="true"><use href="#i-wa" /></svg></span>
         <span class="link__text">
@@ -871,8 +853,7 @@
         href="https://wa.me/5585989978555?text=Ol%C3%A1%2C%20equipe%20Sandra%20Louren%C3%A7o!%20%E2%9C%A8%20Gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20para%20o%20Ritual%20Loiro%20Saud%C3%A1vel%20e%20Mechas."
         target="_blank"
         rel="noopener noreferrer"
-        data-in
-        style="--i:6"
+        data-reveal
       >
         <span class="link__icon"><svg class="i" aria-hidden="true"><use href="#i-sun" /></svg></span>
         <span class="link__text">
@@ -887,8 +868,7 @@
         href="https://wa.me/5585989978555?text=Ol%C3%A1%2C%20equipe%20Sandra%20Louren%C3%A7o!%20%E2%9C%A8%20Gostaria%20de%20consultar%20disponibilidade%20para%20o%20Ritual%20Morena%20Iluminada."
         target="_blank"
         rel="noopener noreferrer"
-        data-in
-        style="--i:7"
+        data-reveal
       >
         <span class="link__icon"><svg class="i" aria-hidden="true"><use href="#i-sparkle" /></svg></span>
         <span class="link__text">
@@ -898,7 +878,7 @@
         <svg class="i link__arrow" aria-hidden="true"><use href="#i-arrow" /></svg>
       </a>
 
-      <a class="link" href="https://www.instagram.com/sandralourencobeauty_" target="_blank" rel="noopener noreferrer" data-in style="--i:8">
+      <a class="link" href="https://www.instagram.com/sandralourencobeauty_" target="_blank" rel="noopener noreferrer" data-reveal>
         <span class="link__icon"><svg class="i" aria-hidden="true"><use href="#i-ig" /></svg></span>
         <span class="link__text">
           <span class="link__label">Instagram</span>
@@ -912,8 +892,7 @@
         href="https://www.google.com/maps/dir/?api=1&amp;destination=-3.7749811,-38.5835572"
         target="_blank"
         rel="noopener noreferrer"
-        data-in
-        style="--i:9"
+        data-reveal
       >
         <span class="link__icon"><svg class="i" aria-hidden="true"><use href="#i-pin" /></svg></span>
         <span class="link__text">
@@ -923,7 +902,7 @@
         <svg class="i link__arrow" aria-hidden="true"><use href="#i-arrow" /></svg>
       </a>
 
-      <a class="link" href="https://sandralourencobeauty.com.br/#servicos" data-in style="--i:10">
+      <a class="link" href="https://sandralourencobeauty.com.br/#servicos" data-reveal>
         <span class="link__icon"><svg class="i" aria-hidden="true"><use href="#i-list" /></svg></span>
         <span class="link__text">
           <span class="link__label">Menu de serviços</span>
@@ -1005,7 +984,7 @@
         </article>
       </div>
 
-      <p class="picks__note" data-reveal style="--i:3">
+      <p class="picks__note" data-reveal>
         Valores de referência. O orçamento final sai do diagnóstico, do comprimento e do teste de mechas.
       </p>
     </section>
@@ -1051,39 +1030,43 @@
 
   <script>
     (function () {
-      var fab = document.querySelector('.fab');
-      if (fab) {
-        window.setTimeout(function () {
-          fab.classList.add('is-on');
-        }, 450);
-      }
       var ano = document.getElementById('ano');
       if (ano) ano.textContent = String(new Date().getFullYear());
 
-      // Revelação por rolagem: cada bloco entra uma vez, quando chega à tela.
+      // Movimento por rolagem: entra ao chegar, desfaz ao sair — para baixo e
+      // para cima. Nada anima na recarga: só marcamos .is-out no que nasce fora
+      // da tela. Sem JS, ou com movimento reduzido, tudo fica visível.
       var reveals = document.querySelectorAll('[data-reveal]');
-      function showAll() {
-        for (var i = 0; i < reveals.length; i++) reveals[i].classList.add('is-in');
-      }
-      try {
-        if (!('IntersectionObserver' in window)) {
-          showAll();
-        } else {
+      var root = document.documentElement;
+      var semMovimento =
+        window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (!semMovimento) {
+        var vh = window.innerHeight || root.clientHeight;
+        for (var r = 0; r < reveals.length; r++) {
+          if (reveals[r].getBoundingClientRect().top > vh * 0.92) {
+            reveals[r].classList.add('is-out');
+          }
+        }
+        // As transições só ligam depois do primeiro quadro: o que já está na
+        // tela aparece seco, sem coreografia de carregamento.
+        window.requestAnimationFrame(function () {
+          root.classList.add('is-motion');
+        });
+        try {
+          if (!('IntersectionObserver' in window)) throw new Error('sem IntersectionObserver');
           var io = new IntersectionObserver(
             function (entries) {
               for (var i = 0; i < entries.length; i++) {
-                if (entries[i].isIntersecting) {
-                  entries[i].target.classList.add('is-in');
-                  io.unobserve(entries[i].target);
-                }
+                entries[i].target.classList.toggle('is-out', !entries[i].isIntersecting);
               }
             },
-            { rootMargin: '0px 0px -12% 0px', threshold: 0.1 }
+            { rootMargin: '0px 0px -8% 0px', threshold: 0 }
           );
           for (var j = 0; j < reveals.length; j++) io.observe(reveals[j]);
+        } catch (e) {
+          for (var k = 0; k < reveals.length; k++) reveals[k].classList.remove('is-out');
         }
-      } catch (e) {
-        showAll();
       }
     })();
   </script>
