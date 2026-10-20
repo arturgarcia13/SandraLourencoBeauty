@@ -45,6 +45,20 @@ Os links de WhatsApp já saem com mensagem pronta (`?text=`). Para mudar o núme
 busque por `5585989978555` — ele aparece no botão principal, nos cards, no rodapé,
 no botão flutuante e no JSON-LD.
 
+## Movimento
+
+Três camadas, todas em CSS e sem biblioteca:
+
+- **Entrada** — os blocos da primeira tela sobem em cascata (`data-in` + `--i`).
+- **Rolagem** — o que nasce abaixo da primeira tela entra quando chega à tela
+  (`data-reveal` + `IntersectionObserver`), e o fio do título "Destaques da casa"
+  cresce da esquerda. Sem JS nada fica escondido: a classe `js`, que liga o
+  estado inicial, só é adicionada por script.
+- **Ponteiro** — elevação no hover apenas em `(hover: hover)`, para o estado não
+  ficar grudado depois do toque; `:active` dá o retorno de pressão.
+
+Tudo respeita `prefers-reduced-motion`.
+
 ## Assets
 
 - `monograma.png` foi gerado de `logo-original.jpg` (fundo branco removido,

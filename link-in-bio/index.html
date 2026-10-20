@@ -17,6 +17,8 @@
 -->
 <html lang="pt-BR">
 <head>
+  <!-- Só com JS as revelações por rolagem escondem algo; sem JS a página abre inteira -->
+  <script>document.documentElement.classList.add('js');</script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Sandra Lourenço Beauty · Agende pelo WhatsApp</title>
@@ -364,16 +366,31 @@
     .link__arrow { color: var(--line); transition: transform 0.45s var(--ease), color 0.35s ease; }
     .link__arrow .i { width: 18px; height: 18px; display: block; }
 
-    .link:hover,
+    /* Hover só onde existe ponteiro: no toque o estado não fica grudado no
+       item depois que a nova aba abre. Teclado continua com o mesmo retorno. */
+    @media (hover: hover) {
+      .link:hover {
+        border-color: var(--accent);
+        background: var(--surface-hover);
+        box-shadow: var(--shadow-lift);
+        transform: translateY(-2px);
+      }
+      .link:hover .link__icon { background: var(--accent); color: var(--on-deep); }
+      .link:hover .link__arrow { color: var(--accent); transform: translateX(4px); }
+      .link--primary:hover {
+        border-color: var(--accent-hover);
+        background: var(--accent-hover);
+      }
+      .link--primary:hover .link__icon { background: rgba(255, 255, 255, 0.24); color: var(--on-deep); }
+      .link--primary:hover .link__arrow { color: var(--surface); }
+    }
     .link:focus-visible {
       border-color: var(--accent);
       background: var(--surface-hover);
       box-shadow: var(--shadow-lift);
       transform: translateY(-2px);
     }
-    .link:hover .link__icon,
     .link:focus-visible .link__icon { background: var(--accent); color: var(--on-deep); }
-    .link:hover .link__arrow,
     .link:focus-visible .link__arrow { color: var(--accent); transform: translateX(4px); }
     .link:active { transform: translateY(0) scale(0.985); transition-duration: 0.12s; }
 
@@ -386,14 +403,11 @@
     .link--primary .link__icon { background: rgba(255, 255, 255, 0.16); color: var(--on-deep); }
     .link--primary .link__meta { color: var(--surface); }
     .link--primary .link__arrow { color: rgba(255, 250, 243, 0.75); }
-    .link--primary:hover,
     .link--primary:focus-visible {
       border-color: var(--accent-hover);
       background: var(--accent-hover);
     }
-    .link--primary:hover .link__icon,
     .link--primary:focus-visible .link__icon { background: rgba(255, 255, 255, 0.24); color: var(--on-deep); }
-    .link--primary:hover .link__arrow,
     .link--primary:focus-visible .link__arrow { color: var(--surface); }
 
     /* ───────── Destaques ───────── */
@@ -537,21 +551,33 @@
         color 0.35s ease, transform 0.35s var(--ease);
     }
     .btn .i { width: 17px; height: 17px; }
-    .btn:hover,
+    @media (hover: hover) {
+      .btn:hover {
+        border-color: var(--accent);
+        background: var(--accent);
+        color: var(--on-deep);
+      }
+    }
     .btn:focus-visible {
       border-color: var(--accent);
       background: var(--accent);
       color: var(--on-deep);
     }
-    .btn:active { transform: scale(0.98); }
+    .btn:active { transform: scale(0.97); transition-duration: 0.12s; }
 
-    .card:hover,
+    @media (hover: hover) {
+      .card:hover {
+        border-color: var(--accent);
+        box-shadow: var(--shadow-lift);
+        transform: translateY(-3px);
+      }
+      .card:hover .card__media img { transform: scale(1.05); }
+    }
     .card:focus-within {
       border-color: var(--accent);
       box-shadow: var(--shadow-lift);
       transform: translateY(-3px);
     }
-    .card:hover .card__media img,
     .card:focus-within .card__media img { transform: scale(1.05); }
 
     .picks__note {
@@ -610,13 +636,21 @@
       transition: background-color 0.35s ease, border-color 0.35s ease,
         color 0.35s ease, transform 0.4s var(--ease);
     }
-    .soc:hover,
+    @media (hover: hover) {
+      .soc:hover {
+        border-color: var(--champagne);
+        background: var(--champagne);
+        color: var(--footer);
+        transform: translateY(-2px);
+      }
+    }
     .soc:focus-visible {
       border-color: var(--champagne);
       background: var(--champagne);
       color: var(--footer);
       transform: translateY(-2px);
     }
+    .soc:active { transform: translateY(0) scale(0.94); transition-duration: 0.12s; }
 
     .foot__info {
       color: rgba(247, 241, 232, 0.74);
@@ -667,9 +701,11 @@
       transition: transform 0.75s var(--ease);
     }
     .fab.is-on { opacity: 1; pointer-events: auto; transform: none; }
-    .fab:hover,
+    @media (hover: hover) {
+      .fab:hover { transform: translateY(-2px) scale(1.05); box-shadow: 0 18px 36px -12px rgba(14, 26, 18, 0.6); }
+      .fab:hover::after { transform: translateX(125%); }
+    }
     .fab:focus-visible { transform: translateY(-2px) scale(1.05); box-shadow: 0 18px 36px -12px rgba(14, 26, 18, 0.6); }
-    .fab:hover::after,
     .fab:focus-visible::after { transform: translateX(125%); }
     .fab:active { transform: scale(0.95); }
 
@@ -679,9 +715,29 @@
       to { opacity: 1; transform: none; }
     }
     [data-in] {
-      animation: rise 0.75s var(--ease) both;
+      /* backwards, não both: o estado final do keyframe não pode continuar
+         aplicado, senão o transform do hover nunca entra */
+      animation: rise 0.75s var(--ease) backwards;
       animation-delay: calc(var(--i, 0) * 55ms + 60ms);
     }
+
+    /* Entrada por rolagem: o que nasce fora da primeira tela entra quando chega.
+       Usa `translate` (não `transform`) para não disputar o transform do hover.
+       Sem JS, a classe .js nunca existe e nada se esconde. */
+    .js [data-reveal] {
+      opacity: 0;
+      translate: 0 22px;
+      transition: opacity 0.65s var(--ease), translate 0.85s var(--ease);
+      transition-delay: calc(var(--i, 0) * 70ms);
+    }
+    .js [data-reveal].is-in { opacity: 1; translate: 0 0; }
+    /* O fio do título cresce a partir da esquerda junto com o bloco */
+    .js .picks__head span {
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 1s var(--ease) 0.18s;
+    }
+    .js .picks__head.is-in span { transform: none; }
 
     /* ───────── Telas maiores ───────── */
     @media (min-width: 600px) {
@@ -704,6 +760,8 @@
         transition-duration: 0.001ms !important;
       }
       [data-in] { animation: none; opacity: 1; }
+      .js [data-reveal],
+      .js .picks__head span { opacity: 1; translate: none; transform: none; transition: none; }
     }
   </style>
 </head>
@@ -876,13 +934,13 @@
     </nav>
 
     <section class="picks" aria-labelledby="destaques">
-      <div class="picks__head" data-in style="--i:11">
+      <div class="picks__head" data-reveal style="--i:0">
         <h2 id="destaques">Destaques da casa</h2>
         <span aria-hidden="true"></span>
       </div>
 
       <div class="picks__grid">
-        <article class="card" data-in style="--i:12">
+        <article class="card" data-reveal style="--i:1">
           <span class="card__media">
             <picture>
               <source type="image/avif" srcset="assets/depois-1-480.avif 480w, assets/depois-1-960.avif 960w" sizes="(min-width: 600px) 45vw, 92vw" />
@@ -914,7 +972,7 @@
           </div>
         </article>
 
-        <article class="card" data-in style="--i:13">
+        <article class="card" data-reveal style="--i:2">
           <span class="card__media">
             <picture>
               <source type="image/avif" srcset="assets/foto4-480.avif 480w, assets/foto4-960.avif 960w" sizes="(min-width: 600px) 45vw, 92vw" />
@@ -947,14 +1005,14 @@
         </article>
       </div>
 
-      <p class="picks__note" data-in style="--i:14">
+      <p class="picks__note" data-reveal style="--i:3">
         Valores de referência. O orçamento final sai do diagnóstico, do comprimento e do teste de mechas.
       </p>
     </section>
   </main>
 
   <footer class="foot">
-    <div class="foot__inner">
+    <div class="foot__inner" data-reveal style="--i:0">
       <p class="foot__brand"><span class="foot__mark" aria-hidden="true"></span> Sandra Lourenço Beauty</p>
 
       <div class="socials">
@@ -1001,6 +1059,32 @@
       }
       var ano = document.getElementById('ano');
       if (ano) ano.textContent = String(new Date().getFullYear());
+
+      // Revelação por rolagem: cada bloco entra uma vez, quando chega à tela.
+      var reveals = document.querySelectorAll('[data-reveal]');
+      function showAll() {
+        for (var i = 0; i < reveals.length; i++) reveals[i].classList.add('is-in');
+      }
+      try {
+        if (!('IntersectionObserver' in window)) {
+          showAll();
+        } else {
+          var io = new IntersectionObserver(
+            function (entries) {
+              for (var i = 0; i < entries.length; i++) {
+                if (entries[i].isIntersecting) {
+                  entries[i].target.classList.add('is-in');
+                  io.unobserve(entries[i].target);
+                }
+              }
+            },
+            { rootMargin: '0px 0px -12% 0px', threshold: 0.1 }
+          );
+          for (var j = 0; j < reveals.length; j++) io.observe(reveals[j]);
+        }
+      } catch (e) {
+        showAll();
+      }
     })();
   </script>
 </body>
